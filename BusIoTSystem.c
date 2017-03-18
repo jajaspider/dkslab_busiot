@@ -138,6 +138,7 @@ int main(int argc,char *argv[])
         char buffer[BUF_LEN];
         time_t timer;
         struct tm *t;
+        int setting_flag;
         memset(buffer,0x00,sizeof(buffer));
         timer = time(NULL);
         t = localtime(&timer);
@@ -147,11 +148,12 @@ int main(int argc,char *argv[])
         log_management("시스템 시작");
 
         log_management("시스템 세팅값 불러오는 중");
-        if(setting_data()==1){
+        setting_flag=setting_data();
+        if(setting_flag==1){
           log_management("시스템 세팅값 불러오기 실패");
           return 0;
         }
-        else if(setting_data()==0){
+        else if(setting_flag==0){
           log_management("시스템 세팅값 불러오기 완료");
         }
 
