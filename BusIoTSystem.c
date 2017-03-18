@@ -189,7 +189,7 @@ char* rtrim(char* s) {
   // Visual C 2003 이하에서는
   // strcpy(t, s);
   // 이렇게 해야 함
-  strcpy_s(t, s); // 이것은 Visual C 2005용
+  strcpy(t, s); // 이것은 Visual C 2005용
   end = t + strlen(t) - 1;
   while (end != t && isspace(*end))
     end--;
