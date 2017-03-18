@@ -23,6 +23,7 @@ int temperature_random_generation(int min,int max);
 int random_count();
 int gps_y_random_generation(int min,int max);
 int gps_x_random_generation(int min,int max);
+void setting_data();
 
 int gps_x_random_generation(int min,int max){
         int i;
@@ -88,14 +89,44 @@ void log_management(char *log_data){
         FILE *f;
         char filename[20];
         sprintf(filename,"%s_log",current_day);
+        //파일이 있을 때
         if(access(filename,0)==0) {
                 f = fopen(filename,"a");
         }
+        //파일이 없을 때
         else if(access(filename,0)==-1) {
                 f = fopen(filename,"w");
         }
         fprintf(f, "[%s]%s\n",current_time,log_data);
         fclose(f);
+}
+
+void setting_data(){
+  FILE *f;
+  char read_data[20];
+  char *temp_str;
+  char *temp_str1;
+  //파일이 있을 때
+  if(access("settings.txt",0)==0) {
+          f = fopen("settings.txt","r");
+  }
+  //파일이 없을 때
+  else if(access("settings.txt",0)==-1) {
+          log_management("settings.txt 파일을 찾을수없습니다.");
+  }
+
+  if(f!=NULL){
+    char *temp_str;
+    char *temp_str1;
+
+    while(!feof(f)){
+      temp_str1=fgets(temp_str,sizeof(temp_str),f);
+      printf("%s",temp_str);
+      printf("%s",temp_str1);
+    }
+  }
+
+  fscanf(f)
 }
 
 int main(int argc,char *argv[])
@@ -113,6 +144,10 @@ int main(int argc,char *argv[])
         sprintf(current_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
         log_management("시스템 시작");
+
+        log_management("시스템 세팅값 불러오는 중");
+        setting_data();
+        log_management("시스템 세팅값 불러오기 완료");
 
         client_fd = socket(PF_INET,SOCK_STREAM,0);
         client_addr.sin_addr.s_addr = inet_addr(IPADDR);
@@ -146,7 +181,6 @@ int main(int argc,char *argv[])
                 char temp_str[6]="%06x";
                 char temp_str1[6]="%02x";
                 sprintf(temp_string,"%s%s%s%s%s%s%s%s\n",temp_str,temp_str,temp_str1,temp_str1,temp_str1,temp_str1,temp_str1,temp_str1);
-                printf("string %s",temp_string);
                 //sprintf(buffer,"%06x%06x%02x%02x%02x%02x%02x%02x",gps_random_generation(0,200000),gps_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
                 sprintf(buffer,temp_string,gps_x_random_generation(0,200000),gps_y_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
                 printf("[BusIoTSystem]Send Data %s\n",buffer);
