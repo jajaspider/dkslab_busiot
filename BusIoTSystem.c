@@ -123,7 +123,7 @@ int setting_data(){
     while(!feof(f)){
       temp_str1=fgets(temp_str,sizeof(temp_str),f);
       printf("%s",temp_str);
-      printf("%s",temp_str1);
+      //printf("%s",temp_str1);
     }
   }
   fclose(f);
