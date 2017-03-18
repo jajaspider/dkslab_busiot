@@ -5,7 +5,7 @@ int random_generation(char *str,int min,int max){
         srand(time(NULL));
         i=rand()%(max-min)+min;
         char print_str[50];
-        sprintf(print_str,"[BusIoTSystem]%s generation : %d\n",str,i);
+        sprintf(print_str,"[BusIoTSystem]%s generation : %d",str,i);
         printf("%s\n",print_str);
 
         sprintf(logdata,"%s 값 랜덤생성",str);
@@ -259,11 +259,13 @@ int main(int argc,char *argv[])
 
                 //모든 데이터들 버퍼에 추가
                 sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
-                //전송
-                write(client_fd,buffer,strlen(buffer));
+
                 printf("[BusIoTSystem]Send Data %s\n",buffer);
                 sprintf(logdata,"전송된 데이터 : %s",buffer);
                 log_management(logdata);
+                //전송
+                write(client_fd,buffer,strlen(buffer));
+
 
                 sleep(1);
         }
