@@ -21,15 +21,29 @@ void log_management(char *log_data);
 int humidity_random_generation(int min,int max);
 int temperature_random_generation(int min,int max);
 int random_count();
-int gps_random_generation(int min,int max);
+int gps_y_random_generation(int min,int max);
+int gps_x_random_generation(int min,int max)
 
-int gps_random_generation(int min,int max){
+int gps_x_random_generation(int min,int max){
         int i;
         srand(time(NULL));
         i=rand()%(max-min)+min;
-        
+
         printf("[BusIoTSystem]GPS generation : %d\n",i);
-        log_management("GPS 값 랜덤 생성");
+        log_management("GPS X 값 랜덤 생성");
+        sprintf(logdata,"생성된 데이터 : %d",i);
+        log_management(logdata);
+
+        return i;
+}
+
+int gps_y_random_generation(int min,int max){
+        int i;
+        srand(time(NULL));
+        i=rand()%(max-min)+min;
+
+        printf("[BusIoTSystem]GPS generation : %d\n",i);
+        log_management("GPS Y 값 랜덤 생성");
         sprintf(logdata,"생성된 데이터 : %d",i);
         log_management(logdata);
 
@@ -134,7 +148,7 @@ int main(int argc,char *argv[])
                 sprintf(temp_string,"%s%s%s%s%s%s%s%s\n",temp_str,temp_str,temp_str1,temp_str1,temp_str1,temp_str1,temp_str1,temp_str1);
                 printf("string %s",temp_string);
                 //sprintf(buffer,"%06x%06x%02x%02x%02x%02x%02x%02x",gps_random_generation(0,200000),gps_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
-                sprintf(buffer,temp_string,gps_random_generation(0,200000),gps_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
+                sprintf(buffer,temp_string,gps_x_random_generation(0,200000),gps_y_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
                 printf("[BusIoTSystem]Send Data %s\n",buffer);
                 sprintf(logdata,"전송된 데이터 : %s",buffer);
                 log_management(logdata);
