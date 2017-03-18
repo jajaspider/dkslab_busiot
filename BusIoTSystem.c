@@ -27,10 +27,12 @@ int gps_random_generation(int min,int max){
         int i;
         srand(time(NULL));
         i=rand()%(max-min)+min;
+        
         printf("[BusIoTSystem]GPS generation : %d\n",i);
         log_management("GPS 값 랜덤 생성");
         sprintf(logdata,"생성된 데이터 : %d",i);
         log_management(logdata);
+
         return i;
 }
 
@@ -46,9 +48,12 @@ int temperature_random_generation(int min,int max){
         int i;
         srand(time(NULL));
         i=rand()%(max-min)+min;
+
         printf("[BusIoTSystem]temperature generation : %d\n",i);
         log_management("온도 값 랜덤 생성");
         sprintf(logdata,"생성된 데이터 : %d",i);
+        log_management(logdata);
+
         return i;
 }
 
@@ -56,9 +61,12 @@ int humidity_random_generation(int min,int max){
         int i;
         srand(time(NULL));
         i=rand()%(max-min)+min;
+
         printf("[BusIoTSystem]Humidity generation : %d\n",i);
         log_management("습도 값 랜덤 생성");
         sprintf(logdata,"생성된 데이터 : %d",i);
+        log_management(logdata);
+
         return i;
 }
 
@@ -91,7 +99,7 @@ int main(int argc,char *argv[])
         sprintf(current_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
         log_management("시스템 시작");
-        
+
         client_fd = socket(PF_INET,SOCK_STREAM,0);
         client_addr.sin_addr.s_addr = inet_addr(IPADDR);
         client_addr.sin_family = AF_INET;
