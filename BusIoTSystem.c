@@ -7,7 +7,6 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <time.h>
-#include <file.h>
 
 #define BUF_SIZE 1024
 #define BUF_LEN 1024
@@ -64,7 +63,7 @@ int humidity_random_generation(int min,int max){
 }
 
 void log_management(char *log_data){
-  File *f;
+  FILE *f;
   char filename[20];
   sprintf(filename,"%s_log",current_day);
   if(access(filename,0)==0){
