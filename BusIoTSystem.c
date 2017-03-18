@@ -84,9 +84,7 @@ int main(int argc,char *argv[])
         char buffer[BUF_LEN];
         time_t timer;
         struct tm *t;
-        timer = time(NULL);
-        t = localtime(&timer);
-        sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+
         log_management("시스템 시작");
 
         memset(buffer,0x00,sizeof(buffer));
@@ -104,8 +102,9 @@ int main(int argc,char *argv[])
         //temp
         int i=0;
         while(1) {
-                //timer = time(NULL);
+                timer = time(NULL);
                 t = localtime(&timer);
+                sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                 sprintf(current_time,"%s%s%s",t->tm_hour,t->tm_min,t->tm_sec);
                 //탑승객wwwwww
                 if(random_count()>=5) {
