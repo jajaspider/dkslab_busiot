@@ -17,7 +17,7 @@ char current_day[20];
 char log_time[50];
 char current_time[50];
 char logdata[100];
-int gps_x,gps_y,gps_time,temperature,
+int gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck;
 
 void log_management(char *log_data);
 int humidity_random_generation(int min,int max);
