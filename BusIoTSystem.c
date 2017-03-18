@@ -156,7 +156,7 @@ int setting_data(){
                         log_management(logdata);
                 }
 
-        )
+        }
         fclose(f);
         return 2;
 }
