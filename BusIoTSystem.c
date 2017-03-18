@@ -85,8 +85,13 @@ int main(int argc,char *argv[])
         time_t timer;
         struct tm *t;
         memset(buffer,0x00,sizeof(buffer));
+        timer = time(NULL);
+        t = localtime(&timer);
+        sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+        sprintf(current_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
         log_management("시스템 시작");
+        
         client_fd = socket(PF_INET,SOCK_STREAM,0);
         client_addr.sin_addr.s_addr = inet_addr(IPADDR);
         client_addr.sin_family = AF_INET;
