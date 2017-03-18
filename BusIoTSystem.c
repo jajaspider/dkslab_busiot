@@ -86,7 +86,7 @@ int main(int argc,char *argv[])
         struct tm *t;
         timer = time(NULL);
         t = localtime(&timer);
-        sprintf(current_day,"%s%s%s",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+        sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
         log_management("시스템 시작");
 
         memset(buffer,0x00,sizeof(buffer));
