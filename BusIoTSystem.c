@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <time.h>
+#include <file.h>
 
 #define BUF_SIZE 1024
 #define BUF_LEN 1024
