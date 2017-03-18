@@ -104,7 +104,7 @@ int main(int argc,char *argv[])
         //temp
         int i=0;
         while(1) {
-                timer = time(NULL);
+                //timer = time(NULL);
                 t = localtime(&timer);
                 sprintf(current_time,"%s%s%s",t->tm_hour,t->tm_min,t->tm_sec);
                 //탑승객wwwwww
