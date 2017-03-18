@@ -126,7 +126,7 @@ int setting_data(){
                 temp_str3[strlen(temp_str3)-1]='\0';
 
                 printf("[BusIoTSystem]Setting Data : %s = %s\n",temp_str2,temp_str3);
-                sprintf(logdata,"%s 세팅값 : %s\n",temp_str2,temp_str3);
+                sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                 log_management(logdata);
 
 
