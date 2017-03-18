@@ -13,7 +13,7 @@
 #define PORT 29903
 #define IPADDR "113.198.236.96"
 #define MAXTIMINGS 85
-char current_day[10];
+char current_day[20];
 char current_time[20];
 char logdata[100];
 
