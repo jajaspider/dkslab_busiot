@@ -16,32 +16,6 @@ int random_generation(char *str,int min,int max){
         return i;
 }
 
-int gps_x_random_generation(int min,int max){
-        int i;
-        srand(time(NULL));
-        i=rand()%(max-min)+min;
-
-        printf("[BusIoTSystem]GPS generation : %d\n",i);
-        log_management("GPS X 값 랜덤 생성");
-        sprintf(logdata,"생성된 데이터 : %d",i);
-        log_management(logdata);
-
-        return i;
-}
-
-int gps_y_random_generation(int min,int max){
-        int i;
-        srand(time(NULL));
-        i=rand()%(max-min)+min;
-
-        printf("[BusIoTSystem]GPS generation : %d\n",i);
-        log_management("GPS Y 값 랜덤 생성");
-        sprintf(logdata,"생성된 데이터 : %d",i);
-        log_management(logdata);
-
-        return i;
-}
-
 int random_count(){
         int i;
         srand(time(NULL));
@@ -50,31 +24,6 @@ int random_count(){
         return i;
 }
 
-int temperature_random_generation(int min,int max){
-        int i;
-        srand(time(NULL));
-        i=rand()%(max-min)+min;
-
-        printf("[BusIoTSystem]temperature generation : %d\n",i);
-        log_management("온도 값 랜덤 생성");
-        sprintf(logdata,"생성된 데이터 : %d",i);
-        log_management(logdata);
-
-        return i;
-}
-
-int humidity_random_generation(int min,int max){
-        int i;
-        srand(time(NULL));
-        i=rand()%(max-min)+min;
-
-        printf("[BusIoTSystem]Humidity generation : %d\n",i);
-        log_management("습도 값 랜덤 생성");
-        sprintf(logdata,"생성된 데이터 : %d",i);
-        log_management(logdata);
-
-        return i;
-}
 
 void log_management(char *log_data){
         FILE *f;
