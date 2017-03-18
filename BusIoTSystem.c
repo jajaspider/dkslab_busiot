@@ -63,20 +63,20 @@ int humidity_random_generation(int min,int max){
 }
 
 void log_management(char *log_data){
-  FILE *f;
-  char filename[20];
-  sprintf(filename,"%s_log",current_day);
-  if(access(filename,0)==0){
-    f = fopen(filename,"a");
-  }
-  else if(access(filename,0)==-1){
-    f = fopen(filename,"w");
-  }
-  fprintf(f, "[%s]%s\n",current_time,log_data);
-  fclose(f);
+        FILE *f;
+        char filename[20];
+        sprintf(filename,"%s_log",current_day);
+        if(access(filename,0)==0) {
+                f = fopen(filename,"a");
+        }
+        else if(access(filename,0)==-1) {
+                f = fopen(filename,"w");
+        }
+        fprintf(f, "[%s]%s\n",current_time,log_data);
+        fclose(f);
 }
 
-int main(int argc,char *argv[]
+int main(int argc,char *argv[])
 {
         int client_fd,len;
         struct sockaddr_in client_addr;
@@ -92,12 +92,12 @@ int main(int argc,char *argv[]
         client_addr.sin_family = AF_INET;
         client_addr.sin_port = htons(PORT);
         /*if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
-        {
+           {
                 printf("[BusIoTSystem]Socket Can't connect\n");
                 log_management("소켓연결 에러");
                 close(client_fd);
                 return -1;
-        }*/
+           }*/
         //temp
         int i=0;
         while(1) {
