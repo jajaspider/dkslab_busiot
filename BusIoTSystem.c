@@ -117,9 +117,11 @@ int setting_data(){
         }
 
         while(!feof(f)) {
-                temp_str1=fgets(temp_str,sizeof(temp_str),f);
-                printf("temp_str : %s",temp_str);
-                //printf("temp_str1 : %s",temp_str1);
+                fgets(temp_str,sizeof(temp_str),f);
+
+                printf("[BusIoTSystem]Setting Data : %s\n",temp_str);
+                sprintf(logdata,"불러온 세팅값 : %s",temp_str);
+                log_management(logdata);
         }
 
         fclose(f);
