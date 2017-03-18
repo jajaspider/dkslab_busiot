@@ -168,40 +168,33 @@ char* trim(char *s) {
 
 // 문자열 우측 공백문자 삭제 함수
 char* rtrim(char* s) {
-  char t[MAX_STR_LEN];
-  char *end;
+        char t[MAX_STR_LEN];
+        char *end;
+        strcpy(t, s);
+        end = t + strlen(t) - 1;
+        while (end != t && isspace(*end))
+                end--;
+        *(end + 1) = '\0';
+        s = t;
 
-  // Visual C 2003 이하에서는
-  // strcpy(t, s);
-  // 이렇게 해야 함
-  strcpy(t, s); // 이것은 Visual C 2005용
-  end = t + strlen(t) - 1;
-  while (end != t && isspace(*end))
-    end--;
-  *(end + 1) = '\0';
-  s = t;
-
-  return s;
+        return s;
 }
-
 
 // 문자열 좌측 공백문자 삭제 함수
 char* ltrim(char *s) {
-  char* begin;
-  begin = s;
+        char* begin;
+        begin = s;
 
-  while (*begin != '\0') {
-    if (isspace(*begin))
-      begin++;
-    else {
-      s = begin;
-      break;
-    }
-  }
-
-  return s;
+        while (*begin != '\0') {
+                if (isspace(*begin))
+                        begin++;
+                else {
+                        s = begin;
+                        break;
+                }
+        }
+        return s;
 }
-
 
 int main(int argc,char *argv[])
 {
@@ -234,22 +227,23 @@ int main(int argc,char *argv[])
         client_addr.sin_addr.s_addr = inet_addr(IPADDR);
         client_addr.sin_family = AF_INET;
         client_addr.sin_port = htons(PORT);
-        /*if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
-           {
-                printf("[BusIoTSystem]Socket Can't connect\n");
-                log_management("소켓연결 에러");
-                close(client_fd);
-                return -1;
-           }*/
-        //temp
+
         int i=0;
         while(1) {
+                /*if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
+                   {
+                        printf("[BusIoTSystem]Socket Can't connect\n");
+                        log_management("소켓연결 에러");
+                        close(client_fd);
+                        return -1;
+                   }*/
+
                 timer = time(NULL);
                 t = localtime(&timer);
                 sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                 sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                 sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
-                //탑승객wwwwww
+                //탑승객 수 랜덤증감
                 if(random_count()>=5) {
                         i+=1;
                 }
@@ -258,28 +252,18 @@ int main(int argc,char *argv[])
                 }
                 if(i<0)
                         i=0;
-
+                //세팅값에따른 바이트길이세팅
                 char temp_string[BUF_LEN];
-                char temp_str[6]="%06x";
-                char temp_str1[6]="%02x";
                 sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
-                printf("%s\n",temp_string);
-                //sprintf(buffer,"%06x%06x%02x%02x%02x%02x%02x%02x",gps_random_generation(0,200000),gps_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
-                sprintf(buffer,temp_string,gps_x_random_generation(0,200000),gps_y_random_generation(0,100000),current_time,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
+                //모든 데이터들 버퍼에 추가
+                sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
+                //전송
+                write(client_fd,buffer,strlen(buffer));
                 printf("[BusIoTSystem]Send Data %s\n",buffer);
                 sprintf(logdata,"전송된 데이터 : %s",buffer);
                 log_management(logdata);
-                //send(client_fd,"c",strlen(buffer),0);
-                //int temp = 14;
-                write(client_fd,buffer,strlen(buffer));
-                //write(client_fd,'a',4);
-                //buffer[0] = '\0';
-                //memset(buffer,0x00,sizeof(buffer));
-                //recv(client_fd,recv_data,sizeof(recv_data),0);
-                //printf("recv data : %s\n",recv_data);
 
                 sleep(1);
         }
-        //    close(client_fd);
         return 0;
 }
