@@ -116,9 +116,6 @@ int setting_data(){
                 return 1;
         }
 
-        char *temp_str;
-        char *temp_str1;
-
         while(!feof(f)) {
                 temp_str1=fgets(temp_str,sizeof(temp_str),f);
                 printf("temp_str : %s",temp_str);
