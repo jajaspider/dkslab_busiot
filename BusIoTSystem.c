@@ -18,6 +18,7 @@ char log_time[50];
 char current_time[50];
 char logdata[100];
 int gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck;
+char* trim(char *s);
 
 void log_management(char *log_data);
 int humidity_random_generation(int min,int max);
@@ -111,11 +112,11 @@ int setting_data(){
         char *temp_str2;
         char *temp_str3;
         //파일이 있을 때
-        if(access("settings.txt",0)==0){
+        if(access("settings.txt",0)==0) {
                 f = fopen("settings.txt","r");
         }
         //파일이 없을 때
-        else if(access("settings.txt",0)==-1){
+        else if(access("settings.txt",0)==-1) {
                 log_management("settings.txt 파일을 찾을수없습니다.");
                 return 1;
         }
@@ -129,46 +130,52 @@ int setting_data(){
 
                 printf("[BusIoTSystem]Setting Data : %s = %s\n",temp_str2,temp_str3);
 
-                if(!strcmp(temp_str2,"gps_x")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                temp_str3 = trim(temp_str3);
+                
+                if(!strcmp(temp_str2,"gps_x")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
-                if(!strcmp(temp_str2,"gps_y")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                if(!strcmp(temp_str2,"gps_y")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
-                if(!strcmp(temp_str2,"gps_time")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                if(!strcmp(temp_str2,"gps_time")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
-                if(!strcmp(temp_str2,"temperature")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                if(!strcmp(temp_str2,"temperature")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
-                if(!strcmp(temp_str2,"humidity")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                if(!strcmp(temp_str2,"humidity")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
-                if(!strcmp(temp_str2,"passengercount")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                if(!strcmp(temp_str2,"passengercount")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
-                if(!strcmp(temp_str2,"buttoncheck")){
-                  gps_x=atoi(temp_str3);
-                  sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                  log_management(logdata);
+                if(!strcmp(temp_str2,"buttoncheck")) {
+                        gps_x=atoi(temp_str3);
+                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                        log_management(logdata);
                 }
 
         }
 
         fclose(f);
         return 2;
+}
+
+char* trim(char *s) {
+        return rtrim(ltrim(s));
 }
 
 int main(int argc,char *argv[])
