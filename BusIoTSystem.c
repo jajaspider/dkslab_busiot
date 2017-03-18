@@ -102,32 +102,32 @@ void log_management(char *log_data){
 }
 
 int setting_data(){
-  FILE *f;
-  char read_data[20];
-  char *temp_str;
-  char *temp_str1;
-  //파일이 있을 때
-  if(access("settings.txt",0)==0) {
-          f = fopen("settings.txt","r");
-  }
-  //파일이 없을 때
-  else if(access("settings.txt",0)==-1) {
-          log_management("settings.txt 파일을 찾을수없습니다.");
-          return 1;
-  }
+        FILE *f;
+        char read_data[20];
+        char *temp_str;
+        char *temp_str1;
+        //파일이 있을 때
+        if(access("settings.txt",0)==0) {
+                f = fopen("settings.txt","r");
+        }
+        //파일이 없을 때
+        else if(access("settings.txt",0)==-1) {
+                log_management("settings.txt 파일을 찾을수없습니다.");
+                return 1;
+        }
 
-  if(f!=NULL){
-    char *temp_str;
-    char *temp_str1;
+        if(f!=NULL) {
+                char *temp_str;
+                char *temp_str1;
 
-    while(!feof(f)){
-      temp_str1=fgets(temp_str,sizeof(temp_str),f);
-      printf("%s",temp_str);
-      //printf("%s",temp_str1);
-    }
-  }
-  fclose(f);
-  return 0;
+                while(!feof(f)) {
+                        temp_str1=fgets(temp_str,sizeof(temp_str),f);
+                        printf("%s",temp_str);
+                        //printf("%s",temp_str1);
+                }
+        }
+        fclose(f);
+        return 2;
 }
 
 int main(int argc,char *argv[])
@@ -149,12 +149,12 @@ int main(int argc,char *argv[])
 
         log_management("시스템 세팅값 불러오는 중");
         setting_flag=setting_data();
-        if(setting_flag==1){
-          log_management("시스템 세팅값 불러오기 실패");
-          return 0;
+        if(setting_flag==1) {
+                log_management("시스템 세팅값 불러오기 실패");
+                return 0;
         }
-        else if(setting_flag==0){
-          log_management("시스템 세팅값 불러오기 완료");
+        else if(setting_flag==2) {
+                log_management("시스템 세팅값 불러오기 완료");
         }
 
         client_fd = socket(PF_INET,SOCK_STREAM,0);
