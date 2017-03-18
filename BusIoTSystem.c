@@ -107,25 +107,24 @@ int setting_data(){
         char *temp_str;
         char *temp_str1;
         //파일이 있을 때
-        if(access("settings.txt",0)==0) {
+        if(access("settings.txt",0)==0){
                 f = fopen("settings.txt","r");
         }
         //파일이 없을 때
-        else if(access("settings.txt",0)==-1) {
+        else if(access("settings.txt",0)==-1){
                 log_management("settings.txt 파일을 찾을수없습니다.");
                 return 1;
         }
 
-        if(f!=NULL) {
-                char *temp_str;
-                char *temp_str1;
+        char *temp_str;
+        char *temp_str1;
 
-                while(!feof(f)) {
-                        temp_str1=fgets(temp_str,sizeof(temp_str),f);
-                        printf("%s",temp_str);
-                        //printf("%s",temp_str1);
-                }
+        while(!feof(f)) {
+                temp_str1=fgets(temp_str,sizeof(temp_str),f);
+                printf("temp_str : %s",temp_str);
+                printf("temp_str1 : %s",temp_str1);
         }
+
         fclose(f);
         return 2;
 }
