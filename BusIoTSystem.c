@@ -156,8 +156,7 @@ int setting_data(){
                         log_management(logdata);
                 }
 
-        }
-
+        )
         fclose(f);
         return 2;
 }
@@ -253,7 +252,7 @@ int main(int argc,char *argv[])
                 if(i<0)
                         i=0;
                 //세팅값에따른 바이트길이세팅
-                char temp_string[BUF_LEN];
+                char temp_string[50];
                 sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
                 //모든 데이터들 버퍼에 추가
                 sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
