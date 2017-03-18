@@ -231,6 +231,7 @@ int main(int argc,char *argv[])
                 char temp_str[6]="%06x";
                 char temp_str1[6]="%02x";
                 sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
+                printf("%s\n",temp_string);
                 //sprintf(buffer,"%06x%06x%02x%02x%02x%02x%02x%02x",gps_random_generation(0,200000),gps_random_generation(0,100000),t->tm_hour,t->tm_min,t->tm_sec,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
                 sprintf(buffer,temp_string,gps_x_random_generation(0,200000),gps_y_random_generation(0,100000),current_time,temperature_random_generation(10,40),humidity_random_generation(20,60),i);
                 printf("[BusIoTSystem]Send Data %s\n",buffer);
