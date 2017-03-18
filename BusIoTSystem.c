@@ -151,7 +151,7 @@ int main(int argc,char *argv[])
           log_management("시스템 세팅값 불러오기 실패");
           return 0;
         }
-        else{
+        else if(setting_data()==0){
           log_management("시스템 세팅값 불러오기 완료");
         }
 
