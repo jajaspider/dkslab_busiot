@@ -104,7 +104,7 @@ void log_management(char *log_data){
 int setting_data(){
         FILE *f;
         char read_data[20];
-        char *temp_str;
+        char temp_str[50];
         char *temp_str1;
         //파일이 있을 때
         if(access("settings.txt",0)==0){
