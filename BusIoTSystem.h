@@ -20,12 +20,12 @@ char current_day[20];
 char log_time[50];
 char current_time[50];
 char logdata[100];
-int gps_x
+int gps_x;
 int gps_y;
-int gps_time
-int temperature
-int humidity
-int passengercount
+int gps_time;
+int temperature;
+int humidity;
+int passengercount;
 int buttoncheck;
 
 char* trim(char *s);
