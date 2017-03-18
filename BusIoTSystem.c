@@ -101,7 +101,7 @@ void log_management(char *log_data){
         fclose(f);
 }
 
-void setting_data(){
+int setting_data(){
   FILE *f;
   char read_data[20];
   char *temp_str;
@@ -113,6 +113,7 @@ void setting_data(){
   //파일이 없을 때
   else if(access("settings.txt",0)==-1) {
           log_management("settings.txt 파일을 찾을수없습니다.");
+          return 1;
   }
 
   if(f!=NULL){
@@ -125,8 +126,8 @@ void setting_data(){
       printf("%s",temp_str1);
     }
   }
-
-  fscanf(f)
+  fclose(f);
+  return 0;
 }
 
 int main(int argc,char *argv[])
@@ -146,8 +147,13 @@ int main(int argc,char *argv[])
         log_management("시스템 시작");
 
         log_management("시스템 세팅값 불러오는 중");
-        setting_data();
-        log_management("시스템 세팅값 불러오기 완료");
+        if(setting_data()==1){
+          log_management("시스템 세팅값 불러오기 실패");
+          return 0;
+        }
+        else{
+          log_management("시스템 세팅값 불러오기 완료");
+        }
 
         client_fd = socket(PF_INET,SOCK_STREAM,0);
         client_addr.sin_addr.s_addr = inet_addr(IPADDR);
