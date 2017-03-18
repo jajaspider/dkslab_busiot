@@ -14,7 +14,7 @@
 #define IPADDR "113.198.236.96"
 #define MAXTIMINGS 85
 char current_day[20];
-char current_time[20];
+char current_time[50];
 char logdata[100];
 
 void log_management(char *log_data);
@@ -76,7 +76,7 @@ void log_management(char *log_data){
   fclose(f);
 }
 
-int main(int argc,char *argv[])
+int main(int argc,char *argv[]
 {
         int client_fd,len;
         struct sockaddr_in client_addr;
@@ -84,10 +84,9 @@ int main(int argc,char *argv[])
         char buffer[BUF_LEN];
         time_t timer;
         struct tm *t;
+        memset(buffer,0x00,sizeof(buffer));
 
         log_management("시스템 시작");
-
-        memset(buffer,0x00,sizeof(buffer));
         client_fd = socket(PF_INET,SOCK_STREAM,0);
         client_addr.sin_addr.s_addr = inet_addr(IPADDR);
         client_addr.sin_family = AF_INET;
@@ -105,7 +104,7 @@ int main(int argc,char *argv[])
                 timer = time(NULL);
                 t = localtime(&timer);
                 sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
-                sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
+                sprintf(current_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                 //탑승객wwwwww
                 if(random_count()>=5) {
                         i+=1;
