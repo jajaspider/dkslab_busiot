@@ -106,6 +106,8 @@ int setting_data(){
         char read_data[20];
         char temp_str[50];
         char *temp_str1;
+        char *temp_str2;
+        char *temp_str3;
         //파일이 있을 때
         if(access("settings.txt",0)==0){
                 f = fopen("settings.txt","r");
@@ -119,9 +121,14 @@ int setting_data(){
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
 
-                printf("[BusIoTSystem]Setting Data : %s\n",temp_str);
-                sprintf(logdata,"불러온 세팅값 : %s",temp_str);
+                temp_str2=strtok(temp_str,"=");
+                temp_str3=strtok(NULL,"=");
+
+                printf("[BusIoTSystem]Setting Data : %s = %s\n",temp_str2,temp_str3);
+                sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                 log_management(logdata);
+
+
         }
 
         fclose(f);
