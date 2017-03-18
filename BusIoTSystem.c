@@ -23,7 +23,7 @@ int temperature_random_generation(int min,int max);
 int random_count();
 int gps_y_random_generation(int min,int max);
 int gps_x_random_generation(int min,int max);
-void setting_data();
+int setting_data();
 
 int gps_x_random_generation(int min,int max){
         int i;
