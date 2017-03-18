@@ -4,4 +4,4 @@ gps_time=6
 temperature=2
 humidity=2
 passengercount=2
-buttoncheck=2
+buttoncheck=2 
