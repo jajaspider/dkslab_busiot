@@ -1,37 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <time.h>
-#include <ctype.h>
+#include "BusIoTSystem.h"
 
-#define BUF_SIZE 1024
-#define BUF_LEN 1024
-#define PORT 29903
-#define IPADDR "113.198.236.96"
-#define MAXTIMINGS 85
-#define MAX_STR_LEN 4000
+int random_generation(char *str,int min,int max){
+        int i;
+        srand(time(NULL));
+        i=rand()%(max-min)+min;
+        char print_str[20];
+        sprintf(print_str,"[BusIoTSystem]%s generation : %d\n",str,i);
+        printf("%s\n",print_str);
 
-char current_day[20];
-char log_time[50];
-char current_time[50];
-char logdata[100];
-int gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck;
-char* trim(char *s);
-char* ltrim(char *s);
-char* rtrim(char* s);
+        sprintf(logdata,"%s 값 랜덤생성",str);
+        log_management(logdata);
+        sprintf(logdata,"생성된 데이터 : %d",i);
+        log_management(logdata);
 
-void log_management(char *log_data);
-int humidity_random_generation(int min,int max);
-int temperature_random_generation(int min,int max);
-int random_count();
-int gps_y_random_generation(int min,int max);
-int gps_x_random_generation(int min,int max);
-int setting_data();
+        return i;
+}
 
 int gps_x_random_generation(int min,int max){
         int i;
