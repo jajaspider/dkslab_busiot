@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <time.h>
+#include <ctype.h>
 
 #define BUF_SIZE 1024
 #define BUF_LEN 1024
@@ -131,7 +132,7 @@ int setting_data(){
                 printf("[BusIoTSystem]Setting Data : %s = %s\n",temp_str2,temp_str3);
 
                 temp_str3 = trim(temp_str3);
-                
+
                 if(!strcmp(temp_str2,"gps_x")) {
                         gps_x=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
