@@ -105,7 +105,7 @@ int main(int argc,char *argv[])
                 timer = time(NULL);
                 t = localtime(&timer);
                 sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
-                sprintf(current_time,"%s%s%s",t->tm_hour,t->tm_min,t->tm_sec);
+                sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
                 //탑승객wwwwww
                 if(random_count()>=5) {
                         i+=1;
