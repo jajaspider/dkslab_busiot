@@ -10,7 +10,6 @@ package dks_lab_bus_server;
  * @author 915lab
  */
 public class BusClientData {
-    
     public int getIntData(String data) {
         return Integer.parseInt(data, 16);
     }

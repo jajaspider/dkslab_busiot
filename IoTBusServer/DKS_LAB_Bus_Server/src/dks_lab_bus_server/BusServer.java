@@ -25,7 +25,8 @@ public class BusServer {
         try {
             server = new ServerSocket(SERVER_PORT);
             Socket socket;
-            while( (socket = server.accept()) != null) {
+            //서버소켓에 연결되는 클라이언트가 있으면 소켓처리하는 쓰레드를 생성하고, 시작한다.
+            while( (socket = server.accept()) != null) {                
                 SocketThread sockThread = new SocketThread(socket);
                 sockThread.start();
                 System.out.println("[Info] Thread Create Complete");

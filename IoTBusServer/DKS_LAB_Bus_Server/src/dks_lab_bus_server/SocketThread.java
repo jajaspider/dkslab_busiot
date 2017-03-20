@@ -76,11 +76,8 @@ public class SocketThread extends Thread {
         }
     }
     
-    private String getClientData(String clientData, int startNumber, int bytes) {
-        return new String(clientData.getBytes(), startNumber, bytes);
-    }
-    
     private String readDataStream() {
+        //소켓으로부터 전송된 byte 데이터를 읽어내 String으로 변환해 보여주는 함수
         byte[] readStream = new byte[1024];
         byte[] readData = null;
         String clientData = null;
@@ -103,8 +100,29 @@ public class SocketThread extends Thread {
         }
     }
     
+    private String getClientData(String clientData, int startNumber, int bytes) {
+        //readDataStream으로 읽어낸 데이터를 잘라내는 함수
+        return new String(clientData.getBytes(), startNumber, bytes);
+    }
+    
+    private Object inputDataParse(String clientData, int byteCount, int byteNumber, String dataType) {
+        //readDataStream으로 읽어낸 데이터를 파싱하는 함수
+        String data = getClientData(clientData, byteCount, byteNumber);
+        switch(dataType) {
+            case "string" :
+                String stringData = busClientData.getStringData(data);
+                return stringData;
+            case "int" :
+                int intData = busClientData.getIntData(data);
+                return intData;
+            default :
+                return null;
+        }
+    }
+    
     @Override
     public void run() {
+        //통신 시 필요한 객체들이 없을 경우에만 생성함
         if(dIStream == null) { createDataInputStream(); }
         if(writer == null) { createPrintWriter(); }
         if(dbService == null) { dbService = new BusDBService(); }
@@ -113,44 +131,38 @@ public class SocketThread extends Thread {
         String clientData;
         while( (clientData = readDataStream()) != null ) {
             if(clientData.equals("")) { break; }
-            try {
-                int byte_number = 0;
+            //소켓으로부터 읽어낸 데이터를 변환했을 때, null값이거나 빈 칸이 아닐 경우에만 진행
+            try{
                 System.out.print("[Info] Input Data : " + clientData);
-                String gps_x = getClientData(clientData, 0, GPS_BYTE);
-                int gpsXData = busClientData.getIntData(gps_x);
-                System.out.println("GPS X -> " + gpsXData);
-                byte_number += GPS_BYTE;
-                String gps_y = getClientData(clientData, 6, GPS_BYTE);
-                int gpsYData = busClientData.getIntData(gps_y);
-                System.out.println("GPS Y -> " + gpsYData);
-                byte_number += GPS_BYTE;
-                String hour = getClientData(clientData, 12, TIME_BYTE);
-                int hourData = busClientData.getIntData(hour);
-                System.out.println("Hour -> " + hourData);
-                byte_number += TIME_BYTE;
-                String minute = getClientData(clientData, 14, TIME_BYTE);
-                int minuteData = busClientData.getIntData(minute);
-                System.out.println("Minute -> " + minuteData);
-                byte_number += TIME_BYTE;
-                String second = getClientData(clientData, 16, TIME_BYTE);
-                int secondData = busClientData.getIntData(second);
-                System.out.println("Second -> " + secondData);
-                byte_number += TIME_BYTE;
-                String temperature = getClientData(clientData, 18, TEMPERATURE_BYTE);
-                int temperatureData = busClientData.getIntData(temperature);
-                System.out.println("Temperature -> " + temperatureData);
-                byte_number += TEMPERATURE_BYTE;
-                String humidity = getClientData(clientData, 20, HUMIDITY_BYTE);
-                int humidityData = busClientData.getIntData(humidity);
-                System.out.println("Humidity -> " + humidityData);
-                byte_number += HUMIDITY_BYTE;
-                String passengers = getClientData(clientData, 22, PASSENGERS_BYTE);
-                int passengersData = busClientData.getIntData(passengers);
-                System.out.println("Passengers -> " + passengersData);
-                byte_number += PASSENGERS_BYTE;
-                String panicbutton = getClientData(clientData, byte_number, PANIC_BUTTON_BYTE);
-                String panicbuttonData = busClientData.getStringData(panicbutton);
-                System.out.println("PanicButton -> " + panicbuttonData); 
+                int byteCount = 0;
+                
+                int gpsXData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] GPS X Data : " + gpsXData);
+                int gpsYData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] GPS Y Data : " + gpsYData);
+                int hourData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] Hour Data : " + hourData);
+                int minuteData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] Minute Data : " + minuteData);
+                int secondData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] Second Data : " + secondData);
+                int temperatureData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] Temperature Data : " + temperatureData);
+                int humidityData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] Humidity Data : " + humidityData);
+                int passengersData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] Passengers Data : " + passengersData);
+                int panicButtonData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] PanicButton Data : " + panicButtonData);
             } catch(StringIndexOutOfBoundsException ex) {
                 System.out.println("[Erro] Missing Data Transfer");
                 break;
@@ -160,6 +172,7 @@ public class SocketThread extends Thread {
             }
         }
 
+        //통신 종료하면서, 열었던 객체들을 모두 닫는다
         closeDataInputStream();
         closePrintWriter();
         closeSocket();
