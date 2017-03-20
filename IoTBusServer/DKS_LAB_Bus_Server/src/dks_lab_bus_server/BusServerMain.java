@@ -1,0 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dks_lab_bus_server;
+
+/**
+ *
+ * @author Admit
+ */
+public class BusServerMain {
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        BusServer server = new BusServer();
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                System.out.println("[Info] Program Shutdown Catch");
+                server.closeServerSocket();
+            }
+        });
+        server.startServerSocket();
+    }
+}
