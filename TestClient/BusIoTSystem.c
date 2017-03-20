@@ -18,6 +18,22 @@ int random_generation(char *str,int min,int max){
         return i;
 }
 
+int random_generation_1(char *str,int min,int max){
+        int i;
+        srand((unsigned int)time(NULL));
+        i=rand()%(max-min)+min;
+        char print_str[50];
+        sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
+        printf("%s\n",print_str);
+
+        sprintf(logdata,"%s 값 랜덤생성",str);
+        log_management(logdata);
+        sprintf(logdata,"생성된 데이터 : %d",i);
+        log_management(logdata);
+
+        return i;
+}
+
 int random_count(){
         int i;
         srand(time(NULL));
@@ -213,16 +229,8 @@ int main(int argc,char *argv[])
                         if(i<0)
                                 i=0;
 
-                        int random_gps_x,random_gps_y;
-                        random_gps_x=random_generation("GPS_X",0,100000);
-                        srand((unsigned int)time(NULL));
-                        random_gps_y=random_generation("GPS_Y",0,100000);
-                        while(random_gps_x==random_gps_y){
-                          random_gps_y=random_generation("GPS_Y",0,100000);
-                        }
-                                                
                         //모든 데이터들 버퍼에 추가
-                        sprintf(buffer,temp_string,random_gps_x,random_gps_y,current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
+                        sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation_1("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
                         //전송
                         write(client_fd,buffer,strlen(buffer));
                         printf("[BusIoTSystem] Send Data %s",buffer);
