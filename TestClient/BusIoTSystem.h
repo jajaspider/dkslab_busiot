@@ -9,24 +9,19 @@
 #include <time.h>
 #include <ctype.h>
 
-#define BUF_SIZE 1024
-#define BUF_LEN 1024
-#define PORT 29903
-#define IPADDR "113.198.236.96"
-#define MAXTIMINGS 85
-#define MAX_STR_LEN 4000
+
 
 char current_day[20];
 char log_time[50];
 char current_time[50];
 char logdata[100];
-int gps_x;
-int gps_y;
-int gps_time;
-int temperature;
-int humidity;
-int passengercount;
-int buttoncheck;
+int gps_x=0;
+int gps_y=0;
+int gps_time=0;
+int temperature=0;
+int humidity=0;
+int passengercount=0;
+int buttoncheck=0;
 
 char* trim(char *s);
 char* ltrim(char *s);

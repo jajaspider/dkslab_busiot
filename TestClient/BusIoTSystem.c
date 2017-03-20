@@ -31,7 +31,6 @@ int random_count(){
         return i;
 }
 
-
 void log_management(char *log_data){
         FILE *f;
         char filename[20];
@@ -111,7 +110,6 @@ int setting_data(){
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
-
         }
         fclose(f);
         return 2;
@@ -232,7 +230,6 @@ int main(int argc,char *argv[])
                         log_management(logdata);
                         sleep(1);
                 }
-
         }
         return 0;
 }
