@@ -20,7 +20,7 @@ int random_generation(char *str,int min,int max){
 
 int random_generation_1(char *str,int min,int max){
         int i;
-        srand((unsigned int)time(NULL));
+        //srand((unsigned int)time(NULL));
         i=rand()%(max-min)+min;
         char print_str[50];
         sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
