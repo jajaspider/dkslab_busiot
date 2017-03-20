@@ -11,8 +11,20 @@ package dks_lab_bus_server;
  */
 public class BusClientData {
     
-    public int getIntData(String gpsData) {
-        return Integer.parseInt(gpsData, 16);
+    public int getIntData(String data) {
+        return Integer.parseInt(data, 16);
+    }
+    
+    public String getStringData(String data) {
+        int value = Integer.parseInt(data, 16);
+        switch (value) {
+            case 0:
+                return "not pushed";
+            case 1:
+                return "pushed";
+            default:
+                return "error";
+        }
     }
     
 }

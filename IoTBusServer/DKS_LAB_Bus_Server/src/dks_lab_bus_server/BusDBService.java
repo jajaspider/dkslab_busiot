@@ -15,17 +15,10 @@ public class BusDBService {
     private final static String DBID        = "busadmin";
     private final static String DBPW        = "bussystem";
     private final static String DBURL       = "jdbc:mysql://113.198.236.96:3306/bus?characterEncoding=utf8&autoReconnect=true&useSSL=false";
-    private final static String DRIVER_NAME = "com.mysql.jdbc.Driver";
     
     private Connection conn = null; //DB Connect
     private Statement  stmt = null; //DB Working
     
-    /* 
-        수집된 데이터 삽입
-        sql문장 = insert into data values(null, 차번, 날짜, 정보유형코드, 데이터값);
-        날짜 형식을 맞춰서 입력해야함
-        예) 2016-09-23 12:07:21
-    */
     public String dataInsert(String carNumber, String time, String code, String data) {
         try {
             conn = DriverManager.getConnection(DBURL, DBID, DBPW);
