@@ -165,7 +165,7 @@ int main(int argc,char *argv[])
         memset(buffer,0x00,sizeof(buffer));
         timer = time(NULL);
         t = localtime(&timer);
-        sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+        sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
         sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
         log_management("시스템 시작");
