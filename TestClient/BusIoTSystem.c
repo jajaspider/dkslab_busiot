@@ -185,9 +185,9 @@ int main(int argc,char *argv[])
         while(1) {
                 timer = time(NULL);
                 t = localtime(&timer);
-                sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
-                sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
-                sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
+                sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+                sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
+                sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
 
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
                 {
@@ -196,7 +196,7 @@ int main(int argc,char *argv[])
                         close(client_fd);
                         sleep(5);
                 }
-                else{
+
                         printf("[BusIoTSystem] Socket connection Success\n");
                         log_management("접속 성공");
 
@@ -222,7 +222,7 @@ int main(int argc,char *argv[])
                         sprintf(logdata,"접속 종료");
                         log_management(logdata);
                         sleep(1);
-                }
+              
         }
         return 0;
 }
