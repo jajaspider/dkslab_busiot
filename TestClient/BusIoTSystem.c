@@ -176,16 +176,18 @@ int main(int argc,char *argv[])
         //세팅값에따른 바이트길이세팅
         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
 
-        client_fd = socket(PF_INET,SOCK_STREAM,0);
-        client_addr.sin_addr.s_addr = inet_addr(IPADDR);
-        client_addr.sin_family = AF_INET;
-        client_addr.sin_port = htons(PORT);
+
 
         int i=0;
         while(1) {
+          client_fd = socket(PF_INET,SOCK_STREAM,0);
+          client_addr.sin_addr.s_addr = inet_addr(IPADDR);
+          client_addr.sin_family = AF_INET;
+          client_addr.sin_port = htons(PORT);
+
                 timer = time(NULL);
                 t = localtime(&timer);
-                sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+                sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                 sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                 sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
 
@@ -214,7 +216,7 @@ int main(int argc,char *argv[])
                         sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
                         //전송
                         write(client_fd,buffer,strlen(buffer));
-                        printf("[BusIoTSystem] Send Data %s\n",buffer);
+                        printf("[BusIoTSystem] Send Data %s",buffer);
                         sprintf(logdata,"전송된 데이터 : %s",buffer);
                         log_management(logdata);
                         close(client_fd);
@@ -222,7 +224,7 @@ int main(int argc,char *argv[])
                         sprintf(logdata,"접속 종료");
                         log_management(logdata);
                         sleep(1);
-              
+
         }
         return 0;
 }
