@@ -212,10 +212,15 @@ int main(int argc,char *argv[])
                         }
                         if(i<0)
                                 i=0;
+
                         int random_gps_x,random_gps_y;
                         random_gps_x=random_generation("GPS_X",0,100000);
                         srand((unsigned int)time(NULL));
                         random_gps_y=random_generation("GPS_Y",0,100000);
+                        while(random_gps_x==random_gps_y){
+                          random_gps_y=random_generation("GPS_Y",0,100000);
+                        }
+                                                
                         //모든 데이터들 버퍼에 추가
                         sprintf(buffer,temp_string,random_gps_x,random_gps_y,current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
                         //전송
