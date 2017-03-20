@@ -1,5 +1,12 @@
 #include "BusIoTSystem.h"
 
+#define BUF_SIZE 1024
+#define BUF_LEN 1024
+#define PORT 29903
+#define IPADDR "113.198.236.96"
+#define MAXTIMINGS 85
+#define MAX_STR_LEN 4000
+
 int random_generation(char *str,int min,int max){
         int i;
         srand(time(NULL));
@@ -180,10 +187,10 @@ int main(int argc,char *argv[])
 
         int i=0;
         while(1) {
-          client_fd = socket(PF_INET,SOCK_STREAM,0);
-          client_addr.sin_addr.s_addr = inet_addr(IPADDR);
-          client_addr.sin_family = AF_INET;
-          client_addr.sin_port = htons(PORT);
+                client_fd = socket(PF_INET,SOCK_STREAM,0);
+                client_addr.sin_addr.s_addr = inet_addr(IPADDR);
+                client_addr.sin_family = AF_INET;
+                client_addr.sin_port = htons(PORT);
 
                 timer = time(NULL);
                 t = localtime(&timer);
@@ -198,7 +205,7 @@ int main(int argc,char *argv[])
                         close(client_fd);
                         sleep(5);
                 }
-
+                else{
                         printf("[BusIoTSystem] Socket connection Success\n");
                         log_management("접속 성공");
 
@@ -224,6 +231,7 @@ int main(int argc,char *argv[])
                         sprintf(logdata,"접속 종료");
                         log_management(logdata);
                         sleep(1);
+                }
 
         }
         return 0;
