@@ -15,6 +15,7 @@ public class BusServerMain {
         // TODO code application logic here
         BusServer server = new BusServer();
         Runtime.getRuntime().addShutdownHook(new Thread(){
+            //서버가 강제종료 되는 경우 처리하는 쓰레드
             @Override
             public void run() {
                 System.out.println("[Info] Program Shutdown Catch");

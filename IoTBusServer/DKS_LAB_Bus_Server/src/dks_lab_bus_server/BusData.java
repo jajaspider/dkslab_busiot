@@ -11,6 +11,6 @@ package dks_lab_bus_server;
  */
 public class BusData {
     public BusData() {
-        
+        //버스정보를 담는 객체
     }
 }
