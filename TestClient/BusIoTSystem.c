@@ -221,7 +221,7 @@ int main(int argc,char *argv[])
                 log_management(logdata);
 
                 close(client_fd);
-                printf("[BusIoTSystem] Close Connection\n",buffer);
+                printf("[BusIoTSystem] Close Connection\n");
                 sprintf(logdata,"접속 종료",buffer);
                 log_management(logdata);
 
