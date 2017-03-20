@@ -184,48 +184,45 @@ int main(int argc,char *argv[])
         int i=0;
         while(1) {
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
-                   {
+                {
                         printf("[BusIoTSystem] Socket Can't connect\n");
                         log_management("소켓연결 에러");
                         close(client_fd);
                         sleep(5);
                 }
                 else{
-                  printf("[BusIoTSystem] Socket connection Success\n");
-                  log_management("접속 성공");
+                        printf("[BusIoTSystem] Socket connection Success\n");
+                        log_management("접속 성공");
+
+                        timer = time(NULL);
+                        t = localtime(&timer);
+                        sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+                        sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
+                        sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
+
+                        //탑승객 수 랜덤증감
+                        if(random_count()>=5) {
+                                i+=1;
+                        }
+                        else{
+                                i-=1;
+                        }
+                        if(i<0)
+                                i=0;
+
+                        //모든 데이터들 버퍼에 추가
+                        sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
+                        //전송
+                        write(client_fd,buffer,strlen(buffer));
+                        printf("[BusIoTSystem] Send Data %s\n",buffer);
+                        sprintf(logdata,"전송된 데이터 : %s",buffer);
+                        log_management(logdata);
+                        close(client_fd);
+                        printf("[BusIoTSystem] Close Connection\n");
+                        sprintf(logdata,"접속 종료");
+                        log_management(logdata);
+                        sleep(1);
                 }
-
-                timer = time(NULL);
-                t = localtime(&timer);
-                sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
-                sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
-                sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
-                //탑승객 수 랜덤증감
-                if(random_count()>=5) {
-                        i+=1;
-                }
-                else{
-                        i-=1;
-                }
-                if(i<0)
-                        i=0;
-
-                //모든 데이터들 버퍼에 추가
-                sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
-
-
-                //전송
-                write(client_fd,buffer,strlen(buffer));
-                printf("[BusIoTSystem] Send Data %s\n",buffer);
-                sprintf(logdata,"전송된 데이터 : %s",buffer);
-                log_management(logdata);
-
-                close(client_fd);
-                printf("[BusIoTSystem] Close Connection\n");
-                sprintf(logdata,"접속 종료");
-                log_management(logdata);
-
-                sleep(1);
         }
         return 0;
 }
