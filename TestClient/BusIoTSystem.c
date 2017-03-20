@@ -1,11 +1,6 @@
 #include "BusIoTSystem.h"
 
-#define BUF_SIZE 1024
-#define BUF_LEN 1024
-#define PORT 29903
-#define IPADDR "113.198.236.96"
-#define MAXTIMINGS 85
-#define MAX_STR_LEN 4000
+
 
 int random_generation(char *str,int min,int max){
         int i;
@@ -81,32 +76,32 @@ int setting_data(){
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"gps_y")) {
-                        gps_x=atoi(temp_str3);
+                        gps_y=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"gps_time")) {
-                        gps_x=atoi(temp_str3);
+                        gps_time=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"temperature")) {
-                        gps_x=atoi(temp_str3);
+                        temperature=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"humidity")) {
-                        gps_x=atoi(temp_str3);
+                        humidity=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"passengercount")) {
-                        gps_x=atoi(temp_str3);
+                        passengercount=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"buttoncheck")) {
-                        gps_x=atoi(temp_str3);
+                        buttoncheck=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
@@ -161,6 +156,7 @@ int main(int argc,char *argv[])
         int setting_flag;
 
         memset(buffer,0x00,sizeof(buffer));
+        //현재 시간 데이터 받아오기
         timer = time(NULL);
         t = localtime(&timer);
         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
@@ -224,6 +220,7 @@ int main(int argc,char *argv[])
                         printf("[BusIoTSystem] Send Data %s",buffer);
                         sprintf(logdata,"전송된 데이터 : %s",buffer);
                         log_management(logdata);
+                        //전송후 클라이언트 연결 끊음
                         close(client_fd);
                         printf("[BusIoTSystem] Close Connection\n");
                         sprintf(logdata,"접속 종료");

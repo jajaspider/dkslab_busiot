@@ -9,7 +9,12 @@
 #include <time.h>
 #include <ctype.h>
 
-
+#define BUF_SIZE 1024
+#define BUF_LEN 1024
+#define PORT 29903
+#define IPADDR "113.198.236.96"
+#define MAXTIMINGS 85
+#define MAX_STR_LEN 4000
 
 char current_day[20];
 char log_time[50];
