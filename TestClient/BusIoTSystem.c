@@ -1,8 +1,10 @@
 #include "BusIoTSystem.h"
 
+
+
 int random_generation(char *str,int min,int max){
         int i;
-        srand(time(NULL));
+        srand((unsigned int)time(NULL));
         i=rand()%(max-min)+min;
         char print_str[50];
         sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
@@ -23,7 +25,6 @@ int random_count(){
         printf("[BusIoTSystem] ramdom generate number : %d\n",i);
         return i;
 }
-
 
 void log_management(char *log_data){
         FILE *f;
@@ -75,36 +76,35 @@ int setting_data(){
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"gps_y")) {
-                        gps_x=atoi(temp_str3);
+                        gps_y=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"gps_time")) {
-                        gps_x=atoi(temp_str3);
+                        gps_time=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"temperature")) {
-                        gps_x=atoi(temp_str3);
+                        temperature=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"humidity")) {
-                        gps_x=atoi(temp_str3);
+                        humidity=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"passengercount")) {
-                        gps_x=atoi(temp_str3);
+                        passengercount=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
                 if(!strcmp(temp_str2,"buttoncheck")) {
-                        gps_x=atoi(temp_str3);
+                        buttoncheck=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
                 }
-
         }
         fclose(f);
         return 2;
@@ -156,9 +156,10 @@ int main(int argc,char *argv[])
         int setting_flag;
 
         memset(buffer,0x00,sizeof(buffer));
+        //현재 시간 데이터 받아오기
         timer = time(NULL);
         t = localtime(&timer);
-        sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+        sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
         sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
         log_management("시스템 시작");
@@ -176,18 +177,20 @@ int main(int argc,char *argv[])
         //세팅값에따른 바이트길이세팅
         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
 
-        client_fd = socket(PF_INET,SOCK_STREAM,0);
-        client_addr.sin_addr.s_addr = inet_addr(IPADDR);
-        client_addr.sin_family = AF_INET;
-        client_addr.sin_port = htons(PORT);
+
 
         int i=0;
         while(1) {
+                client_fd = socket(PF_INET,SOCK_STREAM,0);
+                client_addr.sin_addr.s_addr = inet_addr(IPADDR);
+                client_addr.sin_family = AF_INET;
+                client_addr.sin_port = htons(PORT);
+
                 timer = time(NULL);
                 t = localtime(&timer);
-                sprintf(current_day,"%d%d%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
-                sprintf(log_time,"%d-%d-%d %d:%d:%d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
-                sprintf(current_time,"%d%d%d",t->tm_hour,t->tm_min,t->tm_sec);
+                sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+                sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
+                sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
 
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
                 {
@@ -209,14 +212,18 @@ int main(int argc,char *argv[])
                         }
                         if(i<0)
                                 i=0;
-
+                        int random_gps_x,random_gps_y;
+                        random_gps_x=random_generation("GPS_X",0,100000);
+                        srand((unsigned int)time(NULL));
+                        random_gps_y=random_generation("GPS_Y",0,100000);
                         //모든 데이터들 버퍼에 추가
-                        sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
+                        sprintf(buffer,temp_string,random_gps_x,random_gps_y,current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
                         //전송
                         write(client_fd,buffer,strlen(buffer));
-                        printf("[BusIoTSystem] Send Data %s\n",buffer);
+                        printf("[BusIoTSystem] Send Data %s",buffer);
                         sprintf(logdata,"전송된 데이터 : %s",buffer);
                         log_management(logdata);
+                        //전송후 클라이언트 연결 끊음
                         close(client_fd);
                         printf("[BusIoTSystem] Close Connection\n");
                         sprintf(logdata,"접속 종료");
