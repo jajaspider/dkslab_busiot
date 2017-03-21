@@ -16,6 +16,11 @@
 #define MAXTIMINGS 85
 #define MAX_STR_LEN 4000
 
+typedef struct settings{
+  char setting_name[10];
+  int setting_data;
+} settings;
+
 char current_day[20];
 char log_time[50];
 char current_time[50];
@@ -33,5 +38,5 @@ char* ltrim(char *s);
 char* rtrim(char* s);
 int random_generation(char *str,int min,int max);
 void log_management(char *log_data);
-int setting_data();
+int load_setting();
 int random_count();

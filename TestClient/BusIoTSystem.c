@@ -56,7 +56,7 @@ void log_management(char *log_data){
         fclose(f);
 }
 
-int setting_data(){
+int load_setting(){
         FILE *f;
         char read_data[20];
         char temp_str[50];
@@ -72,7 +72,7 @@ int setting_data(){
                 log_management("settings.txt 파일을 찾을수없습니다.");
                 return 1;
         }
-
+        int i=0;
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
 
@@ -83,42 +83,47 @@ int setting_data(){
                 printf("[BusIoTSystem] Setting Data : %s = %s\n",temp_str2,temp_str3);
 
                 temp_str3 = trim(temp_str3);
-
-                if(!strcmp(temp_str2,"gps_x")) {
+                temp_str3=atoi(temp_str3);
+                strcpy(settings[i].setting_name,temp_str2);
+                strcpy(settings[i].setting_data,temp_str3);
+                sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                log_management(logdata);
+                i+=1;
+                /*if(!strcmp(temp_str2,"gps_x")) {
                         gps_x=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
-                if(!strcmp(temp_str2,"gps_y")) {
+                   }
+                   if(!strcmp(temp_str2,"gps_y")) {
                         gps_y=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
-                if(!strcmp(temp_str2,"gps_time")) {
+                   }
+                   if(!strcmp(temp_str2,"gps_time")) {
                         gps_time=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
-                if(!strcmp(temp_str2,"temperature")) {
+                   }
+                   if(!strcmp(temp_str2,"temperature")) {
                         temperature=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
-                if(!strcmp(temp_str2,"humidity")) {
+                   }
+                   if(!strcmp(temp_str2,"humidity")) {
                         humidity=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
-                if(!strcmp(temp_str2,"passengercount")) {
+                   }
+                   if(!strcmp(temp_str2,"passengercount")) {
                         passengercount=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
-                if(!strcmp(temp_str2,"buttoncheck")) {
+                   }
+                   if(!strcmp(temp_str2,"buttoncheck")) {
                         buttoncheck=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                         log_management(logdata);
-                }
+                   }*/
         }
         fclose(f);
         return 2;
@@ -164,12 +169,15 @@ int main(int argc,char *argv[])
         struct sockaddr_in client_addr;
         char recv_data[BUF_SIZE];
         char buffer[BUF_LEN];
-        char temp_string[50];
+        char setting_string[50];
+        char temp_string[10];
+        char temp_string1[10];
         time_t timer;
         struct tm *t;
         int setting_flag;
 
         memset(buffer,0x00,sizeof(buffer));
+        memset(setting_string,0,00,sizeof(setting_string));
         //현재 시간 데이터 받아오기
         timer = time(NULL);
         t = localtime(&timer);
@@ -179,7 +187,7 @@ int main(int argc,char *argv[])
         log_management("시스템 시작");
 
         log_management("시스템 세팅값 불러오는 중");
-        setting_flag=setting_data();
+        setting_flag=load_setting();
         if(setting_flag==1) {
                 log_management("시스템 세팅값 불러오기 실패");
                 return 0;
@@ -187,13 +195,12 @@ int main(int argc,char *argv[])
         else if(setting_flag==2) {
                 log_management("시스템 세팅값 불러오기 완료");
         }
+        for()
+                //세팅값에따른 바이트길이세팅
+                //sprintf(setting_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
 
-        //세팅값에따른 바이트길이세팅
-        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
 
-
-
-        int i=0;
+                int i=0;
         while(1) {
                 client_fd = socket(PF_INET,SOCK_STREAM,0);
                 client_addr.sin_addr.s_addr = inet_addr(IPADDR);
@@ -226,9 +233,19 @@ int main(int argc,char *argv[])
                         }
                         if(i<0)
                                 i=0;
+                        /*
+                           //모든 데이터들 버퍼에 추가
+                           sprintf(buffer,setting_string,random_generation("GPS_X",0,100000),random_generation_1("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
+                         */
 
-                        //모든 데이터들 버퍼에 추가
-                        sprintf(buffer,temp_string,random_generation("GPS_X",0,100000),random_generation_1("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
+                        //임시 세팅값 변경중
+                        int j;
+                        for(j=0; j<sizeof(settings.setting_data)/4; j+=1) {
+                                sprintf(temp_string,"%%0%dx",settings[i].setting_data);
+                                sprintf(temp_string1,temp_string,random_generation(settings[i].setting_name,0,255));
+                                strcpy(buffer,temp_string1);
+                        }
+
                         //전송
                         write(client_fd,buffer,strlen(buffer));
                         printf("[BusIoTSystem] Send Data %s",buffer);
