@@ -84,10 +84,9 @@ int load_setting(){
                 strcpy(temp_str2,trim(temp_str2));
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
-                printf("[DEBUG] Setting Data : %s = %d\n",temp_str2,temp_str3);
+
                 strcpy(settings[i].setting_name,temp_str2);
                 settings[i].setting_data = temp_str3;
-                printf("[DEBUG] 구조체 테스트 : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                 sprintf(logdata,"%s 세팅값 : %d",temp_str2,temp_str3);
                 log_management(logdata);
                 i+=1;
@@ -257,6 +256,8 @@ int main(int argc,char *argv[])
                         printf("[BusIoTSystem] Close Connection\n");
                         sprintf(logdata,"접속 종료");
                         log_management(logdata);
+                        //버퍼 초기화
+                        memset(buffer,0x00,sizeof(buffer));
                         sleep(1);
                 }
         }
