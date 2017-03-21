@@ -19,7 +19,7 @@
 typedef struct Settings{
   char setting_name[10];
   int setting_data;
-} settings;
+} settings[20];
 
 char current_day[20];
 char log_time[50];
