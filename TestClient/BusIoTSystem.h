@@ -16,7 +16,7 @@
 #define MAXTIMINGS 85
 #define MAX_STR_LEN 4000
 
-typedef struct settings{
+typedef struct Settings{
   char setting_name[10];
   int setting_data;
 } settings;
