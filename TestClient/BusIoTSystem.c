@@ -85,7 +85,7 @@ int load_setting(){
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
                 strcpy(settings[i].setting_name,temp_str2);
-                settings[i].setting_data = temp_str3;
+                settings[i].setting_data = (int)temp_str3;
                 sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                 log_management(logdata);
                 i+=1;
