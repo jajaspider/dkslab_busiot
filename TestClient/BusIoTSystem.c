@@ -240,7 +240,7 @@ int main(int argc,char *argv[])
 
                         //임시 세팅값 변경중
                         int j;
-                        for(j=0; j<(sizeof(settings)/sizeof(Settings)); j+=1) {
+                        for(j=0; j<(sizeof(settings)/sizeof(int)); j+=1) {
                                 srand((unsigned int)time(NULL));
                                 sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                 sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,0,255));
