@@ -240,7 +240,7 @@ int main(int argc,char *argv[])
 
                         //임시 세팅값 변경중
                         int j;
-                        for(j=0; j<(sizeof(settings)/sizeof(settings[1])/2); j+=1) {
+                        for(j=0; j<(sizeof(settings)/sizeof(settings[0])); j+=1) {
                                 srand((unsigned int)time(NULL));
                                 sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                 sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,0,255));
@@ -249,7 +249,7 @@ int main(int argc,char *argv[])
 
                         //전송
                         write(client_fd,buffer,strlen(buffer));
-                        printf("[BusIoTSystem] Send Data %s",buffer);
+                        printf("[BusIoTSystem] Send Data %s\n",buffer);
                         sprintf(logdata,"전송된 데이터 : %s",buffer);
                         log_management(logdata);
                         //전송후 클라이언트 연결 끊음
