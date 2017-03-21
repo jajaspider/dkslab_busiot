@@ -84,7 +84,7 @@ int load_setting(){
                 temp_str2 = trim(temp_str2);
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
-                strcpy(settings[i].setting_name,&temp_str2);
+                strcpy(settings[i].setting_name,temp_str2);
                 settings[i].setting_data = temp_str3;
                 sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                 log_management(logdata);
@@ -241,7 +241,7 @@ int main(int argc,char *argv[])
                         int j;
                         for(j=0; j<sizeof(settings)/sizeof(settings[1]); j+=1) {
                                 sprintf(temp_string,"%%0%dx",settings[i].setting_data);
-                                sprintf(temp_string1,temp_string,random_generation(*settings[i].setting_name,0,255));
+                                sprintf(temp_string1,temp_string,random_generation(settings[i].setting_name,0,255));
                                 strcpy(buffer,temp_string1);
                         }
 
