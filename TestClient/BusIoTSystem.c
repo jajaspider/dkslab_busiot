@@ -177,7 +177,7 @@ int main(int argc,char *argv[])
         int setting_flag;
 
         memset(buffer,0x00,sizeof(buffer));
-        memset(setting_string,0,00,sizeof(setting_string));
+        memset(setting_string,0x00,sizeof(setting_string));
         //현재 시간 데이터 받아오기
         timer = time(NULL);
         t = localtime(&timer);
@@ -195,12 +195,11 @@ int main(int argc,char *argv[])
         else if(setting_flag==2) {
                 log_management("시스템 세팅값 불러오기 완료");
         }
-        for()
-                //세팅값에따른 바이트길이세팅
-                //sprintf(setting_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
+        //세팅값에따른 바이트길이세팅
+        //sprintf(setting_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
 
 
-                int i=0;
+        int i=0;
         while(1) {
                 client_fd = socket(PF_INET,SOCK_STREAM,0);
                 client_addr.sin_addr.s_addr = inet_addr(IPADDR);
