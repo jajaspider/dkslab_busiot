@@ -84,7 +84,7 @@ int load_setting(){
                 temp_str2 = trim(temp_str2);
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
-                printf("[DEBUG] Setting Data : %d = %d\n",temp_str2,temp_str3);
+                printf("[DEBUG] Setting Data : %s = %d\n",temp_str2,temp_str3);
                 strcpy(settings[i].setting_name,temp_str2);
                 settings[i].setting_data = temp_str3;
                 printf("[DEBUG] 구조체 테스트 : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
