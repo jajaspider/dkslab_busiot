@@ -88,7 +88,7 @@ int load_setting(){
                 strcpy(settings[i].setting_name,temp_str2);
                 settings[i].setting_data = temp_str3;
                 printf("[DEBUG] 구조체 테스트 : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
-                sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
+                sprintf(logdata,"%s 세팅값 : %d",temp_str2,temp_str3);
                 log_management(logdata);
                 i+=1;
                 /*if(!strcmp(temp_str2,"gps_x")) {
