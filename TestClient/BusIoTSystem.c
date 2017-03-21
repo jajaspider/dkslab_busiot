@@ -79,13 +79,15 @@ int load_setting(){
                 temp_str2=strtok(temp_str,"=");
                 temp_str3=strtok(NULL,"=");
                 temp_str3[strlen(temp_str3)-1]='\0';
-                printf("[DEBUG] Setting Data : %d = %d\n",temp_str2,temp_str3);
+
                 printf("[BusIoTSystem] Setting Data : %s = %s\n",temp_str2,temp_str3);
                 temp_str2 = trim(temp_str2);
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
+                printf("[DEBUG] Setting Data : %d = %d\n",temp_str2,temp_str3);
                 strcpy(settings[i].setting_name,temp_str2);
                 settings[i].setting_data = temp_str3;
+                printf("[DEBUG] 구조체 테스트 : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                 sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
                 log_management(logdata);
                 i+=1;
