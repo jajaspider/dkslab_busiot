@@ -81,7 +81,7 @@ int load_setting(){
                 temp_str3[strlen(temp_str3)-1]='\0';
 
                 printf("[BusIoTSystem] Setting Data : %s = %s\n",temp_str2,temp_str3);
-                temp_str2 = trim(temp_str2);
+                strcpy(temp_str2,trim(temp_str2));
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
                 printf("[DEBUG] Setting Data : %s = %d\n",temp_str2,temp_str3);
