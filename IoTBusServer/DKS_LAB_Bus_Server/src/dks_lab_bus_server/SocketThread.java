@@ -136,16 +136,16 @@ public class SocketThread extends Thread {
                 System.out.print("\n[Info] Input Data : " + clientData);
                 int byteCount = 0;
                 
-                int hourData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int hourData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                byteCount += TIME_BYTE;
                 System.out.print("\n[Data] Hour Data : " + hourData);
                 
-                int minuteData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int minuteData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                byteCount += TIME_BYTE;
                 System.out.print("\n[Data] Minute Data : " + minuteData);
                 
-                int secondData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int secondData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                byteCount += TIME_BYTE;
                 System.out.print("\n[Data] Second Data : " + secondData);
                 
                 int gpsXData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
@@ -156,26 +156,26 @@ public class SocketThread extends Thread {
                 byteCount += GPS_BYTE;
                 System.out.print("\n[Data] GPS Y Data : " + gpsYData);
                                 
-                int temperatureData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int temperatureData = (int)inputDataParse(clientData, byteCount, TEMPERATURE_BYTE, "int");
+                byteCount += TEMPERATURE_BYTE;
                 System.out.print("\n[Data] Temperature Data : " + temperatureData);
                 
-                int humidityData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int humidityData = (int)inputDataParse(clientData, byteCount, HUMIDITY_BYTE, "int");
+                byteCount += HUMIDITY_BYTE;
                 System.out.print("\n[Data] Humidity Data : " + humidityData);
                 
-                int passengersData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int passengersData = (int)inputDataParse(clientData, byteCount, PASSENGERS_BYTE, "int");
+                byteCount += PASSENGERS_BYTE;
                 System.out.print("\n[Data] Passengers Data : " + passengersData);
                 
-                int panicButtonData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
+                int panicButtonData = (int)inputDataParse(clientData, byteCount, PANIC_BUTTON_BYTE, "int");
+                byteCount += PANIC_BUTTON_BYTE;
                 System.out.print("\n[Data] PanicButton Data : " + panicButtonData);
             } catch(StringIndexOutOfBoundsException ex) {
-                System.out.println("[Erro] Missing Data Transfer");
+                System.out.println("\n[Erro] Missing Data Transfer");
                 break;
             } catch(NumberFormatException ex) {
-                System.out.println("[Erro] Data Not Received Normally");
+                System.out.println("\n[Erro] Data Not Received Normally");
                 break;
             }
         }
