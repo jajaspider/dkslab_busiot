@@ -90,6 +90,7 @@ int load_setting(){
                 sprintf(logdata,"%s 세팅값 : %d",temp_str2,temp_str3);
                 log_management(logdata);
                 i+=1;
+                setting_count+=1;
                 /*if(!strcmp(temp_str2,"gps_x")) {
                         gps_x=atoi(temp_str3);
                         sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
@@ -240,8 +241,7 @@ int main(int argc,char *argv[])
 
                         //임시 세팅값 변경중
                         int j;
-                        for(j=0; j<(sizeof(settings)/sizeof(settings[0])); j+=1) {
-                                printf("[DEBUG] sizeof settings length : %d count j = %d\n",sizeof(settings[0]),j);
+                        for(j=0; j<setting_count; j+=1) {
                                 srand((unsigned int)time(NULL));
                                 sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                 sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,0,255));

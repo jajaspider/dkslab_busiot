@@ -34,6 +34,7 @@ int temperature=0;
 int humidity=0;
 int passengercount=0;
 int buttoncheck=0;
+int setting_count=0;
 
 char* trim(char *s);
 char* ltrim(char *s);
