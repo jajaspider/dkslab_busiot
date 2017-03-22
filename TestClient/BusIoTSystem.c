@@ -84,10 +84,8 @@ int load_setting(){
                 strcpy(settings[i].setting_name,temp_str1);
                 printf("[DEBUG] temp_str1 문자열 : %s\n",settings[i].setting_name);
                 temp_str2=strtok(NULL,"=");
-                //temp_str2=trim(temp_str2);
+                temp_str2=trim(temp_str2);
                 printf("[DEBUG] temp_str2 문자열 : %s",temp_str2);
-
-                printf("[DEBUG] setting_name 문자열 : %s",temp_str1);
 
 
                 settings[i].setting_data = atoi(strtok(temp_str2," "));
