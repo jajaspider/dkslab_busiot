@@ -1,4 +1,6 @@
-gps_time = 6 0 0
+gps_hh = 2 0 0
+gps_mm = 2 0 0
+gps_ss = 2 0 0
 gps_x = 6 0 100000
 gps_y = 6 0 50000
 temperature = 2 20 40
