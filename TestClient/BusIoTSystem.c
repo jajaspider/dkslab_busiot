@@ -202,7 +202,7 @@ int main(int argc,char *argv[])
                         //임시 세팅값 변경중
                         // sprintf(temp_string,"%%0%dx",settings[0].setting_data);
                         // sprintf(temp_string1,temp_string,current_time);
-                        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",settings[0].setting_data,settings[1].setting_data,settings[2].setting_data)
+                        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",settings[0].setting_data,settings[1].setting_data,settings[2].setting_data);
                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec);
                         printf("[DEBUG] current_time : %s\n", current_time);
 
