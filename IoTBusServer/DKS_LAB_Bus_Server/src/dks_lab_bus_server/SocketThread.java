@@ -109,7 +109,7 @@ public class SocketThread extends Thread {
         //readDataStream으로 읽어낸 데이터를 파싱하는 함수
         String data = getClientData(clientData, byteCount, byteNumber);
         switch(dataType) {
-            case "string" :
+            case "String" :
                 String stringData = busClientData.getStringData(data);
                 return stringData;
             case "int" :
@@ -168,9 +168,10 @@ public class SocketThread extends Thread {
                 byteCount += PASSENGERS_BYTE;
                 System.out.print("\n[Data] Passengers Data : " + passengersData);
                 
-                int panicButtonData = (int)inputDataParse(clientData, byteCount, PANIC_BUTTON_BYTE, "string");
+                String panicButtonData = (String)inputDataParse(clientData, byteCount, PANIC_BUTTON_BYTE, "String");
                 byteCount += PANIC_BUTTON_BYTE;
                 System.out.print("\n[Data] PanicButton Data : " + panicButtonData);
+                
             } catch(StringIndexOutOfBoundsException ex) {
                 System.out.println("\n[Erro] Missing Data Transfer");
                 break;
