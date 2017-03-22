@@ -63,31 +63,11 @@ int load_setting(){
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
 
-                printf("[DEBUG] 가져온 문자열 : %s\n",temp_str);
-
-                // temp_str2=strtok(temp_str,"=");
-                // temp_str3=strtok(NULL,"=");
-                //
-                // strcpy(temp_str3,trim(temp_str3));
-                //
-                // //세팅값
-                // temp_str4=strtok(temp_str3," ");
-                // //min
-                // temp_str5=strtok(NULL," ");
-                // //max
-                // temp_str6=strtok(NULL," ");
-                // temp_str6[strlen(temp_str3)-1]='\0';
-
-                //strcpy(settings[i].setting_name,trim(strtok(temp_str,"=")));
-
                 temp_str1=strtok(temp_str,"=");
                 strcpy(settings[i].setting_name,temp_str1);
 
                 temp_str2=strtok(NULL,"=");
                 temp_str2=trim(temp_str2);
-
-                printf("[DEBUG] temp_str1 문자열 : %s\n",settings[i].setting_name);
-                printf("[DEBUG] temp_str2 문자열 : %s\n",temp_str2);
 
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
@@ -96,10 +76,6 @@ int load_setting(){
                 settings[i].setting_data=atoi(temp_str3);
                 settings[i].min=atoi(temp_str4);
                 settings[i].max=atoi(temp_str5);
-
-                printf("[DEBUG] setting_data : %d\n",settings[i].setting_data);
-                printf("[DEBUG] min : %d\n",  settings[i].min);
-                printf("[DEBUG] max : %d\n",  settings[i].max);
 
                 printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                 sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
@@ -196,6 +172,8 @@ int main(int argc,char *argv[])
                 sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                 sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
 
+
+
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
                 {
                         printf("[BusIoTSystem] Socket Can't connect\n");
@@ -224,6 +202,9 @@ int main(int argc,char *argv[])
                         //임시 세팅값 변경중
                         sprintf(temp_string,"%%0%dx",settings[0].setting_data);
                         sprintf(temp_string1,temp_string,current_time);
+
+                        printf("[DEBUG] current_time : %s\n", current_time);
+
                         strcat(buffer,temp_string1);
                         int j;
                         for(j=1; j<setting_count; j+=1) {
