@@ -63,6 +63,8 @@ int load_setting(){
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
 
+                printf("[DEBUG] 가져온 문자열 : %s",temp_str);
+
                 // temp_str2=strtok(temp_str,"=");
                 // temp_str3=strtok(NULL,"=");
                 //
@@ -77,10 +79,21 @@ int load_setting(){
                 // temp_str6[strlen(temp_str3)-1]='\0';
 
                 strcpy(settings[i].setting_name,trim(strtok(temp_str,"=")));
+
+                printf("[DEBUG] setting_name 문자열 : %s",settings[i].setting_name);
+
                 strcpy(temp_str2,strtok(NULL,"="));
                 settings[i].setting_data = atoi(strtok(temp_str2," "));
+
+                printf("[DEBUG] setting_data : %d",settings[i].setting_data);
+
                 settings[i].min = atoi(strtok(NULL," "));
+
+                printf("[DEBUG] min : %d",  settings[i].min);
+
                 settings[i].max = atoi(strtok(NULL," "));
+
+                printf("[DEBUG] max : %d",  settings[i].max);
 
                 printf("[BusIoTSystem] Setting Data : %s = %s ,min = %s, max = %s\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                 strcpy(temp_str2,trim(temp_str2));
