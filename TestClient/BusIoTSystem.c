@@ -82,7 +82,7 @@ int load_setting(){
 
                 temp_str1=strtok(temp_str,"=");
                 printf("[DEBUG] temp_str1 문자열 : %s\n",temp_str1);
-                temp_str2=trim(strtok(NULL,"="));
+                strcpy(temp_str2,trim(strtok(NULL,"=")));
                 printf("[DEBUG] temp_str2 문자열 : %s",temp_str2);
 
                 printf("[DEBUG] setting_name 문자열 : %s",temp_str1);
