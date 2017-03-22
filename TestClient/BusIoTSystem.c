@@ -81,6 +81,8 @@ int load_setting(){
                 //strcpy(settings[i].setting_name,trim(strtok(temp_str,"=")));
 
                 temp_str1=strtok(temp_str,"=");
+                strcpy(settings[i].setting_name,temp_str1);
+                
                 temp_str2=strtok(NULL,"=");
                 temp_str2=trim(temp_str2);
 
