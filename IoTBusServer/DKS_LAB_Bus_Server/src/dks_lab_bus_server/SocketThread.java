@@ -136,15 +136,22 @@ public class SocketThread extends Thread {
                 System.out.print("\n[Info] Input Data : " + clientData);
                 int byteCount = 0;
                 
-                int hourData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                int time_data = (int)inputDataParse(clientData, byteCount, TIME_BYTE*3, "int");
+                String temp_data = String.valueOf(time_data);
+                
+                
+                //int hourData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                String hourData = temp_data.substring(byteCount, byteCount+TIME_BYTE);
                 byteCount += TIME_BYTE;
                 System.out.print("\n[Data] Hour Data : " + hourData);
                 
-                int minuteData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                //int minuteData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                String minuteData = temp_data.substring(byteCount, byteCount+TIME_BYTE);
                 byteCount += TIME_BYTE;
                 System.out.print("\n[Data] Minute Data : " + minuteData);
                 
-                int secondData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                //int secondData = (int)inputDataParse(clientData, byteCount, TIME_BYTE, "int");
+                String secondData = temp_data.substring(byteCount, byteCount+TIME_BYTE);
                 byteCount += TIME_BYTE;
                 System.out.print("\n[Data] Second Data : " + secondData);
                 
