@@ -168,7 +168,7 @@ public class SocketThread extends Thread {
                 byteCount += PASSENGERS_BYTE;
                 System.out.print("\n[Data] Passengers Data : " + passengersData);
                 
-                int panicButtonData = (int)inputDataParse(clientData, byteCount, PANIC_BUTTON_BYTE, "int");
+                int panicButtonData = (int)inputDataParse(clientData, byteCount, PANIC_BUTTON_BYTE, "string");
                 byteCount += PANIC_BUTTON_BYTE;
                 System.out.print("\n[Data] PanicButton Data : " + panicButtonData);
             } catch(StringIndexOutOfBoundsException ex) {
