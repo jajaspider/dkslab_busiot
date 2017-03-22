@@ -133,44 +133,44 @@ public class SocketThread extends Thread {
             if(clientData.equals("")) { break; }
             //소켓으로부터 읽어낸 데이터를 변환했을 때, null값이거나 빈 칸이 아닐 경우에만 진행
             try{
-                System.out.print("[Info] Input Data : " + clientData);
+                System.out.print("[Info] Input Data : \n" + clientData);
                 int byteCount = 0;
                 
                 int hourData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] Hour Data : " + hourData);
+                System.out.print("[Data] Hour Data : \n" + hourData);
                 
                 int minuteData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] Minute Data : " + minuteData);
+                System.out.print("[Data] Minute Data : \n" + minuteData);
                 
                 int secondData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] Second Data : " + secondData);
+                System.out.print("[Data] Second Data : \n" + secondData);
                 
                 int gpsXData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] GPS X Data : " + gpsXData);
+                System.out.print("[Data] GPS X Data : \n" + gpsXData);
                 
                 int gpsYData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] GPS Y Data : " + gpsYData);
+                System.out.print("[Data] GPS Y Data : \n" + gpsYData);
                                 
                 int temperatureData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] Temperature Data : " + temperatureData);
+                System.out.print("[Data] Temperature Data : \n" + temperatureData);
                 
                 int humidityData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] Humidity Data : " + humidityData);
+                System.out.print("[Data] Humidity Data : \n" + humidityData);
                 
                 int passengersData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] Passengers Data : " + passengersData);
+                System.out.print("[Data] Passengers Data : \n" + passengersData);
                 
                 int panicButtonData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
-                System.out.print("[Data] PanicButton Data : " + panicButtonData);
+                System.out.print("[Data] PanicButton Data : \n" + panicButtonData);
             } catch(StringIndexOutOfBoundsException ex) {
                 System.out.println("[Erro] Missing Data Transfer");
                 break;
