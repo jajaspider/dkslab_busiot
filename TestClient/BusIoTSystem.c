@@ -64,14 +64,20 @@ int load_setting(){
 
                 temp_str2=strtok(temp_str,"=");
                 temp_str3=strtok(NULL,"=");
-                temp_str4=strtok(NULL,"=");
-                temp_str5=strtok(NULL,"=");
-                temp_str5[strlen(temp_str3)-1]='\0';
 
-                printf("[BusIoTSystem] Setting Data : %s = %s ,min = %s, max = %s\n",temp_str2,temp_str3,temp_str4,temp_str5);
+                strcpy(temp_str3,trim(temp_str3));
+
+                //세팅값
+                temp_str4=strtok(temp_str3," ");
+                //min
+                temp_str5=strtok(NULL," ");
+                //max
+                temp_str6=strtok(NULL," ");
+                temp_str6[strlen(temp_str3)-1]='\0';
+
+                printf("[BusIoTSystem] Setting Data : %s = %s ,min = %s, max = %s\n",temp_str2,temp_str4,temp_str5,temp_str6);
                 strcpy(temp_str2,trim(temp_str2));
-                temp_str3 = trim(temp_str3);
-                temp_str3 = atoi(temp_str3);
+
 
                 temp_str4 = trim(temp_str4);
                 temp_str4 = atoi(temp_str4);
@@ -79,11 +85,14 @@ int load_setting(){
                 temp_str5 = trim(temp_str5);
                 temp_str5 = atoi(temp_str5);
 
+                temp_str6 = trim(temp_str6);
+                temp_str6 = atoi(temp_str6);
+
                 strcpy(settings[i].setting_name,temp_str2);
-                settings[i].setting_data = temp_str3;
-                settings[i].min = temp_str4;
-                settings[i].max = temp_str5;
-                sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",temp_str2,temp_str3,temp_str4,temp_str5);
+                settings[i].setting_data = temp_str4;
+                settings[i].min = temp_str5;
+                settings[i].max = temp_str6;
+                sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",temp_str2,temp_str4,temp_str5,temp_str6);
                 log_management(logdata);
                 i+=1;
                 setting_count+=1;
@@ -179,7 +188,7 @@ int main(int argc,char *argv[])
 
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
                 {
-                        printf("[BusIoTSystem] Socket Can't connect\n");
+                        printf("[BusIoTSystem] Socket Can't connect\n");ㅍ
                         log_management("소켓연결 에러");
                         close(client_fd);
                         sleep(5);
