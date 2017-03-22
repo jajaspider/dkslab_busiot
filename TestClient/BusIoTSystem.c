@@ -63,7 +63,7 @@ int load_setting(){
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
 
-                printf("[DEBUG] 가져온 문자열 : %s",temp_str);
+                printf("[DEBUG] 가져온 문자열 : %s\n",temp_str);
 
                 // temp_str2=strtok(temp_str,"=");
                 // temp_str3=strtok(NULL,"=");
