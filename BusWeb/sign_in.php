@@ -8,9 +8,9 @@
     <title>BIMS(Bus Information Manager System)</title>
 
     <!-- 부트스트랩 -->
-    <link href="http://113.130.158.195:3306/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://113.130.158.195:3306/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="http://113.130.158.195:3306/style.css" rel="stylesheet">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://113.130.158.195:3306/index.html">BIMS(Bus Information Manager System)</a>
+          <a class="navbar-brand" href="./index.html">BIMS(Bus Information Manager System)</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -59,7 +59,7 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="http://113.130.158.195:3306/Number_of_vehicle_passengers.php">Number of vehicle passengers</a></li>
+                  <li><a href="./Number_of_vehicle_passengers.php">Number of vehicle passengers</a></li>
                   <li><a href="http://113.130.158.195:3306/Check_internal_temperature.php">Check internal temperature</a></li>
                   <li class="divider"></li>
                   <li><a href="http://113.130.158.195:3306/Illegal_parking_enforcement.php">Illegal parking enforcement</a></li>
