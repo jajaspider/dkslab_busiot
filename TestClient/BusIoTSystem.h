@@ -19,6 +19,8 @@
 struct Settings{
   char setting_name[20];
   int setting_data;
+  int min;
+  int max;
 } ;
 
 struct Settings settings[20];

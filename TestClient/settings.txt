@@ -1,7 +1,7 @@
-gps_x = 6
-gps_y = 6
 gps_time = 6
-temperature = 2
-humidity = 2
-passengercount = 2
-buttoncheck = 2 
+gps_x = 6 0 100000
+gps_y = 6 0 50000
+temperature = 2 20 40
+humidity = 2 0 40
+passengercount = 2 0 50
+buttoncheck = 2 0 1

@@ -16,22 +16,6 @@ int random_generation(char *str,int min,int max){
         return i;
 }
 
-int random_generation_1(char *str,int min,int max){
-        int i;
-        //srand((unsigned int)time(NULL));
-        i=rand()%(max-min)+min;
-        char print_str[50];
-        sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
-        printf("%s\n",print_str);
-
-        sprintf(logdata,"%s 값 랜덤생성",str);
-        log_management(logdata);
-        sprintf(logdata,"생성된 데이터 : %d",i);
-        log_management(logdata);
-
-        return i;
-}
-
 int random_count(){
         int i;
         srand(time(NULL));
@@ -63,6 +47,8 @@ int load_setting(){
         char *temp_str1;
         char *temp_str2;
         char *temp_str3;
+        char *temp_str4;
+        char *temp_str5;
         //파일이 있을 때
         if(access("settings.txt",0)==0) {
                 f = fopen("settings.txt","r");
@@ -78,54 +64,29 @@ int load_setting(){
 
                 temp_str2=strtok(temp_str,"=");
                 temp_str3=strtok(NULL,"=");
-                temp_str3[strlen(temp_str3)-1]='\0';
+                temp_str4=strtok(NULL,"=");
+                temp_str5=strtok(NULL,"=");
+                temp_str5[strlen(temp_str3)-1]='\0';
 
-                printf("[BusIoTSystem] Setting Data : %s = %s\n",temp_str2,temp_str3);
+                printf("[BusIoTSystem] Setting Data : %s = %s ,min = %s, max = %s\n",temp_str2,temp_str3,temp_str4,temp_str5);
                 strcpy(temp_str2,trim(temp_str2));
                 temp_str3 = trim(temp_str3);
                 temp_str3 = atoi(temp_str3);
 
+                temp_str4 = trim(temp_str4);
+                temp_str4 = atoi(temp_str4);
+
+                temp_str5 = trim(temp_str5);
+                temp_str5 = atoi(temp_str5);
+
                 strcpy(settings[i].setting_name,temp_str2);
                 settings[i].setting_data = temp_str3;
-                sprintf(logdata,"%s 세팅값 : %d",temp_str2,temp_str3);
+                settings[i].min = temp_str4;
+                settings[i].max = temp_str5;
+                sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",temp_str2,temp_str3,temp_str4,temp_str5);
                 log_management(logdata);
                 i+=1;
                 setting_count+=1;
-                /*if(!strcmp(temp_str2,"gps_x")) {
-                        gps_x=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }
-                   if(!strcmp(temp_str2,"gps_y")) {
-                        gps_y=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }
-                   if(!strcmp(temp_str2,"gps_time")) {
-                        gps_time=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }
-                   if(!strcmp(temp_str2,"temperature")) {
-                        temperature=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }
-                   if(!strcmp(temp_str2,"humidity")) {
-                        humidity=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }
-                   if(!strcmp(temp_str2,"passengercount")) {
-                        passengercount=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }
-                   if(!strcmp(temp_str2,"buttoncheck")) {
-                        buttoncheck=atoi(temp_str3);
-                        sprintf(logdata,"%s 세팅값 : %s",temp_str2,temp_str3);
-                        log_management(logdata);
-                   }*/
         }
         fclose(f);
         return 2;
@@ -178,8 +139,10 @@ int main(int argc,char *argv[])
         struct tm *t;
         int setting_flag;
 
+        //배열 초기화
         memset(buffer,0x00,sizeof(buffer));
         memset(setting_string,0x00,sizeof(setting_string));
+
         //현재 시간 데이터 받아오기
         timer = time(NULL);
         t = localtime(&timer);
@@ -240,11 +203,13 @@ int main(int argc,char *argv[])
                          */
 
                         //임시 세팅값 변경중
+                        sprintf(temp_string,"%%0%dx",settings[0].setting_data);
+                        sprintf(temp_string1,temp_string,current_time);
+                        strcat(buffer,temp_string1);
                         int j;
-                        for(j=0; j<setting_count; j+=1) {
-                                srand((unsigned int)time(NULL));
+                        for(j=1; j<setting_count; j+=1) {
                                 sprintf(temp_string,"%%0%dx",settings[j].setting_data);
-                                sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,0,255));
+                                sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,setting_name,settings[j].max));
                                 strcat(buffer,temp_string1);
                         }
 
