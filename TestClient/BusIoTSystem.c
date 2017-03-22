@@ -209,7 +209,7 @@ int main(int argc,char *argv[])
                         int j;
                         for(j=1; j<setting_count; j+=1) {
                                 sprintf(temp_string,"%%0%dx",settings[j].setting_data);
-                                sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,setting_name,settings[j].max));
+                                sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                 strcat(buffer,temp_string1);
                         }
 
