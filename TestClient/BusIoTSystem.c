@@ -46,9 +46,9 @@ int load_setting(){
         char temp_str[50];
         char *temp_str1;
         char *temp_str2;
-        // char *temp_str3;
-        // char *temp_str4;
-        // char *temp_str5;
+        char *temp_str3;
+        char *temp_str4;
+        char *temp_str5;
 
         //파일이 있을 때
         if(access("settings.txt",0)==0) {
@@ -82,28 +82,24 @@ int load_setting(){
 
                 temp_str1=strtok(temp_str,"=");
                 temp_str2=strtok(NULL,"=");
-                strcpy(settings[i].setting_name,temp_str1);
+                temp_str2=trim(temp_str2);
+
                 printf("[DEBUG] temp_str1 문자열 : %s\n",settings[i].setting_name);
-
-
                 printf("[DEBUG] temp_str2 문자열 : %s\n",temp_str2);
 
+                temp_str3=strtok(temp_str2," ");
+                temp_str4=strtok(NULL," ");
+                temp_str5=strtok(NULL," ");
 
-                settings[i].setting_data = atoi(strtok(temp_str2," "));
+                settings[i].setting_data=atoi(temp_str3);
+                settings[i].min=atoi(temp_str4);
+                settings[i].max=atoi(temp_str4);
 
                 printf("[DEBUG] setting_data : %d",settings[i].setting_data);
-
-                settings[i].min = atoi(strtok(NULL," "));
-
                 printf("[DEBUG] min : %d",  settings[i].min);
-
-                settings[i].max = atoi(strtok(NULL," "));
-
                 printf("[DEBUG] max : %d",  settings[i].max);
 
                 printf("[BusIoTSystem] Setting Data : %s = %s ,min = %s, max = %s\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
-                strcpy(temp_str2,trim(temp_str2));
-
                 sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                 log_management(logdata);
                 i+=1;
