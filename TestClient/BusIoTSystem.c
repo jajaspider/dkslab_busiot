@@ -82,7 +82,7 @@ int load_setting(){
 
                 temp_str1=strtok(temp_str,"=");
                 strcpy(settings[i].setting_name,temp_str1);
-                
+
                 temp_str2=strtok(NULL,"=");
                 temp_str2=trim(temp_str2);
 
@@ -95,13 +95,13 @@ int load_setting(){
 
                 settings[i].setting_data=atoi(temp_str3);
                 settings[i].min=atoi(temp_str4);
-                settings[i].max=atoi(temp_str4);
+                settings[i].max=atoi(temp_str5);
 
                 printf("[DEBUG] setting_data : %d",settings[i].setting_data);
                 printf("[DEBUG] min : %d",  settings[i].min);
                 printf("[DEBUG] max : %d",  settings[i].max);
 
-                printf("[BusIoTSystem] Setting Data : %s = %s ,min = %s, max = %s\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
+                printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                 sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                 log_management(logdata);
                 i+=1;
