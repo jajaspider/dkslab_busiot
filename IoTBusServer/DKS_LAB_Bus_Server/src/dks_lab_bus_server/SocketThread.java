@@ -136,7 +136,7 @@ public class SocketThread extends Thread {
                 System.out.print("\n[Info] Input Data : " + clientData);
                 int byteCount = 0;
                 
-                int time_data = (int)inputDataParse(clientData, byteCount, TIME_BYTE*3, "int");
+                int time_data = (int)inputDataParse(clientData, byteCount, TIME_BYTE*3-1, "int");
                 String temp_data = String.valueOf(time_data);
                 System.out.print("\n[DEBUG] temp_data : " + temp_data);
                 
