@@ -136,30 +136,38 @@ public class SocketThread extends Thread {
                 System.out.print("[Info] Input Data : " + clientData);
                 int byteCount = 0;
                 
-                int gpsXData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
-                System.out.print("[Data] GPS X Data : " + gpsXData);
-                int gpsYData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
-                byteCount += GPS_BYTE;
-                System.out.print("[Data] GPS Y Data : " + gpsYData);
                 int hourData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] Hour Data : " + hourData);
+                
                 int minuteData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] Minute Data : " + minuteData);
+                
                 int secondData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] Second Data : " + secondData);
+                
+                int gpsXData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] GPS X Data : " + gpsXData);
+                
+                int gpsYData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
+                byteCount += GPS_BYTE;
+                System.out.print("[Data] GPS Y Data : " + gpsYData);
+                                
                 int temperatureData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] Temperature Data : " + temperatureData);
+                
                 int humidityData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] Humidity Data : " + humidityData);
+                
                 int passengersData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] Passengers Data : " + passengersData);
+                
                 int panicButtonData = (int)inputDataParse(clientData, byteCount, GPS_BYTE, "int");
                 byteCount += GPS_BYTE;
                 System.out.print("[Data] PanicButton Data : " + panicButtonData);
