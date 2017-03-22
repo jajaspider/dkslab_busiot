@@ -4,4 +4,4 @@ gps_y = 6 0 50000
 temperature = 2 20 40
 humidity = 2 0 40
 passengercount = 2 0 50
-buttoncheck = 2 0 1
+buttoncheck = 2 0 1 
