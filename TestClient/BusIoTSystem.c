@@ -66,13 +66,15 @@ int load_setting(){
                 temp_str1=strtok(temp_str,"=");
                 strcpy(settings[i].setting_name,temp_str1);
 
+                //세팅파일 형식에따라  strtok 추가
                 temp_str2=strtok(NULL,"=");
                 temp_str2=trim(temp_str2);
 
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
                 temp_str5=strtok(NULL," ");
-
+                
+                //세팅 구조체에 세팅값 저장
                 settings[i].setting_data=atoi(temp_str3);
                 settings[i].min=atoi(temp_str4);
                 settings[i].max=atoi(temp_str5);
@@ -155,9 +157,6 @@ int main(int argc,char *argv[])
         else if(setting_flag==2) {
                 log_management("시스템 세팅값 불러오기 완료");
         }
-        //세팅값에따른 바이트길이세팅
-        //sprintf(setting_string,"%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx%%0%dx\n",gps_x,gps_y,gps_time,temperature,humidity,passengercount,buttoncheck);
-
 
         int i=0;
         while(1) {
@@ -194,18 +193,10 @@ int main(int argc,char *argv[])
                         }
                         if(i<0)
                                 i=0;
-                        /*
-                           //모든 데이터들 버퍼에 추가
-                           sprintf(buffer,setting_string,random_generation("GPS_X",0,100000),random_generation_1("GPS_Y",0,100000),current_time,random_generation("Temperature",10,40),random_generation("Humidity",20,60),i,0);
-                         */
 
-                        //임시 세팅값 변경중
-                        // sprintf(temp_string,"%%0%dx",settings[0].setting_data);
-                        // sprintf(temp_string1,temp_string,current_time);
+                        //시간데이터 미리 추가
                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",settings[0].setting_data,settings[1].setting_data,settings[2].setting_data);
                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec);
-                        printf("[DEBUG] current_time : %s\n", current_time);
-
                         strcat(buffer,temp_string1);
                         int j;
                         for(j=3; j<setting_count; j+=1) {
