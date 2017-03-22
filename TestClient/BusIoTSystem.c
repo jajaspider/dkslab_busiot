@@ -181,7 +181,7 @@ int main(int argc,char *argv[])
 
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
                 {
-                        printf("[BusIoTSystem] Socket Can't connect\n");ㅍ
+                        printf("[BusIoTSystem] Socket Can't connect\n");
                         log_management("소켓연결 에러");
                         close(client_fd);
                         sleep(5);
