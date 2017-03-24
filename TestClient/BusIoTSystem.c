@@ -76,7 +76,7 @@ int load_setting(){
                         settings[i].min = 9999;
                         settings[i].max = 9999;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
-                        sprintf(logdata,"%s 세팅값 : %d, autotime setting",settings[i].setting_name,settings[i].data);
+                        sprintf(logdata,"%s 세팅값 : %d, autotime setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
                 else{
