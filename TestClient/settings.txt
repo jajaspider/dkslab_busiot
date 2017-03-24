@@ -18,4 +18,4 @@ image_data = 1 0 0
 speaker_data = 1 0 255
 io_input = 1 0 1
 error_check = 1 0 255
-control = 1 3 3
+control = 1 3 3 
