@@ -9,8 +9,8 @@
 #include <time.h>
 #include <ctype.h>
 
-#define BUF_SIZE 1024
-#define BUF_LEN 1024
+#define BUF_SIZE 2048
+#define BUF_LEN 2048
 #define PORT 29903
 #define IPADDR "113.198.235.247"
 #define MAXTIMINGS 85
@@ -23,7 +23,7 @@ struct Settings{
   int max;
 } ;
 
-struct Settings settings[20];
+struct Settings settings[50];
 
 char current_day[20];
 char log_time[50];
