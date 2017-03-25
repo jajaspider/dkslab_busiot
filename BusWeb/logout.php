@@ -12,7 +12,7 @@
     mysqli_query($conn, "UPDATE login_t set only=0");
 
     //echo("<script>location.replace('test_login.php');</script>");
-    echo $row[2];
+    //echo $row[2];
 
     echo("<script>location.replace('index.html');</script>");
   }
