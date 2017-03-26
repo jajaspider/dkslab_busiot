@@ -11,7 +11,14 @@
 
     mysqli_query($conn, "UPDATE login_t set only=0");
     
-	  
-    echo("<script>location.replace('login.php');</script>");
   }
  ?>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script type="text/javascript">window.location.href="login.php"; </script>
+	<meta http-equiv="refresh" content="0; URL=login.php">
+</head>
+</html>
