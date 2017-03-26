@@ -78,7 +78,7 @@
       </div><!--container-fluid end-->
     </nav>
 
-        <div class="conntainer">
+    <div class="conntainer">
       <div class="row">
         <div class="col-md-3">
           <div class="tab-content">
@@ -88,7 +88,7 @@
                 <!-- Default panel contents -->
                   <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">승객 수</a>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">승객 수</a><span style="margin-left: 200px;" class="caret"></span>
                         </h4>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -123,7 +123,7 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading" role="tab" id="headingTwo">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">온도</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">온도</a><span style="margin-left: 220.27px;" class="caret"></span>
                           </h4>
                     </div>
                     <!-- List group -->
@@ -166,7 +166,7 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading" role="tab" id="headingThr">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThr" aria-expanded="true" aria-controls="collapseThr">운행상태</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThr" aria-expanded="true" aria-controls="collapseThr">운행상태</a><span style="margin-left: 186.27px;" class="caret"></span>
                           </h4>
                     </div>
                     <!-- List group -->
@@ -201,7 +201,7 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">습도</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">습도</a><span style="margin-left: 220.27px;" class="caret"></span>
                           </h4>
                     </div>
                     <!-- List group -->
