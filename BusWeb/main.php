@@ -78,6 +78,7 @@
       </div><!--container-fluid end-->
     </nav>
 
+
     <div class="conntainer">
       <div class="row">
         <div class="col-md-3">
@@ -267,8 +268,22 @@
                     </script>
             </div><!-- tabpanel end-->
             <div role="tabpanel" class="tab-pane fade" id="bus">
-              버스 메뉴부분 입니다.
+                <div class="panel panel-default">
+                <!-- Default panel contents -->
 
+                  <div class="panel-heading">
+                    <form class="form-inline">
+                    <div class="form-group">
+		                    <input type="text" class="form-control" id="BusSearch" placeholder="Search">
+		                </div>
+		                 <button type="submit" class="btn btn-default" style="padding-left: 12px; padding-right: 12px;">검색</button>
+                     </form>
+                   </div>
+                  <div class="panel-body">
+                    <?php echo $row[0]; ?>
+                  </div>
+
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="panic">
               패닉 메뉴부분 입니다.
