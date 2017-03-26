@@ -78,104 +78,170 @@
       </div><!--container-fluid end-->
     </nav>
 
-    <div class="conntainer">
+        <div class="conntainer">
       <div class="row">
         <div class="col-md-3">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="senser">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                <!-- Default panel contents -->
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">승객 수</a>
+                        </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <!-- List group -->
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        20명 이하
+                          <div class="material-switch pull-right">
+                            <input id="passenger_1" name="passenger_1" type="checkbox"/>
+                              <label for="passenger_1" class="label-success"></label>
+                          </div>
+                      </li>
+                      <li class="list-group-item">
+                        21명 ~ 40명
+                        <div class="material-switch pull-right">
+                          <input id="passenger_2" name="passenger_2" type="checkbox"/>
+                            <label for="passenger_2" class="label-warning"></label>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        41명 이상
+                        <div class="material-switch pull-right">
+                          <input id="passenger_3" name="passenger_3" type="checkbox"/>
+                            <label for="passenger_3" class="label-danger"></label>
+                        </div>
+                      </li>
+                    </ul><!-- List group end -->
+                </div><!-- collapseOne end -->
+              </div><!--panel end-->
+
               <div class="panel panel-default">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">승객 수</div>
-                      <ul class="list-group">
-                          <li class="list-group-item">
-                              20명 이하
-                              <div class="material-switch pull-right">
-                                  <input id="passenger_1" name="passenger_1" type="checkbox"/>
-                                  <label for="passenger_1" class="label-success"></label>
-                              </div>
-                          </li>
-                          <li class="list-group-item">
-                              21명 ~ 40명
-                              <div class="material-switch pull-right">
-                                  <input id="passenger_2" name="passenger_2" type="checkbox"/>
-                                  <label for="passenger_2" class="label-warning"></label>
-                              </div>
-                          </li>
-                          <li class="list-group-item">
-                              41명 이상
-                              <div class="material-switch pull-right">
-                                  <input id="passenger_3" name="passenger_3" type="checkbox"/>
-                                  <label for="passenger_3" class="label-danger"></label>
-                              </div>
-                          </li>
-                      </ul>
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">온도</a>
+                          </h4>
+                    </div>
                     <!-- List group -->
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            20도 이하
+                            <div class="material-switch pull-right">
+                                <input id="temperature_1" name="temperature_1" type="checkbox">
+                                <label for="temperature_1" class="label-info"></label>
+                            </div>
+                        </li>
 
+                        <li class="list-group-item">
+                            21도 ~ 25도
+                            <div class="material-switch pull-right">
+                                <input id="temperature_2" name="temperature_2" type="checkbox"/>
+                                <label for="temperature_2" class="label-success"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            26도 ~ 30도
+                            <div class="material-switch pull-right">
+                                <input id="temperature_3" name="temperature_3" type="checkbox"/>
+                                <label for="temperature_3" class="label-warning"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            31도 이상
+                            <div class="material-switch pull-right">
+                                <input id="temperature_4" name="temperature_4" type="checkbox"/>
+                                <label for="temperature_4" class="label-danger"></label>
+                            </div>
+                        </li>
+                    </ul><!-- List group end -->
                 </div><!--panel end-->
-                <div class="panel panel-default">
-                      <!-- Default panel contents -->
-                      <div class="panel-heading">온도</div>
-                      <!-- List group -->
-                      <ul class="list-group">
-                          <li class="list-group-item">
-                              20도 이하
-                              <div class="material-switch pull-right">
-                                  <input id="temperature_1" name="temperature_1" type="checkbox">
-                                  <label for="temperature_1" class="label-info"></label>
-                              </div>
-                          </li>
+              </div><!-- collapseTwo end -->
 
-                          <li class="list-group-item">
-                              21도 ~ 25도
-                              <div class="material-switch pull-right">
-                                  <input id="temperature_2" name="temperature_2" type="checkbox"/>
-                                  <label for="temperature_2" class="label-success"></label>
-                              </div>
-                          </li>
-                          <li class="list-group-item">
-                              26도 ~ 30도
-                              <div class="material-switch pull-right">
-                                  <input id="temperature_3" name="temperature_3" type="checkbox"/>
-                                  <label for="temperature_3" class="label-warning"></label>
-                              </div>
-                          </li>
-                          <li class="list-group-item">
-                              31도 이상
-                              <div class="material-switch pull-right">
-                                  <input id="temperature_4" name="temperature_4" type="checkbox"/>
-                                  <label for="temperature_4" class="label-danger"></label>
-                              </div>
-                          </li>
-                      </ul>
-                  </div><!--panel end-->
-                  <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">운행상태</div>
-                        <!-- List group -->
-                        <ul class="list-group">
-                           <li class="list-group-item">
-                              좋음
-                               <div class="material-switch pull-right">
-                                   <input id="status_3" name="status_3" type="checkbox"/>
-                                   <label for="status_3" class="label-success"></label>
-                               </div>
-                           </li>
-                            <li class="list-group-item">
-                                보통
-                                <div class="material-switch pull-right">
-                                    <input id="status_2" name="status_2" type="checkbox"/>
-                                    <label for="status_2" class="label-warning"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                불량
-                                <div class="material-switch pull-right">
-                                    <input id="status_1" name="status_1" type="checkbox"/>
-                                    <label for="status_1" class="label-danger"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div><!--panel end-->
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingThr">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThr" aria-expanded="true" aria-controls="collapseThr">운행상태</a>
+                          </h4>
+                    </div>
+                    <!-- List group -->
+                    <div id="collapseThr" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThr">
+                    <ul class="list-group">
+                       <li class="list-group-item">
+                          좋음
+                           <div class="material-switch pull-right">
+                               <input id="status_3" name="status_3" type="checkbox"/>
+                               <label for="status_3" class="label-success"></label>
+                           </div>
+                       </li>
+                        <li class="list-group-item">
+                            보통
+                            <div class="material-switch pull-right">
+                                <input id="status_2" name="status_2" type="checkbox"/>
+                                <label for="status_2" class="label-warning"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            불량
+                            <div class="material-switch pull-right">
+                                <input id="status_1" name="status_1" type="checkbox"/>
+                                <label for="status_1" class="label-danger"></label>
+                            </div>
+                        </li>
+                    </ul><!-- List group end -->
+                </div><!--panel end-->
+              </div><!-- collapseTwo end -->
+
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">습도</a>
+                          </h4>
+                    </div>
+                    <!-- List group -->
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            30% 이하
+                            <div class="material-switch pull-right">
+                                <input id="humidity_1" name="humidity_1" type="checkbox">
+                                <label for="humidity_1" class="label-info"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            31% ~ 50%
+                            <div class="material-switch pull-right">
+                                <input id="humidity_2" name="humidity_2" type="checkbox"/>
+                                <label for="humidity_2" class="label-success"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            41% ~ 70%
+                            <div class="material-switch pull-right">
+                                <input id="humidity_3" name="humidity_3" type="checkbox"/>
+                                <label for="humidity_3" class="label-warning"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            71% 이상
+                            <div class="material-switch pull-right">
+                                <input id="humidity_4" name="humidity_4" type="checkbox"/>
+                                <label for="humidity_4" class="label-danger"></label>
+                            </div>
+                        </li>
+                    </ul><!-- List group end -->
+                </div><!--panel end-->
+              </div><!-- collapseTwo end -->
+
+            </div><!--panel group end-->
                     <script>
                     $('#passenger_1').on('click', function() {
                       if ( $(this).prop('checked') ) {
@@ -212,7 +278,7 @@
 
           </div><!-- tab content end-->
 
-          </div><!--col-md-4 end-->
+        </div><!--col-md-3 end-->
         <div class="col-md-9">
                   <div id="map" style="width:100%;height:600px;"></div>
                   <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3138577083cb1fe9cd9d4d6474e2a8e&libraries=services,clusterer,drawing"></script>
@@ -283,7 +349,7 @@
                   });
 
                   </script>
-        </div><!--col-md-8 end-->
+        </div><!--col-md-9 end-->
       </div><!--row end-->
     </div><!--container end-->
     <?php
