@@ -10,17 +10,8 @@
     $row = mysqli_fetch_array($result);
 
     mysqli_query($conn, "UPDATE login_t set only=0");
-
-    //echo("<script>location.replace('test_login.php');</script>");
-    //echo $row[2];
-
+    
+	  
+    echo("<script>location.replace('login.php');</script>");
   }
  ?>
-<!DOCTYPE html>
-
-<html>
-<head>
-	<script type="text/javascript">window.location.href="index.html"; </script>
-	<meta http-equiv="refresh" content="0; URL=index.html">
-</head>
-</html>
