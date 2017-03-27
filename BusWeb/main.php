@@ -29,8 +29,8 @@
     <!-- 부트스트랩 -->
 
     <link href="style.css" rel="stylesheet">
-    <link href="https://bootswatch.com/superhero/bootstrap.min.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./bootstrap/js/jquery-latest.min.js"></script>
     <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">-->
 

@@ -23,20 +23,12 @@ struct Settings{
   int max;
 } ;
 
-struct Settings settings[50];
+struct Settings settings[30];
 
 char current_day[20];
 char log_time[50];
 char current_time[50];
 char logdata[100];
-int gps_x=0;
-int gps_y=0;
-int gps_time=0;
-int temperature=0;
-int humidity=0;
-int passengercount=0;
-int buttoncheck=0;
-int setting_count=0;
 
 char* trim(char *s);
 char* ltrim(char *s);

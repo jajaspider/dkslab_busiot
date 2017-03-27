@@ -71,6 +71,7 @@ int load_setting(){
                 temp_str2=trim(temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
+
                 if(!strcmp(temp_str4,"timeauto")) {
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9999;
@@ -90,10 +91,6 @@ int load_setting(){
                         sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         log_management(logdata);
                 }
-
-
-
-
                 i+=1;
                 setting_count+=1;
         }
@@ -139,9 +136,7 @@ int main(int argc,char *argv[])
 {
         int client_fd,len;
         struct sockaddr_in client_addr;
-        char recv_data[BUF_SIZE];
         char buffer[BUF_LEN];
-        char setting_string[50];
         char temp_string[10];
         char temp_string1[10];
         time_t timer;
@@ -150,7 +145,6 @@ int main(int argc,char *argv[])
 
         //배열 초기화
         memset(buffer,0x00,sizeof(buffer));
-        memset(setting_string,0x00,sizeof(setting_string));
 
         //현재 시간 데이터 받아오기
         timer = time(NULL);
