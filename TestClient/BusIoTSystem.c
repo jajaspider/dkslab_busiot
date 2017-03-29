@@ -96,8 +96,9 @@ int load_setting(){
         }
         int i=0;
         while(!feof(f)) {
-                fgets(temp_str,sizeof(temp_str),f);
-                temp_str[strlen(temp_str)-1]='\0';
+                //fgets(temp_str,sizeof(temp_str),f);
+                fscanf(f,"%s",&temp_str);
+                //temp_str[strlen(temp_str)-1]='\0';
 
                 printf("[DEBUG]%s\n",temp_str);
               /*  temp_str1=strtok(temp_str,"=");
