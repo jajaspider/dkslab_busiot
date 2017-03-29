@@ -68,7 +68,7 @@ int load_setting(){
 
                 //세팅파일 형식에따라  strtok 추가
                 temp_str2=strtok(NULL,"=");
-                temp_str2=trim(temp_str2);
+                strcpy(temp_str2,trim(temp_str2));
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
 
