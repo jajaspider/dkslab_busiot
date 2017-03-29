@@ -98,10 +98,13 @@ int load_setting(){
         int i=0;
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
-                if(!strcmp(temp_str,temp_str6)) {
+
+                temp_str1=strtok(temp_str,"=");
+
+                if(!strcmp(temp_str1,temp_str6)) {
                   break;
                 }
-                temp_str1=strtok(temp_str,"=");
+
                 temp_str6=trim(temp_str1);
                 printf("[BusIoTSystem] 잘린 문자열 temp_str6 : %s\n",temp_str6);
                 strcpy(settings[i].setting_name,temp_str6);
