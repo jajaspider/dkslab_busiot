@@ -12,9 +12,9 @@
 #define BUF_SIZE 2048
 #define BUF_LEN 2048
 #define PORT 29903
-#define IPADDR "113.198.236.96"
+#define IPADDR "113.198.235.247"
 #define MAXTIMINGS 85
-#define MAX_STR_LEN 4000
+#define MAX_STR_LEN 4000s
 
 struct Settings{
   char setting_name[20];
