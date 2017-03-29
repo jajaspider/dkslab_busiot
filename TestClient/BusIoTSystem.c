@@ -78,7 +78,7 @@ void log_management(char *log_data){
 int load_setting(){
         FILE *f;
         char read_data[20];
-        char temp_str[50];
+        char temp_str[1024];
         char *temp_str1;
         char *temp_str2;
         char *temp_str3;
@@ -96,12 +96,12 @@ int load_setting(){
         }
         int i=0;
         while(!feof(f)) {
-                //fgets(temp_str,sizeof(temp_str),f);
-                fscanf(f,"%s",&temp_str);
-                //temp_str[strlen(temp_str)-1]='\0';
+                fgets(temp_str,sizeof(temp_str),f);
+                //fscanf(f,"%s",&temp_str);
+                temp_str[strlen(temp_str)-1]='\0';
 
-                printf("[DEBUG]%s\n",temp_str);
-              /*  temp_str1=strtok(temp_str,"=");
+                //printf("[DEBUG]%s\n",temp_str);
+                temp_str1=strtok(temp_str,"=");
                 temp_str1=trim(temp_str1);
                 printf("[DEBUG] 잘린 문자열 temp_str1 : %s\n",temp_str1);
                 strcpy(settings[i].setting_name,temp_str1);
@@ -133,7 +133,7 @@ int load_setting(){
                         log_management(logdata);
                 }
                 i+=1;
-                setting_count+=1;*/
+                setting_count+=1;
         }
         fclose(f);
         return 2;
