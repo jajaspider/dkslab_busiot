@@ -84,7 +84,6 @@ int load_setting(){
         char *temp_str3;
         char *temp_str4;
         char *temp_str5;
-        char *temp_str6;
 
         //파일이 있을 때
         if(access("settings.txt",0)==0) {
@@ -98,22 +97,19 @@ int load_setting(){
         int i=0;
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
-
-                temp_str1=strtok(temp_str,"=");
-
-                if(!strcmp(temp_str1,temp_str6)) {
-                  break;
-                  break;
+                if(!strcmp(temp_str,"exit")){
+                  fclose(f);
+                  return 2;
                 }
-
-                temp_str6=trim(temp_str1);
-                printf("[BusIoTSystem] 잘린 문자열 temp_str6 : %s\n",temp_str6);
-                strcpy(settings[i].setting_name,temp_str6);
+                temp_str1=strtok(temp_str,"=");
+                temp_str1=trim(temp_str1);
+                printf("[DEBUG] 잘린 문자열 temp_str1 : %s\n",temp_str1);
+                strcpy(settings[i].setting_name,temp_str1);
 
                 //세팅파일 형식에따라  strtok 추가
                 temp_str2=strtok(NULL,"=");
                 temp_str2=trim(temp_str2);
-                printf("[BusIoTSystem] 잘린 문자열 temp_str2 : %s\n",temp_str2);
+                printf("[DEBUG] 잘린 문자열 temp_str2 : %s\n",temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
 
