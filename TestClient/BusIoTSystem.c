@@ -97,7 +97,7 @@ int load_setting(){
         int i=0;
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
-                printf("%s",temp_str);
+                printf("%d",strlen(temp_str));
                 /*temp_str1=strtok(temp_str,"=");
                 temp_str1=trim(temp_str1);
                 printf("[DEBUG] 잘린 문자열 temp_str1 : %s\n",temp_str1);
