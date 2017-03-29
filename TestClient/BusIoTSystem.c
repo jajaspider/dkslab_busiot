@@ -103,6 +103,7 @@ int load_setting(){
 
                 if(!strcmp(temp_str1,temp_str6)) {
                   break;
+                  break;
                 }
 
                 temp_str6=trim(temp_str1);
