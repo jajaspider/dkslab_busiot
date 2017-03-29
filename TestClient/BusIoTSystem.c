@@ -87,7 +87,7 @@ int load_setting(){
 
         //파일이 있을 때
         if(access("settings.txt",0)==0) {
-                f = fopen("settings.txt","r");
+                f = fopen("settings.txt","rb");
         }
         //파일이 없을 때
         else if(access("settings.txt",0)==-1) {
