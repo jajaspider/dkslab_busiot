@@ -99,7 +99,8 @@ int load_setting(){
                 fgets(temp_str,sizeof(temp_str),f);
                 temp_str[strlen(temp_str)-1]='\0';
 
-                temp_str1=strtok(temp_str,"=");
+                printf("%s\n",temp_str);
+              /*  temp_str1=strtok(temp_str,"=");
                 temp_str1=trim(temp_str1);
                 printf("[DEBUG] 잘린 문자열 temp_str1 : %s\n",temp_str1);
                 strcpy(settings[i].setting_name,temp_str1);
@@ -131,7 +132,7 @@ int load_setting(){
                         log_management(logdata);
                 }
                 i+=1;
-                setting_count+=1;
+                setting_count+=1;*/
         }
         fclose(f);
         return 2;
