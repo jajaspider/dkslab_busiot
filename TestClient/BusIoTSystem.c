@@ -97,11 +97,14 @@ int load_setting(){
         int i=0;
         while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
-                if(!strcmp(temp_str,"exit")){
+
+                temp_str1=strtok(temp_str,"=");
+
+                if(!strcmp(temp_str1,"exit")){
                   fclose(f);
                   return 2;
                 }
-                temp_str1=strtok(temp_str,"=");
+
                 temp_str1=trim(temp_str1);
                 printf("[DEBUG] 잘린 문자열 temp_str1 : %s\n",temp_str1);
                 strcpy(settings[i].setting_name,temp_str1);
