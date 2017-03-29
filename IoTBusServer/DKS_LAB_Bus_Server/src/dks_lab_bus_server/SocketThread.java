@@ -173,10 +173,10 @@ public class SocketThread extends Thread {
                 System.out.println("[Data] PanicButton Data : " + panicButtonData);
                 
             } catch(StringIndexOutOfBoundsException ex) {
-                System.out.println("\n[Erro] Missing Data Transfer");
+                System.out.println("[Erro] Missing Data Transfer");
                 break;
             } catch(NumberFormatException ex) {
-                System.out.println("\n[Erro] Data Not Received Normally");
+                System.out.println("[Erro] Data Not Received Normally");
                 break;
             }
         }
