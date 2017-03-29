@@ -130,8 +130,10 @@ char* ltrim(char *s) {
                         break;
                 }
         }
+
         return s;
 }
+
 
 int main(int argc,char *argv[])
 {
