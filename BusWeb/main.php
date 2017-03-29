@@ -242,6 +242,66 @@
                 </div><!--panel end-->
               </div><!-- collapseTwo end -->
 
+		      
+		      
+		      
+		      
+		      
+		<div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">엔진 냉각제 온도</a>
+                          </h4>
+                    </div>
+              </div><!-- collapseTwo end -->
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">장애인 예약</a>
+                          </h4>
+                    </div>
+              </div><!-- collapseTwo end -->
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">G센서</a>
+                          </h4>
+                    </div>
+              </div><!-- collapseTwo end -->
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">차량속력</a>
+                          </h4>
+                    </div>
+              </div><!-- collapseTwo end -->
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">차 내 압력</a>
+                          </h4>
+                    </div>
+              </div><!-- collapseTwo end -->
+              <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" role="tab" id="headingFour">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">엔진 오일 온도</a>
+                          </h4>
+                    </div>
+              </div><!-- collapseTwo end -->      
+		      
+		      
+		      
+		      
+		      
+		      
+		      
             </div><!--panel group end-->
                     <script>
                     $('#passenger_1').on('click', function() {
