@@ -25,6 +25,8 @@ struct Settings{
 
 struct Settings settings[30];
 
+int setting_count=0;
+
 char current_day[20];
 char log_time[50];
 char current_time[50];
