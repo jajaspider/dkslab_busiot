@@ -95,10 +95,10 @@ int load_setting(){
                 return 1;
         }
         int i=0;
-        while(feof(f)!="NULL") {
+        while(!feof(f)) {
                 fgets(temp_str,sizeof(temp_str),f);
-
-                temp_str1=strtok(temp_str,"=");
+                printf("%s",temp_str);
+                /*temp_str1=strtok(temp_str,"=");
                 temp_str1=trim(temp_str1);
                 printf("[DEBUG] 잘린 문자열 temp_str1 : %s\n",temp_str1);
                 strcpy(settings[i].setting_name,temp_str1);
@@ -131,7 +131,7 @@ int load_setting(){
                 }
                 i+=1;
                 setting_count+=1;
-        }
+        */}
         fclose(f);
         return 2;
 }
