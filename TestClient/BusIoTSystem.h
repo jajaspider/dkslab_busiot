@@ -28,6 +28,7 @@ struct timeval val;
 struct Settings settings[100];
 
 int setting_count=0;
+long millisecond=0;
 
 char current_day[20];
 char log_time[50];
