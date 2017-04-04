@@ -15,7 +15,7 @@ public class ParsingByte {
     public final static int HOUR_BYTE              = 1 * 2;
     public final static int MINUTE_BYTE            = 1 * 2;
     public final static int SECOND_BYTE            = 1 * 2;
-    public final static int MILLISECOND_BYTE       = 1 * 2;
+    public final static int MILLISECOND_BYTE       = 2 * 2;
     public final static int TEMPERATURE_BYTE       = 1 * 2;
     public final static int COOLING_BYTE           = 1 * 2;
     public final static int PASSENGERS_BYTE        = 1 * 2;
