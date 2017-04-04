@@ -38,17 +38,17 @@ char* ltrim(char *s) {
 //문자열 자르기 함수
 char* substring(char *input, int i_begin, int i_end)
 {
-     int cnt = 0;
-     int size = (i_end - i_begin)+2;
-     char *str = (char*)malloc(size);
+        int cnt = 0;
+        int size = (i_end - i_begin)+2;
+        char *str = (char*)malloc(size);
 
-     memset(str, 0, size);
-     for(int i = i_begin; i <= i_end; i++)
-     {
-          str[cnt] = input[i];
-          cnt++;
-     }
-     return str;
+        memset(str, 0, size);
+        for(int i = i_begin; i <= i_end; i++)
+        {
+                str[cnt] = input[i];
+                cnt++;
+        }
+        return str;
 }
 
 int random_generation(char *str,int min,int max){
@@ -252,14 +252,22 @@ int main(int argc,char *argv[])
 
                         int j;
                         for(j=0; j<setting_count; j+=1) {
+                                timer = time(NULL);
+                                gettimeofday(&val,NULL);
                                 //시간 시 분초 데이터
                                 if(settings[j].min==9999&&settings[j].max==9999) {
+                                        sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+                                        sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
+                                        sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
                                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
                                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec);
                                         strcat(buffer,temp_string1);
                                 }
                                 // 시간 시 분 초 밀리초 데이터
                                 else if(settings[j].min==9998&&settings[j].max==9998) {
+                                        sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
+                                        sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
+                                        sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
                                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,((settings[j].setting_data)/4)*2);
                                         //밀리초 데이터 가공
                                         millisecond = (char*)&val.tv_usec;
