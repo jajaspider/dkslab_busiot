@@ -50,7 +50,6 @@ char *substring(char *input, int i_begin, int i_end)
      }
      return str;
 }
-[출처] c 언어 substring 만들기|작성자 심심
 
 int random_generation(char *str,int min,int max){
         int i;
