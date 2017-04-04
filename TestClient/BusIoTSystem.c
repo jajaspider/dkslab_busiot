@@ -264,7 +264,7 @@ int main(int argc,char *argv[])
                                         //밀리초 데이터 가공
                                         millisecond = (char*)&val.tv_usec;
                                         millisecond = substring(millisecond,0,3);
-                                        sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,millisecond);
+                                        sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,atoi(millisecond));
                                         strcat(buffer,temp_string1);
                                 }
                                 // gpsx 데이터
