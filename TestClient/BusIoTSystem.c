@@ -150,8 +150,8 @@ int main(int argc,char *argv[])
         int client_fd,len;
         struct sockaddr_in client_addr;
         char buffer[BUF_LEN];
-        char temp_string[10];
-        char temp_string1[10];
+        char temp_string[50];
+        char temp_string1[50];
         time_t timer;
         struct tm *t;
         int setting_flag;
@@ -224,10 +224,10 @@ int main(int argc,char *argv[])
                                         strcat(buffer,temp_string1);
                                 }
                                 else if(settings[j].min==9998&&settings[j].max==9998) {
-                                  sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4+1);
-                                  sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,val.tv_usec);
-                                  strcat(buffer,temp_string1);
-                          }
+                                        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4+1);
+                                        sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,val.tv_usec);
+                                        strcat(buffer,temp_string1);
+                                }
                                 else{
                                         sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
