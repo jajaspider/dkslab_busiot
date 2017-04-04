@@ -38,6 +38,7 @@ char logdata[1024];
 char* trim(char *s);
 char* ltrim(char *s);
 char* rtrim(char* s);
+char* substring(char *input, int i_begin, int i_end);
 int random_generation(char *str,int min,int max);
 void log_management(char *log_data);
 int load_setting();

@@ -36,7 +36,7 @@ char* ltrim(char *s) {
 }
 
 //문자열 자르기 함수
-char *substring(char *input, int i_begin, int i_end)
+char* substring(char *input, int i_begin, int i_end)
 {
      int cnt = 0;
      int size = (i_end - i_begin)+2;
