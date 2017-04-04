@@ -23,7 +23,8 @@ struct Settings{
   int max;
 } ;
 
-struct Settings settings[30];
+struct timeval val;
+struct Settings settings[100];
 
 int setting_count=0;
 

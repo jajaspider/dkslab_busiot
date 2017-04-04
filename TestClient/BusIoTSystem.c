@@ -111,23 +111,31 @@ int load_setting(){
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
 
-                if(!strcmp(temp_str4,"timeauto")) {
+                if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9999;
                         settings[i].max = 9999;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
-                        sprintf(logdata,"%s 세팅값 : %d, autotime setting",settings[i].setting_name,settings[i].setting_data);
+                        sprintf(logdata,"%s 세팅값 : %d byte, autotime1 setting",settings[i].setting_name,settings[i].setting_data);
+                        log_management(logdata);
+                }
+                else if(!strcmp(temp_str4,"timeauto2")) {
+                        settings[i].setting_data=atoi(temp_str3);
+                        settings[i].min = 9998;
+                        settings[i].max = 9998;
+                        printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
+                        sprintf(logdata,"%s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
                 else{
                         temp_str5=strtok(NULL," ");
 
                         //세팅 구조체에 세팅값 저장
-                        settings[i].setting_data=atoi(temp_str3);
+                        settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min=atoi(temp_str4);
                         settings[i].max=atoi(temp_str5);
                         printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
-                        sprintf(logdata,"%s 세팅값 : %d ,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
+                        sprintf(logdata,"%s 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         log_management(logdata);
                 }
                 i+=1;
@@ -144,7 +152,7 @@ int main(int argc,char *argv[])
         char buffer[BUF_LEN];
         char temp_string[10];
         char temp_string1[10];
-        time_t timer;
+
         struct tm *t;
         int setting_flag;
 
@@ -177,7 +185,9 @@ int main(int argc,char *argv[])
                 client_addr.sin_port = htons(PORT);
 
                 timer = time(NULL);
-                t = localtime(&timer);
+                gettimeofday(&val,NULL);
+                t = localtime(&val.tv_sec);
+
                 sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                 sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                 sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
@@ -209,11 +219,15 @@ int main(int argc,char *argv[])
                         int j;
                         for(j=0; j<setting_count; j+=1) {
                                 if(settings[j].min==9999&&settings[j].max==9999) {
-                                        //시간데이터 미리 추가
                                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
                                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec);
                                         strcat(buffer,temp_string1);
                                 }
+                                else if(settings[j].min==9998&&settings[j].max==9998) {
+                                  sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4+1);
+                                  sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,val.tv_usec);
+                                  strcat(buffer,temp_string1);
+                          }
                                 else{
                                         sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));

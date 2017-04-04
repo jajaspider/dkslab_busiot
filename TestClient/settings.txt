@@ -1,7 +1,0 @@
-gps_time = 6 timeauto
-gps_x = 6 0 100000
-gps_y = 6 0 50000
-temperature = 2 0 255
-humidity = 2 0 100
-user_count = 2 0 255
-button_check = 2 0 1 
