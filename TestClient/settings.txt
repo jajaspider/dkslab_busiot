@@ -1,4 +1,4 @@
-GpsX = 4 gpsx
+﻿GpsX = 4 gpsx
 GpsY = 4 gpxy
 GpsTime = 3 timeauto1
 TemperatureTime = 4 timeauto2
