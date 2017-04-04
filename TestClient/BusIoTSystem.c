@@ -152,7 +152,7 @@ int main(int argc,char *argv[])
         char buffer[BUF_LEN];
         char temp_string[10];
         char temp_string1[10];
-
+        time_t timer;
         struct tm *t;
         int setting_flag;
 
