@@ -247,7 +247,7 @@ public class SocketThread extends Thread {
                 //Reservation Phone Data
                 int reservationPhoneData = (int)inputDataParse(clientData, byteCount, ParsingByte.RESERVATION_PHONE_BYTE, "int");
                 byteCount += ParsingByte.RESERVATION_PHONE_BYTE;
-                System.out.println("[Data] Reservation Phone Data : " + reservationPhoneData);
+                System.out.println("[Data] Reservation Phone Data : 0" + reservationPhoneData);
                 
                 //Reckless Time Data
                 int recklessHourData = (int)inputDataParse(clientData, byteCount, ParsingByte.HOUR_BYTE, "int");
@@ -373,7 +373,7 @@ public class SocketThread extends Thread {
                 System.out.println("[Data] Engine Next Time Data : " + engineHourData + ":" + engineMinuteData + ":" + engineSecondData + "." + engineMilliSecondData);
                 //Engine Next Data
                 int engineData = (int)inputDataParse(clientData, byteCount, ParsingByte.ENGINE_NEXT_BYTE, "int");
-                byteCount += ParsingByte.CAR_OXYGEN_BYTE;
+                byteCount += ParsingByte.ENGINE_NEXT_BYTE;
                 System.out.println("[Data] Engine Next Data : " + engineData);
                 
                 //Rotation Time Data
@@ -460,12 +460,12 @@ public class SocketThread extends Thread {
                 //Error Check Data
                 String errorData = (String)inputDataParse(clientData, byteCount, ParsingByte.ERROR_CHECK_BYTE, "String");
                 byteCount += ParsingByte.ERROR_CHECK_BYTE;
-                System.out.println("[Data] Image Data : " + errorData);
+                System.out.println("[Data] Error Check Data : " + errorData);
                 
                 //ETX Data
                 int etxData = (int)inputDataParse(clientData, byteCount, ParsingByte.CONTROL_BYTE, "int");
                 byteCount += ParsingByte.CONTROL_BYTE;
-                System.out.println("[Data] Image Data : " + etxData);
+                System.out.println("[Data] ETX Data : " + etxData);
                 
             } catch(StringIndexOutOfBoundsException ex) {
                 System.out.println("[Erro] Missing Data Transfer");
