@@ -149,7 +149,7 @@ int main(int argc,char *argv[])
         int client_fd,len;
         struct sockaddr_in client_addr;
         char buffer[BUF_LEN];
-        char temp_string[1024];
+        char temp_string[20];
         char temp_string1[50];
         time_t timer;
         struct tm *t;
