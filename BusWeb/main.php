@@ -30,6 +30,7 @@
 
     <link href="style.css" rel="stylesheet">
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bootstrap-slider.min.css" rel="stylesheet">
     <script src="./bootstrap/js/jquery-latest.min.js"></script>
     <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">-->
@@ -78,7 +79,6 @@
       </div><!--container-fluid end-->
     </nav>
 
-
     <div class="conntainer">
       <div class="row">
         <div class="col-md-3">
@@ -87,36 +87,24 @@
               <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                 <!-- Default panel contents -->
-                  <div class="panel-heading" role="tab" id="headingOne">
+                  <div class="panel-heading " role="tab" id="headingOne">
                     <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">승객 수</a><span style="margin-left: 200px;" class="caret"></span>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">승객 수</a>
+                      <div class="material-switch pull-right">
+                          <input id="passenger" name="passenger" type="checkbox"/>
+                            <label for="passenger" class="label-success"></label>
+                      </div>
                         </h4>
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <!-- List group -->
-                    <ul class="list-group">
-                      <li class="list-group-item">
-                        20명 이하
-                          <div class="material-switch pull-right">
-                            <input id="passenger_1" name="passenger_1" type="checkbox"/>
-                              <label for="passenger_1" class="label-success"></label>
+                      <div class="examples">
+                      	<div id="example-2" class='slider-example'>
+                          <div class="well">
+                            <input id="ex2" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
                           </div>
-                      </li>
-                      <li class="list-group-item">
-                        21명 ~ 40명
-                        <div class="material-switch pull-right">
-                          <input id="passenger_2" name="passenger_2" type="checkbox"/>
-                            <label for="passenger_2" class="label-warning"></label>
-                        </div>
-                      </li>
-                      <li class="list-group-item">
-                        41명 이상
-                        <div class="material-switch pull-right">
-                          <input id="passenger_3" name="passenger_3" type="checkbox"/>
-                            <label for="passenger_3" class="label-danger"></label>
-                        </div>
-                      </li>
-                    </ul><!-- List group end -->
+                      </div>
+                    </div>
                 </div><!-- collapseOne end -->
               </div><!--panel end-->
 
@@ -124,42 +112,24 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading" role="tab" id="headingTwo">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">온도</a><span style="margin-left: 220.27px;" class="caret"></span>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">온도</a>
+                          <div class="material-switch pull-right">
+                              <input id="temperature" name="temperature" type="checkbox">
+                              <label for="temperature" class="label-info"></label>
+                          </div>
                           </h4>
                     </div>
                     <!-- List group -->
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            20도 이하
-                            <div class="material-switch pull-right">
-                                <input id="temperature_1" name="temperature_1" type="checkbox">
-                                <label for="temperature_1" class="label-info"></label>
-                            </div>
-                        </li>
 
-                        <li class="list-group-item">
-                            21도 ~ 25도
-                            <div class="material-switch pull-right">
-                                <input id="temperature_2" name="temperature_2" type="checkbox"/>
-                                <label for="temperature_2" class="label-success"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            26도 ~ 30도
-                            <div class="material-switch pull-right">
-                                <input id="temperature_3" name="temperature_3" type="checkbox"/>
-                                <label for="temperature_3" class="label-warning"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            31도 이상
-                            <div class="material-switch pull-right">
-                                <input id="temperature_4" name="temperature_4" type="checkbox"/>
-                                <label for="temperature_4" class="label-danger"></label>
-                            </div>
-                        </li>
-                    </ul><!-- List group end -->
+                      <div class="examples">
+                      	<div id="example-1" class='slider-example'>
+                          <div class="well">
+                            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="-5" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+                          </div>
+                      </div>
+                    </div>
+
                 </div><!--panel end-->
               </div><!-- collapseTwo end -->
 
@@ -167,7 +137,7 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading" role="tab" id="headingThr">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThr" aria-expanded="true" aria-controls="collapseThr">운행상태</a><span style="margin-left: 186.27px;" class="caret"></span>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThr" aria-expanded="true" aria-controls="collapseThr">운행상태</a>
                           </h4>
                     </div>
                     <!-- List group -->
@@ -202,7 +172,7 @@
                     <!-- Default panel contents -->
                     <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">습도</a><span style="margin-left: 220.27px;" class="caret"></span>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">습도</a>
                           </h4>
                     </div>
                     <!-- List group -->
@@ -242,67 +212,10 @@
                 </div><!--panel end-->
               </div><!-- collapseTwo end -->
 
-		      
-		      
-		      
-		      
-		      
-		<div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">엔진 냉각제 온도</a>
-                          </h4>
-                    </div>
-              </div><!-- collapseTwo end -->
-              <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">장애인 예약</a>
-                          </h4>
-                    </div>
-              </div><!-- collapseTwo end -->
-              <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">G센서</a>
-                          </h4>
-                    </div>
-              </div><!-- collapseTwo end -->
-              <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">차량속력</a>
-                          </h4>
-                    </div>
-              </div><!-- collapseTwo end -->
-              <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">차 내 압력</a>
-                          </h4>
-                    </div>
-              </div><!-- collapseTwo end -->
-              <div class="panel panel-default">
-                    <!-- Default panel contents -->
-                    <div class="panel-heading" role="tab" id="headingFour">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">엔진 오일 온도</a>
-                          </h4>
-                    </div>
-              </div><!-- collapseTwo end -->      
-		      
-		      
-		      
-		      
-		      
-		      
-		      
             </div><!--panel group end-->
+
+
+            <button type="button" class="btn btn-primary btn-lg btn-block">확인</button>
                     <script>
                     $('#passenger_1').on('click', function() {
                       if ( $(this).prop('checked') ) {
@@ -439,7 +352,204 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https:////cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./bootstrap-slider.min.js"></script>
+
+    <script type='text/javascript'>
+  $(document).ready(function() {
+    /* Example 1 */
+    $('#ex1').slider({
+          formatter: function(value) {
+            return 'Current value: ' + value;
+          }
+      });
+
+    /* Example 2 */
+      $("#ex2").slider({});
+
+      /* Example 3 */
+      var RGBChange = function() {
+        $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
+      };
+
+      var r = $('#R').slider()
+                .on('slide', RGBChange)
+                .data('slider');
+      var g = $('#G').slider()
+                .on('slide', RGBChange)
+                .data('slider');
+      var b = $('#B').slider()
+                .on('slide', RGBChange)
+                .data('slider');
+
+      /* Example 4 */
+      $("#ex4").slider({
+        reversed : true
+      });
+
+      /* Example 5 */
+      $("#ex5").slider();
+  $("#destroyEx5Slider").click(function() {
+    $("#ex5").slider('destroy');
+  });
+
+  /* Example 6 */
+  $("#ex6").slider();
+  $("#ex6").on('slide', function(slideEvt) {
+    $("#ex6SliderVal").text(slideEvt.value);
+  });
+
+  /* Example 7 */
+  $("#ex7").slider();
+  $("#ex7-enabled").click(function() {
+    if(this.checked) {
+      $("#ex7").slider("enable");
+    }
+    else {
+      $("#ex7").slider("disable");
+    }
+  });
+
+  /* Example 8 */
+  $("#ex8").slider({
+    tooltip: 'always'
+  });
+
+  /* Example 9 */
+  $("#ex9").slider({
+    precision: 2,
+    value: 8.115
+  });
+
+      /* Example 10 */
+      $("#ex10").slider({});
+
+      /* Example 11 */
+      $("#ex11").slider({
+        step: 20000,
+        min: 0,
+        max: 200000
+      });
+
+  /* Example 12 */
+  $("#ex12a").slider({
+    id: "slider12a",
+    min: 0,
+    max: 10,
+    value: 5
+        });
+  $("#ex12b").slider({
+    id: "slider12b",
+    min: 0,
+    max: 10,
+    range: true,
+    value: [ 3, 7 ]
+  });
+  $("#ex12c").slider({
+    id: "slider12c",
+    min: 0,
+    max: 10,
+    range: true,
+    value: [ 3, 7 ]
+  });
+
+  /* Example 13 */
+  $("#ex13").slider({
+    ticks: [0, 100, 200, 300, 400],
+    ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
+    ticks_snap_bounds: 30,
+    value: 200
+  });
+
+  /* Example 14 */
+  $("#ex14").slider({
+    ticks: [0, 100, 200, 300, 400],
+    ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
+    ticks_positions: [0, 30, 70, 90, 100],
+    ticks_snap_bounds: 20,
+    value: 200,
+    reversed: true
+  });
+
+  /* Example 15 */
+  $("#ex15").slider({
+    min: 10,
+    max: 1000,
+    scale: 'logarithmic',
+    step: 10
+  });
+
+  /* Example 16 */
+  $("#ex16a").slider({
+    min  : 0,
+    max  : 10,
+    value: 0,
+    focus: true
+  });
+  $("#ex16b").slider({
+    min  : 0,
+    max  : 10,
+    value: [ 0, 10 ],
+    focus: true
+  });
+
+  /* Example 17 */
+  $("#ex17a").slider({
+    min  : 0,
+    max  : 10,
+    value: 0,
+    tooltip_position:'bottom'
+  });
+  $("#ex17b").slider({
+    min  : 0,
+    max  : 10,
+    value: 0,
+    orientation: 'vertical',
+    tooltip_position:'left'
+  });
+
+  /* Example 18 */
+  $('#ex18a').slider({
+    min  : 0,
+    max  : 10,
+    value: 5,
+    labelledby: 'ex18-label-1'
+  });
+
+  $('#ex18b').slider({
+    min  : 0,
+    max  : 10,
+    value: [3, 6],
+    labelledby: ['ex18-label-2a', 'ex18-label-2b']
+  });
+
+  $('#ex20a').on('click', function(e) {
+    $('#ex20a')
+      .parent()
+      .find(' >.well')
+      .toggle()
+      .find('input')
+      .slider('relayout');
+    e.preventDefault();
+  });
+
+  /* Example 22 */
+        $('#ex22').slider({});
+
+  /* Example 23 */
+        $('#ex23').slider({
+    ticks: [0, 1, 2, 3, 4],
+    ticks_positions: [0, 30, 70, 90, 100],
+    formatter: function(value) {
+      return 'Current value: ' + value;
+    },
+    step: 0.01,
+    ticks_tooltip: true
+  });
+});
+  /* example 24 */
+  $('#ex24').slider({});
+</script>
   </body>
   <footer>
   </footer>

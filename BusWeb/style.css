@@ -121,3 +121,83 @@ input[type="password"] {
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+
+.arrow {
+float: right;
+}
+.glyphicon.arrow:before {
+content: "\e079";
+}
+.active > a > .glyphicon.arrow:before {
+content: "\e114";
+}
+.fa.arrow:before {
+content: "\f104";
+}
+.active > a > .fa.arrow:before {
+content: "\f107";
+}
+.plus-times {
+float: right;
+}
+.fa.plus-times:before {
+content: "\f067";
+}
+.active > a > .fa.plus-times {
+ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+-webkit-transform: rotate(45deg);
+-moz-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+transform: rotate(45deg);
+}
+.plus-minus {
+float: right;
+}
+.fa.plus-minus:before {
+content: "\f067";
+}
+.active > a > .fa.plus-minus:before {
+content: "\f068";
+}
+
+.well {
+background-color: #E0E0E0;
+}
+.slider-example {
+padding-top: 10px;
+padding-bottom: 55px;
+margin: 35px 0;
+}
+
+/* Example 1 custom styles */
+#ex1Slider .slider-selection {
+background: #BABABA;
+}
+
+/* Example 3 custom styles */
+#RGB {
+height: 20px;
+background: rgb(128, 128, 128);
+}
+#RC .slider-selection {
+	background: #FF8282;
+}
+#RC .slider-handle {
+	background: red;
+}
+#GC .slider-selection {
+	background: #428041;
+}
+#GC .slider-handle {
+	background: green;
+}
+#BC .slider-selection {
+	background: #8283FF;
+}
+#BC .slider-handle {
+	border-bottom-color: blue;
+}
+#R, #G, #B {
+	width: 300px;
+}
