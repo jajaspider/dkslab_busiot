@@ -373,7 +373,7 @@ public class SocketThread extends Thread {
                 System.out.println("[Data] Engine Next Time Data : " + engineHourData + ":" + engineMinuteData + ":" + engineSecondData + "." + engineMilliSecondData);
                 //Engine Next Data
                 int engineData = (int)inputDataParse(clientData, byteCount, ParsingByte.ENGINE_NEXT_BYTE, "int");
-                byteCount += ParsingByte.CAR_OXYGEN_BYTE;
+                byteCount += ParsingByte.ENGINE_NEXT_BYTE;
                 System.out.println("[Data] Engine Next Data : " + engineData);
                 
                 //Rotation Time Data
