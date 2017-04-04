@@ -247,7 +247,7 @@ public class SocketThread extends Thread {
                 //Reservation Phone Data
                 int reservationPhoneData = (int)inputDataParse(clientData, byteCount, ParsingByte.RESERVATION_PHONE_BYTE, "int");
                 byteCount += ParsingByte.RESERVATION_PHONE_BYTE;
-                System.out.println("[Data] Reservation Phone Data : " + reservationPhoneData);
+                System.out.println("[Data] Reservation Phone Data : 0" + reservationPhoneData);
                 
                 //Reckless Time Data
                 int recklessHourData = (int)inputDataParse(clientData, byteCount, ParsingByte.HOUR_BYTE, "int");
