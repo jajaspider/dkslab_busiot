@@ -250,13 +250,13 @@ int main(int argc,char *argv[])
                                 }
                                 // gpsx 데이터
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
-                                        sprintf(temp_string,"%%0%dx%%0%dx",((settings[j].setting_data)/4)*1,((settings[j].setting_data)/4)*3);
+                                        sprintf(temp_string,"%%0%dx%%0%dx",(settings[j].setting_data)/4,((settings[j].setting_data)/4)*3);
                                         sprintf(temp_string1,temp_string,35,random_generation(settings[j].setting_name,100738,219186));
                                         strcat(buffer,temp_string1);
                                 }
                                 // gpsy 데이터
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
-                                        sprintf(temp_string,"%%0%dx%%0%dx",((settings[j].setting_data)/4)*1,((settings[j].setting_data)/4)*3);
+                                        sprintf(temp_string,"%%0%dx%%0%dx",(settings[j].setting_data)/4,((settings[j].setting_data)/4)*3);
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         strcat(buffer,temp_string1);
                                 }
