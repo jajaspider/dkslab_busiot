@@ -35,6 +35,23 @@ char* ltrim(char *s) {
         return s;
 }
 
+//문자열 자르기 함수
+char *substring(char *input, int i_begin, int i_end)
+{
+     int cnt = 0;
+     int size = (i_end - i_begin)+2;
+     char *str = (char*)malloc(size);
+
+     memset(str, 0, size);
+     for(int i = i_begin; i <= i_end; i++)
+     {
+          str[cnt] = input[i];
+          cnt++;
+     }
+     return str;
+}
+[출처] c 언어 substring 만들기|작성자 심심
+
 int random_generation(char *str,int min,int max){
         int i;
         srand((unsigned int)time(NULL));
@@ -245,7 +262,9 @@ int main(int argc,char *argv[])
                                 // 시간 시 분 초 밀리초 데이터
                                 else if(settings[j].min==9998&&settings[j].max==9998) {
                                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,((settings[j].setting_data)/4)*2);
-                                        sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,val.tv_usec);
+                                        millisecond = (char*)&val.tv_usec;
+                                        millisecond = substring(millisecond,0,3);
+                                        sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,millisecond);
                                         strcat(buffer,temp_string1);
                                 }
                                 // gpsx 데이터
