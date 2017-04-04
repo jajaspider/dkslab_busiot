@@ -135,7 +135,7 @@ public class SocketThread extends Thread {
                 byteCount += ParsingByte.GPS_INT_BYTE;
                 int gpsYDecimalData = (int)inputDataParse(clientData, byteCount, ParsingByte.GPS_DECIMAL_BYTE, "int");
                 byteCount += ParsingByte.GPS_DECIMAL_BYTE;
-                System.out.println("[Data] GPS X Data : " + gpsYIntData + "." + gpsYDecimalData);
+                System.out.println("[Data] GPS Y Data : " + gpsYIntData + "." + gpsYDecimalData);
                 //GPS Time
                 int gpsHourData = (int)inputDataParse(clientData, byteCount, ParsingByte.HOUR_BYTE, "int");
                 byteCount += ParsingByte.HOUR_BYTE;
