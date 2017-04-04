@@ -460,12 +460,12 @@ public class SocketThread extends Thread {
                 //Error Check Data
                 String errorData = (String)inputDataParse(clientData, byteCount, ParsingByte.ERROR_CHECK_BYTE, "String");
                 byteCount += ParsingByte.ERROR_CHECK_BYTE;
-                System.out.println("[Data] Image Data : " + errorData);
+                System.out.println("[Data] Error Check Data : " + errorData);
                 
                 //ETX Data
                 int etxData = (int)inputDataParse(clientData, byteCount, ParsingByte.CONTROL_BYTE, "int");
                 byteCount += ParsingByte.CONTROL_BYTE;
-                System.out.println("[Data] Image Data : " + etxData);
+                System.out.println("[Data] ETX Data : " + etxData);
                 
             } catch(StringIndexOutOfBoundsException ex) {
                 System.out.println("[Erro] Missing Data Transfer");
