@@ -1,5 +1,5 @@
-GpsX = 4 0 100000
-GpsY = 4 0 50000
+GpsX = 4 gpsx
+GpsY = 4 gpxy
 GpsTime = 3 timeauto1
 TemperatureTime = 4 timeauto2
 Temperature = 1 0 255

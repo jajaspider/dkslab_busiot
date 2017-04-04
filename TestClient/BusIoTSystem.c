@@ -109,7 +109,7 @@ int load_setting(){
                 temp_str2=trim(temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
-
+//시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min = 9999;
@@ -118,10 +118,29 @@ int load_setting(){
                         sprintf(logdata,"%s 세팅값 : %d byte, autotime1 setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
+                //시간 시 분 초 밀리초 데이터
                 else if(!strcmp(temp_str4,"timeauto2")) {
                         settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min = 9998;
                         settings[i].max = 9998;
+                        printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
+                        sprintf(logdata,"%s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data);
+                        log_management(logdata);
+                }
+                //gpsx 데이터
+                else if(!strcmp(temp_str4,"gpsx")) {
+                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].min = 9997;
+                        settings[i].max = 9997;
+                        printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
+                        sprintf(logdata,"%s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data);
+                        log_management(logdata);
+                }
+                //gpsy 데이터
+                else if(!strcmp(temp_str4,"gpsy")) {
+                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].min = 9996;
+                        settings[i].max = 9996;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                         sprintf(logdata,"%s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
@@ -217,14 +236,28 @@ int main(int argc,char *argv[])
 
                         int j;
                         for(j=0; j<setting_count; j+=1) {
+                                //시간 시 분초 데이터
                                 if(settings[j].min==9999&&settings[j].max==9999) {
                                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
                                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec);
                                         strcat(buffer,temp_string1);
                                 }
+                                // 시간 시 분 초 밀리초 데이터
                                 else if(settings[j].min==9998&&settings[j].max==9998) {
                                         sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4+1);
                                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,val.tv_usec);
+                                        strcat(buffer,temp_string1);
+                                }
+                                // gpsx 데이터
+                                else if(settings[j].min==9997&&settings[j].max==9997) {
+                                        sprintf(temp_string,"%%0%dx%%0%dx",((settings[j].setting_data)/4)*1,((settings[j].setting_data)/4)*3);
+                                        sprintf(temp_string1,temp_string,35,random_generation(settings[j].setting_name,100738,219186));
+                                        strcat(buffer,temp_string1);
+                                }
+                                // gpsy 데이터
+                                else if(settings[j].min==9996&&settings[j].max==9996) {
+                                        sprintf(temp_string,"%%0%dx%%0%dx",((settings[j].setting_data)/4)*1,((settings[j].setting_data)/4)*3);
+                                        sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         strcat(buffer,temp_string1);
                                 }
                                 else{
