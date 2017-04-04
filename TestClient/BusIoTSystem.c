@@ -244,7 +244,7 @@ int main(int argc,char *argv[])
                                 }
                                 // 시간 시 분 초 밀리초 데이터
                                 else if(settings[j].min==9998&&settings[j].max==9998) {
-                                        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4+1);
+                                        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4,(settings[j].setting_data)/4*2);
                                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,val.tv_usec);
                                         strcat(buffer,temp_string1);
                                 }
