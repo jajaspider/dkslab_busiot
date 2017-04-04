@@ -39,7 +39,7 @@ int random_generation(char *str,int min,int max){
         int i;
         srand((unsigned int)time(NULL));
         i=rand()%(max-min)+min;
-        char print_str[50];
+        char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
         printf("%s\n",print_str);
 
@@ -61,7 +61,7 @@ int random_count(){
 
 void log_management(char *log_data){
         FILE *f;
-        char filename[20];
+        char filename[13];
         sprintf(filename,"%s_log",current_day);
         //파일이 있을 때
         if(access(filename,0)==0) {
@@ -77,7 +77,6 @@ void log_management(char *log_data){
 
 int load_setting(){
         FILE *f;
-        char read_data[20];
         char temp_str[1024];
         char *temp_str1;
         char *temp_str2;
