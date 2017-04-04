@@ -18,9 +18,9 @@ public class BusClientData {
         int value = Integer.parseInt(data, 16);
         switch (value) {
             case 0:
-                return "not pushed";
+                return "off";
             case 1:
-                return "pushed";
+                return "on";
             default:
                 return "error";
         }
