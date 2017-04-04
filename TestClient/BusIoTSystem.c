@@ -112,7 +112,7 @@ int load_setting(){
                 temp_str4=strtok(NULL," ");
 
                 if(!strcmp(temp_str4,"timeauto1")) {
-                        settings[i].setting_data=atoi(temp_str3);
+                        settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min = 9999;
                         settings[i].max = 9999;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
@@ -120,7 +120,7 @@ int load_setting(){
                         log_management(logdata);
                 }
                 else if(!strcmp(temp_str4,"timeauto2")) {
-                        settings[i].setting_data=atoi(temp_str3);
+                        settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min = 9998;
                         settings[i].max = 9998;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);

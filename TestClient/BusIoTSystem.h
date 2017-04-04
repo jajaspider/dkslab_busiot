@@ -10,8 +10,8 @@
 #include <time.h>
 #include <ctype.h>
 
-#define BUF_SIZE 2048
-#define BUF_LEN 2048
+#define BUF_SIZE 1024
+#define BUF_LEN 1024
 #define PORT 29903
 #define IPADDR "113.198.235.247"
 #define MAXTIMINGS 85
