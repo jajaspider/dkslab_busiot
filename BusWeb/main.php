@@ -6,7 +6,7 @@
     mysqli_select_db($conn, "login");
 
     $sql1 = "SELECT * FROM login_t";
-    $sql2 = "SELECT * FROM buslist"
+    $sql2 = "SELECT * FROM buslist";
     $result = $conn->query($sql1);
     $busresult = $conn->query($sql2);
     $busrow = mysqli_fetch_array($busresult);
