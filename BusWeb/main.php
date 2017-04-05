@@ -220,21 +220,7 @@
 
             <button type="button" class="btn btn-primary btn-lg btn-block">확인</button>
                     <script>
-                    $('#passenger_1').on('click', function() {
-                      if ( $(this).prop('checked') ) {
-                        alert("체크 성공");
-                      } else {
-                        alert("체크 해제");
-                      }
-                    });
-                    $('#passenger_2').on('click', function() {
-                      if ( $(this).prop('checked') ) {
-                        alert("체크 성공");
-                      } else {
-                        alert("체크 해제");
-                      }
-                    });
-                    $('#passenger_3').on('click', function() {
+                    $('#passenger').on('click', function() {
                       if ( $(this).prop('checked') ) {
                         alert("체크 성공");
                       } else {
