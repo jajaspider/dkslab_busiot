@@ -6,9 +6,12 @@
     mysqli_select_db($conn, "login");
 
     $sql1 = "SELECT * FROM login_t";
+    $sql2 = "SELECT * FROM buslist";
     $result = $conn->query($sql1);
+    $busresult = $conn->query($sql2);
+    $busrow = mysqli_fetch_array($busresult);
     $row = mysqli_fetch_array($result);
-
+    $busnum = $busrow['busnum'];
     $id = $row['id'];
     $pwd = $row['password'];
 
@@ -217,21 +220,7 @@
 
             <button type="button" class="btn btn-primary btn-lg btn-block">확인</button>
                     <script>
-                    $('#passenger_1').on('click', function() {
-                      if ( $(this).prop('checked') ) {
-                        alert("체크 성공");
-                      } else {
-                        alert("체크 해제");
-                      }
-                    });
-                    $('#passenger_2').on('click', function() {
-                      if ( $(this).prop('checked') ) {
-                        alert("체크 성공");
-                      } else {
-                        alert("체크 해제");
-                      }
-                    });
-                    $('#passenger_3').on('click', function() {
+                    $('#passenger').on('click', function() {
                       if ( $(this).prop('checked') ) {
                         alert("체크 성공");
                       } else {
@@ -249,11 +238,11 @@
                     <div class="form-group">
 		                    <input type="text" class="form-control" id="BusSearch" placeholder="Search">
 		                </div>
-		                 <button type="submit" class="btn btn-default" style="padding-left: 12px; padding-right: 12px;">검색</button>
+		                 <button type="button" class="btn btn-default" style="padding-left: 12px; padding-right: 12px;">검색</button>
                      </form>
                    </div>
                   <div class="panel-body">
-                    <?php echo $row[0]; ?>
+                    <?php echo $busrow[1]; ?>
                   </div>
 
                 </div>
