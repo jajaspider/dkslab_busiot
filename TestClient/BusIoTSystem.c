@@ -280,7 +280,7 @@ int main(int argc,char *argv[])
                                         millisecond = substring(millisecond,0,3);
                                         sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec,atoi(millisecond));
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec,atoi(millisecond));
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d%d",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec,atoi(millisecond));
                                         printf("%s\n",print_str);
                                 }
                                 // gpsx 데이터
@@ -288,7 +288,7 @@ int main(int argc,char *argv[])
                                         sprintf(temp_string,"%%0%dx%%0%dx",(settings[j].setting_data)/4,((settings[j].setting_data)/4)*3);
                                         sprintf(temp_string1,temp_string,35,random_generation(settings[j].setting_name,100738,219186));
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[i].setting_name,35,random_generation(settings[j].setting_name,100738,219186));
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[j].setting_name,35,random_generation(settings[j].setting_name,100738,219186));
                                         printf("%s\n",print_str);
                                 }
                                 // gpsy 데이터
@@ -296,14 +296,14 @@ int main(int argc,char *argv[])
                                         sprintf(temp_string,"%%0%dx%%0%dx",(settings[j].setting_data)/4,((settings[j].setting_data)/4)*3);
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[i].setting_name,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[j].setting_name,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         printf("%s\n",print_str);
                                 }
                                 else{
                                         sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[i].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         printf("%s\n",print_str);
                                 }
                         }
