@@ -303,7 +303,7 @@ int main(int argc,char *argv[])
                                         sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[i].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[i].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         printf("%s\n",print_str);
                                 }
                         }
