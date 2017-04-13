@@ -45,6 +45,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	  
+    <style>
+    .slider-example {
+      text-align: center;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-bottom: 10px;
+    }
+    </style>
   </head>
   <body>
     <?php
@@ -293,6 +302,7 @@
                       clusterer.clear();
                     }
                   });
+	</script>
         </div><!--col-md-9 end-->
       </div><!--row end-->
     </div><!--container end-->
