@@ -101,13 +101,9 @@
                   </div>
                   <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <!-- List group -->
-                      <div class="examples">
-                      	<div id="example-2" class='slider-example'>
-                          <div class="well">
-                            <input id="ex2" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
-                          </div>
-                      </div>
-                    </div>
+                      	<div class='slider-example'>
+                            <input id="passengerSlider" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
+                        </div>
                 </div><!-- collapseOne end -->
               </div><!--panel end-->
 
@@ -125,13 +121,9 @@
                     <!-- List group -->
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 
-                      <div class="examples">
-                      	<div id="example-1" class='slider-example'>
-                          <div class="well">
-                            <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="-5" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-                          </div>
+                      <div class='slider-example'>
+                          <input id="temperatureSlider" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
                       </div>
-                    </div>
 
                 </div><!--panel end-->
               </div><!-- collapseTwo end -->
@@ -141,33 +133,26 @@
                     <div class="panel-heading" role="tab" id="headingThr">
                       <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThr" aria-expanded="true" aria-controls="collapseThr">운행상태</a>
+                        <div class="material-switch pull-right">
+                            <input id="car_status" name="car_status" type="checkbox">
+                            <label for="car_status" class="label-info"></label>
+                        </div>
                           </h4>
                     </div>
                     <!-- List group -->
                     <div id="collapseThr" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThr">
-                    <ul class="list-group">
-                       <li class="list-group-item">
-                          좋음
-                           <div class="material-switch pull-right">
-                               <input id="status_3" name="status_3" type="checkbox"/>
-                               <label for="status_3" class="label-success"></label>
-                           </div>
-                       </li>
-                        <li class="list-group-item">
-                            보통
-                            <div class="material-switch pull-right">
-                                <input id="status_2" name="status_2" type="checkbox"/>
-                                <label for="status_2" class="label-warning"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            불량
-                            <div class="material-switch pull-right">
-                                <input id="status_1" name="status_1" type="checkbox"/>
-                                <label for="status_1" class="label-danger"></label>
-                            </div>
-                        </li>
-                    </ul><!-- List group end -->
+                      <div class='slider-example'>
+                          <input id="statusSlider" type="text"
+                          data-provide="slider"
+                          data-slider-ticks="[1, 2, 3]"
+                          data-slider-ticks-labels='["Bad", "Normal", "Good"]'
+                          data-slider-min="1"
+                          data-slider-max="3"
+                          data-slider-step="1"
+                          data-slider-value="3"
+                          data-slider-tooltip="hide"
+                          />
+                      </div>
                 </div><!--panel end-->
               </div><!-- collapseTwo end -->
 
@@ -176,42 +161,17 @@
                     <div class="panel-heading" role="tab" id="headingFour">
                       <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">습도</a>
+                        <div class="material-switch pull-right">
+                            <input id="humidity" name="humidity" type="checkbox">
+                            <label for="humidity" class="label-info"></label>
+                        </div>
                           </h4>
                     </div>
                     <!-- List group -->
                     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            30% 이하
-                            <div class="material-switch pull-right">
-                                <input id="humidity_1" name="humidity_1" type="checkbox">
-                                <label for="humidity_1" class="label-info"></label>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item">
-                            31% ~ 50%
-                            <div class="material-switch pull-right">
-                                <input id="humidity_2" name="humidity_2" type="checkbox"/>
-                                <label for="humidity_2" class="label-success"></label>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            41% ~ 70%
-                            <div class="material-switch pull-right">
-                                <input id="humidity_3" name="humidity_3" type="checkbox"/>
-                                <label for="humidity_3" class="label-warning"></label>
-                            </div>
-                        </li>
-
-                        <li class="list-group-item">
-                            71% 이상
-                            <div class="material-switch pull-right">
-                                <input id="humidity_4" name="humidity_4" type="checkbox"/>
-                                <label for="humidity_4" class="label-danger"></label>
-                            </div>
-                        </li>
-                    </ul><!-- List group end -->
+                      <div class='slider-example'>
+                          <input id="humiditySlider" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
+                      </div>
                 </div><!--panel end-->
               </div><!-- collapseTwo end -->
 
@@ -220,7 +180,7 @@
 
             <button type="button" class="btn btn-primary btn-lg btn-block">확인</button>
                     <script>
-                    $('#passenger').on('click', function() {
+                    $('#passenger_1').on('click', function() {
                       if ( $(this).prop('checked') ) {
                         alert("체크 성공");
                       } else {
@@ -238,11 +198,11 @@
                     <div class="form-group">
 		                    <input type="text" class="form-control" id="BusSearch" placeholder="Search">
 		                </div>
-		                 <button type="button" class="btn btn-default" style="padding-left: 12px; padding-right: 12px;">검색</button>
+		                 <button type="submit" class="btn btn-default" style="padding-left: 12px; padding-right: 12px;">검색</button>
                      </form>
                    </div>
                   <div class="panel-body">
-                    <?php echo $busrow[1]; ?>
+                    <?php echo $row[0]; ?>
                   </div>
 
                 </div>
@@ -260,6 +220,8 @@
                   <div id="map" style="width:100%;height:600px;"></div>
                   <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3138577083cb1fe9cd9d4d6474e2a8e&libraries=services,clusterer,drawing"></script>
                   <script>
+
+
                   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                   mapOption = {
                     center: new daum.maps.LatLng(35.144809, 129.034790), // 지도의 중심좌표
@@ -289,43 +251,48 @@
                     averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
                     minLevel: 7 // 클러스터 할 최소 지도 레벨
                   });
-                  // 데이터를 가져오기 위해 jQuery를 사용합니다
-                  // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-                  $.get("wherebus.json", function(data) {
-                    // 데이터에서 좌표 값을 가지고 마커를 표시합니다
-                    // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-                    var markers = $(data.positions).map(function(i, position) {
-                      var maks =  new daum.maps.Marker({
-                        map: map,
-                        position : new daum.maps.LatLng(position.lat, position.lng),
-                        image: markerImage,
-                        clickable: true
-                    });
-                    maks.setMap(map);
 
-                    var iwContent = '<span style="color: black"><?php echo $row[0]; ?></span>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-                        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+                  $('#passenger').on('click', function() {
+                    if ( $(this).prop('checked') ) {
+                      // 데이터를 가져오기 위해 jQuery를 사용합니다
+                      // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
+                      $.get("wherebus.json", function(data) {
+                        // 데이터에서 좌표 값을 가지고 마커를 표시합니다
+                        // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
+                        var markers = $(data.positions).map(function(i, position) {
+                          var maks =  new daum.maps.Marker({
+                            map: map,
+                            position : new daum.maps.LatLng(position.lat, position.lng),
+                            image: markerImage,
+                            clickable: true
+                        });
+                        maks.setMap(map);
 
-                    var infowindow = new daum.maps.InfoWindow({
-                      content : iwContent,
-                      removable : iwRemoveable
-                    });
+                        var iwContent = '<span style="color: black"><?php echo $row[0]; ?></span>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                            iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
-                    daum.maps.event.addListener(maks, "click", function() {
-                    infowindow.open(map, maks);
-                    });
+                        var infowindow = new daum.maps.InfoWindow({
+                          content : iwContent,
+                          removable : iwRemoveable
+                        });
 
-                    daum.maps.event.addListener(map, "click", function() {
-                    infowindow.close();
-                    });
-                    return maks;
+                        daum.maps.event.addListener(maks, "click", function() {
+                        infowindow.open(map, maks);
+                        });
+
+                        daum.maps.event.addListener(map, "click", function() {
+                        infowindow.close();
+                        });
+                        return maks;
+                      });
+
+                        // 클러스터러에 마커들을 추가합니다
+                        clusterer.addMarkers(markers);
+                      });
+                    } else {
+                      clusterer.clear();
+                    }
                   });
-
-                    // 클러스터러에 마커들을 추가합니다
-                    clusterer.addMarkers(markers);
-                  });
-
-                  </script>
         </div><!--col-md-9 end-->
       </div><!--row end-->
     </div><!--container end-->
@@ -346,198 +313,11 @@
 
     <script type='text/javascript'>
   $(document).ready(function() {
-    /* Example 1 */
-    $('#ex1').slider({
-          formatter: function(value) {
-            return 'Current value: ' + value;
-          }
-      });
-
     /* Example 2 */
-      $("#ex2").slider({});
-
-      /* Example 3 */
-      var RGBChange = function() {
-        $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
-      };
-
-      var r = $('#R').slider()
-                .on('slide', RGBChange)
-                .data('slider');
-      var g = $('#G').slider()
-                .on('slide', RGBChange)
-                .data('slider');
-      var b = $('#B').slider()
-                .on('slide', RGBChange)
-                .data('slider');
-
-      /* Example 4 */
-      $("#ex4").slider({
-        reversed : true
-      });
-
-      /* Example 5 */
-      $("#ex5").slider();
-  $("#destroyEx5Slider").click(function() {
-    $("#ex5").slider('destroy');
-  });
-
-  /* Example 6 */
-  $("#ex6").slider();
-  $("#ex6").on('slide', function(slideEvt) {
-    $("#ex6SliderVal").text(slideEvt.value);
-  });
-
-  /* Example 7 */
-  $("#ex7").slider();
-  $("#ex7-enabled").click(function() {
-    if(this.checked) {
-      $("#ex7").slider("enable");
-    }
-    else {
-      $("#ex7").slider("disable");
-    }
-  });
-
-  /* Example 8 */
-  $("#ex8").slider({
-    tooltip: 'always'
-  });
-
-  /* Example 9 */
-  $("#ex9").slider({
-    precision: 2,
-    value: 8.115
-  });
-
-      /* Example 10 */
-      $("#ex10").slider({});
-
-      /* Example 11 */
-      $("#ex11").slider({
-        step: 20000,
-        min: 0,
-        max: 200000
-      });
-
-  /* Example 12 */
-  $("#ex12a").slider({
-    id: "slider12a",
-    min: 0,
-    max: 10,
-    value: 5
-        });
-  $("#ex12b").slider({
-    id: "slider12b",
-    min: 0,
-    max: 10,
-    range: true,
-    value: [ 3, 7 ]
-  });
-  $("#ex12c").slider({
-    id: "slider12c",
-    min: 0,
-    max: 10,
-    range: true,
-    value: [ 3, 7 ]
-  });
-
-  /* Example 13 */
-  $("#ex13").slider({
-    ticks: [0, 100, 200, 300, 400],
-    ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
-    ticks_snap_bounds: 30,
-    value: 200
-  });
-
-  /* Example 14 */
-  $("#ex14").slider({
-    ticks: [0, 100, 200, 300, 400],
-    ticks_labels: ['$0', '$100', '$200', '$300', '$400'],
-    ticks_positions: [0, 30, 70, 90, 100],
-    ticks_snap_bounds: 20,
-    value: 200,
-    reversed: true
-  });
-
-  /* Example 15 */
-  $("#ex15").slider({
-    min: 10,
-    max: 1000,
-    scale: 'logarithmic',
-    step: 10
-  });
-
-  /* Example 16 */
-  $("#ex16a").slider({
-    min  : 0,
-    max  : 10,
-    value: 0,
-    focus: true
-  });
-  $("#ex16b").slider({
-    min  : 0,
-    max  : 10,
-    value: [ 0, 10 ],
-    focus: true
-  });
-
-  /* Example 17 */
-  $("#ex17a").slider({
-    min  : 0,
-    max  : 10,
-    value: 0,
-    tooltip_position:'bottom'
-  });
-  $("#ex17b").slider({
-    min  : 0,
-    max  : 10,
-    value: 0,
-    orientation: 'vertical',
-    tooltip_position:'left'
-  });
-
-  /* Example 18 */
-  $('#ex18a').slider({
-    min  : 0,
-    max  : 10,
-    value: 5,
-    labelledby: 'ex18-label-1'
-  });
-
-  $('#ex18b').slider({
-    min  : 0,
-    max  : 10,
-    value: [3, 6],
-    labelledby: ['ex18-label-2a', 'ex18-label-2b']
-  });
-
-  $('#ex20a').on('click', function(e) {
-    $('#ex20a')
-      .parent()
-      .find(' >.well')
-      .toggle()
-      .find('input')
-      .slider('relayout');
-    e.preventDefault();
-  });
-
-  /* Example 22 */
-        $('#ex22').slider({});
-
-  /* Example 23 */
-        $('#ex23').slider({
-    ticks: [0, 1, 2, 3, 4],
-    ticks_positions: [0, 30, 70, 90, 100],
-    formatter: function(value) {
-      return 'Current value: ' + value;
-    },
-    step: 0.01,
-    ticks_tooltip: true
-  });
+      $("#passengerSlider").slider({});
+      $("#temperatureSlider").slider({});
+      $("#humiditySlider").slider({});
 });
-  /* example 24 */
-  $('#ex24').slider({});
 </script>
   </body>
   <footer>
