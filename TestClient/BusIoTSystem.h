@@ -18,7 +18,7 @@
 #define MAX_STR_LEN 4000
 
 struct Settings{
-  char setting_name[20];
+  char setting_name[30];
   int setting_data;
   int min;
   int max;
