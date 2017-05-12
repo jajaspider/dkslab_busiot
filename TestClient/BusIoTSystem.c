@@ -143,27 +143,35 @@ int load_setting(){
                         sprintf(logdata,"%s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
-                //gpsx 데이터
-                else if(!strcmp(temp_str4,"gpsx")) {
+                //STX 데이터
+                else if(!strcmp(temp_str4,"STX")) {
                         settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min = 9997;
                         settings[i].max = 9997;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, gpsx setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"%s 세팅값 : %d byte, STX setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
-                //gpsy 데이터
-                else if(!strcmp(temp_str4,"gpsy")) {
+                //ETX 데이터
+                else if(!strcmp(temp_str4,"ETX")) {
                         settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min = 9996;
                         settings[i].max = 9996;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, gpsy setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"%s 세팅값 : %d byte, ETX setting",settings[i].setting_name,settings[i].setting_data/2);
+                        log_management(logdata);
+                }
+                //ESC 데이터
+                else if(!strcmp(temp_str4,"ESC")) {
+                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].min = 9995;
+                        settings[i].max = 9995;
+                        printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"%s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
                 else{
                         temp_str5=strtok(NULL," ");
-
                         //세팅 구조체에 세팅값 저장
                         settings[i].setting_data=atoi(temp_str3)*2;
                         settings[i].min=atoi(temp_str4);
@@ -283,17 +291,25 @@ int main(int argc,char *argv[])
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d%d",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec,atoi(millisecond));
                                         printf("%s\n",print_str);
                                 }
-                                // gpsx 데이터
+                                // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
-                                        sprintf(temp_string,"%%0%dx%%0%dx",(settings[j].setting_data)/4,((settings[j].setting_data)/4)*3);
-                                        sprintf(temp_string1,temp_string,35,random_generation(settings[j].setting_name,100738,219186));
+                                        sprintf(temp_string,"1016");
+                                        sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[j].setting_name,35,random_generation(settings[j].setting_name,100738,219186));
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[j].setting_name,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         printf("%s\n",print_str);
                                 }
-                                // gpsy 데이터
+                                // ETX 변환규칙
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
-                                        sprintf(temp_string,"%%0%dx%%0%dx",(settings[j].setting_data)/4,((settings[j].setting_data)/4)*3);
+                                        sprintf(temp_string,"1017");
+                                        sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
+                                        strcat(buffer,temp_string1);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[j].setting_name,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
+                                        printf("%s\n",print_str);
+                                }
+                                // ESC 변환규칙
+                                else if(settings[j].min==9995&&settings[j].max==9995) {
+                                        sprintf(temp_string,"1010");
                                         sprintf(temp_string1,temp_string,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d",settings[j].setting_name,random_generation(settings[j].setting_name,128,129),random_generation(settings[j].setting_name,121916,910086));
