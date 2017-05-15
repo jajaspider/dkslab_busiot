@@ -323,7 +323,7 @@ int main(int argc,char *argv[])
 
                         //전송
                         write(client_fd,buffer,strlen(buffer));
-                        printf("[BusIoTSystem] Send Data %s\n",buffer);
+                        printf("[BusIoTSystem] Send Data : %s\n",buffer);
                         sprintf(logdata,"전송된 데이터 : %s",buffer);
                         log_management(logdata);
                         //전송후 클라이언트 연결 끊음
