@@ -78,7 +78,7 @@ int random_count(){
 void log_management(char *log_data){
         FILE *f;
         char filename[13];
-        sprintf(filename,"%s_log",current_day);
+        sprintf(filename,"%s.log",current_day);
         //파일이 있을 때
         if(access(filename,0)==0) {
                 f = fopen(filename,"a");
