@@ -59,9 +59,9 @@ int random_generation(char *str,int min,int max){
         //sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
         //printf("%s\n",print_str);
 
-        sprintf(logdata,"%s 값 랜덤생성",str);
+        sprintf(logdata,"BusIoTSystem : %s 값 랜덤생성",str);
         log_management(logdata);
-        sprintf(logdata,"생성된 데이터 : %d",i);
+        sprintf(logdata,"BusIoTSystem : 생성된 데이터 : %d",i);
         log_management(logdata);
 
         return i;
@@ -106,7 +106,7 @@ int load_setting(){
         }
         //파일이 없을 때
         else if(access("settings.txt",0)==-1) {
-                log_management("settings.txt 파일을 찾을수없습니다.");
+                log_management("BusIoTSystem : settings.txt 파일을 찾을수없습니다.");
                 return 1;
         }
         int i=0;
@@ -131,7 +131,7 @@ int load_setting(){
                         settings[i].min = 9999;
                         settings[i].max = 9999;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, autotime1 setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, autotime1 setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
                 //시간 시 분 초 밀리초 데이터
@@ -140,7 +140,7 @@ int load_setting(){
                         settings[i].min = 9998;
                         settings[i].max = 9998;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
                 //STX 데이터
@@ -149,7 +149,7 @@ int load_setting(){
                         settings[i].min = 9997;
                         settings[i].max = 9997;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, STX setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, STX setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
                 //ETX 데이터
@@ -158,7 +158,7 @@ int load_setting(){
                         settings[i].min = 9996;
                         settings[i].max = 9996;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, ETX setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ETX setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
                 //ESC 데이터
@@ -167,7 +167,7 @@ int load_setting(){
                         settings[i].min = 9995;
                         settings[i].max = 9995;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
-                        sprintf(logdata,"%s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data/2);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data/2);
                         log_management(logdata);
                 }
                 else{
@@ -177,7 +177,7 @@ int load_setting(){
                         settings[i].min=atoi(temp_str4);
                         settings[i].max=atoi(temp_str5);
                         printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data/2,settings[i].min,settings[i].max);
-                        sprintf(logdata,"%s 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data/2,settings[i].min,settings[i].max);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data/2,settings[i].min,settings[i].max);
                         log_management(logdata);
                 }
                 i+=1;
@@ -207,21 +207,21 @@ int main(int argc,char *argv[])
         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
         sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
-        log_management("시스템 시작");
+        log_management("BusIoTSystem : 시스템 시작");
 
-        log_management("시스템 세팅값 불러오는 중");
+        log_management("BusIoTSystem : 시스템 세팅값 불러오는 중");
         setting_flag=load_setting();
         if(setting_flag==1) {
-                log_management("시스템 세팅값 불러오기 실패");
+                log_management("BusIoTSystem : 시스템 세팅값 불러오기 실패");
                 return 0;
         }
         else if(setting_flag==2) {
-                log_management("시스템 세팅값 불러오기 완료");
+                log_management("BusIoTSystem : 시스템 세팅값 불러오기 완료");
         }
 
         int i=0;
         while(1) {
-          char print_str[100];
+                char print_str[100];
 
 
                 client_fd = socket(PF_INET,SOCK_STREAM,0);
@@ -242,13 +242,13 @@ int main(int argc,char *argv[])
                 if(connect(client_fd,(struct sockaddr *)&client_addr,sizeof(client_addr))== -1)
                 {
                         printf("[BusIoTSystem] Socket Can't connect\n");
-                        log_management("소켓연결 에러");
+                        log_management("BusIoTSystem : 소켓연결 에러");
                         close(client_fd);
                         sleep(5);
                 }
                 else{
                         printf("[BusIoTSystem] Socket connection Success\n");
-                        log_management("접속 성공");
+                        log_management("BusIoTSystem : 접속 성공");
 
                         //탑승객 수 랜덤증감
                         if(random_count()>=5) {
@@ -324,12 +324,12 @@ int main(int argc,char *argv[])
                         //전송
                         write(client_fd,buffer,strlen(buffer));
                         printf("[BusIoTSystem] Send Data : %s\n",buffer);
-                        sprintf(logdata,"전송된 데이터 : %s",buffer);
+                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",buffer);
                         log_management(logdata);
                         //전송후 클라이언트 연결 끊음
                         close(client_fd);
                         printf("[BusIoTSystem] Close Connection\n");
-                        sprintf(logdata,"접속 종료");
+                        sprintf(logdata,"BusIoTSystem : 접속 종료");
                         log_management(logdata);
                         //버퍼 초기화
                         memset(buffer,0x00,sizeof(buffer));
