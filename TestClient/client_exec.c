@@ -23,7 +23,7 @@ int main()
            printf("자식 프로세스 생성 성공.\n");
            while(1)
            {
-              system("./BusIoTSystem")
+              system("./BusIoTSystem");
            }
         }
         default:
