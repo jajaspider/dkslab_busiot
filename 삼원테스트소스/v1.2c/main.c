@@ -221,7 +221,7 @@ int  main (int argc, char **argv) {
 
 
 
-																PrintSensorDataValue(g_sensorDataPacket_send);
+																PrintSensorDataValue(&g_sensorDataPacket_send);
 																recv(sock, (char*)g_recvBuff, g_sensorDataPacket_send.length, 0);
 																if(g_recvBuff[60] == 1) {
 																								printf("RecvSucccess:: The disable person reserved.\n");
