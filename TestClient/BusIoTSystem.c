@@ -328,10 +328,10 @@ int main(int argc,char *argv[])
                         //전송
                         write(client_fd,buffer,strlen(buffer));
                         printf("[BusIoTSystem] Send Data : %s\n",buffer);
-                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",len_test(buffer));
+                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",buffer);
                         log_management(logdata);
-                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",buffer);
-                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",len_test(buffer));
+                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(buffer));
+                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
                         log_management(logdata);
                         //전송후 클라이언트 연결 끊음
                         close(client_fd);
