@@ -270,10 +270,10 @@ int main(int argc,char *argv[])
                                         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                                         sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                                         sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
-                                        sprintf(temp_string,"%%0%dd%%0%dd%%0%dd",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
-                                        sprintf(temp_string1,temp_string,t->tm_hour,t->tm_min,t->tm_sec);
+                                        sprintf(temp_string,"%%0%ds%%0%dS%%0%ds",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
+                                        sprintf(temp_string1,temp_string,(byte)t->tm_hour,(byte)t->tm_min,(byte)t->tm_sec);
                                         strcat(buffer,temp_string1);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,(byte)t->tm_hour,(byte)t->tm_min,(byte)t->tm_sec);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
                                         printf("%s\n",print_str);
 
                                 }
@@ -293,7 +293,7 @@ int main(int argc,char *argv[])
                                 }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
-                                        sprintf(temp_string1,"%0d",((byte)2));
+                                        sprintf(temp_string1,"%0s",((byte)2));
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1016);
                                         printf("%s\n",print_str);
