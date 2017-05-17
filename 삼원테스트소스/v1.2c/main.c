@@ -5,7 +5,6 @@
 #include <time.h>
 
 #include <termios.h>
-#include <wiringPi.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -15,8 +14,6 @@
 #include "codes.h"
 #include "utilForPacket.h"
 #include "paths.h"
-
-#define PIN_PANIC_BUTTON 15
 
 int g_delay = 5000000;
 
@@ -181,8 +178,6 @@ int  main (int argc, char **argv) {
 
 
 
-								if (wiringPiSetup() == -1) return 1;
-
 
 /*************************************************************
  **************************************************************/
@@ -207,10 +202,9 @@ int  main (int argc, char **argv) {
    }
    }
  */
-																if(digitalRead(PIN_PANIC_BUTTON))
 																								isPanicButtonPushed_isChecked = 0;
 
-																isPanicButtonPushed = !digitalRead(PIN_PANIC_BUTTON) && !isPanicButtonPushed_isChecked;
+
 
 
 
