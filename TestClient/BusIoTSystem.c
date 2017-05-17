@@ -75,6 +75,10 @@ int random_count(){
         return i;
 }
 
+size_t len_test(char* s) {
+  return strlen(s);
+}
+
 void log_management(char *log_data){
         FILE *f;
         char filename[13];
@@ -324,10 +328,10 @@ int main(int argc,char *argv[])
                         //전송
                         write(client_fd,buffer,strlen(buffer));
                         printf("[BusIoTSystem] Send Data : %s\n",buffer);
-                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",strlen(buffer));
+                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",len_test(buffer));
                         log_management(logdata);
                         printf("[BusIoTSystem] 데이터 총 길이 : %d\n",buffer);
-                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
+                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",len_test(buffer));
                         log_management(logdata);
                         //전송후 클라이언트 연결 끊음
                         close(client_fd);
