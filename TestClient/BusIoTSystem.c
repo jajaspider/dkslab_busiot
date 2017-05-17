@@ -293,14 +293,14 @@ int main(int argc,char *argv[])
                                 }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
-                                        sprintf(temp_string1,"02");
+                                        sprintf(temp_string1,"2");
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1016);
                                         printf("%s\n",print_str);
                                 }
                                 // ETX 변환규칙
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
-                                        sprintf(temp_string1,"03");
+                                        sprintf(temp_string1,"3");
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1017);
                                         printf("%s\n",print_str);
@@ -324,7 +324,10 @@ int main(int argc,char *argv[])
                         //전송
                         write(client_fd,buffer,strlen(buffer));
                         printf("[BusIoTSystem] Send Data : %s\n",buffer);
-                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",buffer);
+                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",strlen(buffer));
+                        log_management(logdata);
+                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",buffer);
+                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
                         log_management(logdata);
                         //전송후 클라이언트 연결 끊음
                         close(client_fd);
