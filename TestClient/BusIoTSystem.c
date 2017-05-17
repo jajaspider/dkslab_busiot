@@ -293,14 +293,14 @@ int main(int argc,char *argv[])
                                 }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
-                                        sprintf(temp_string1,"2");
+                                        sprintf(temp_string1,"02");
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1016);
                                         printf("%s\n",print_str);
                                 }
                                 // ETX 변환규칙
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
-                                        sprintf(temp_string1,"3");
+                                        sprintf(temp_string1,"03");
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1017);
                                         printf("%s\n",print_str);
