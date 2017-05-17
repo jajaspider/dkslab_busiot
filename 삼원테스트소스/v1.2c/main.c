@@ -67,13 +67,6 @@ int _putch (int c) {
 								return c;
 }
 
-
-
-
-
-
-
-
 int  main (int argc, char **argv) {
 
 								int repeatCount = 10;
@@ -143,8 +136,8 @@ int  main (int argc, char **argv) {
 
 								memset((char*)&sin, '\0', sizeof(sin));
 								sin.sin_family = AF_INET;
-								sin.sin_port = htons(4200);
-								sin.sin_addr.s_addr = inet_addr("192.168.0.49");
+								sin.sin_port = htons(30000);
+								sin.sin_addr.s_addr = inet_addr("113.198.235.247");
 								memset(&(sin.sin_zero), 0, 8);
 								connect(sock, (struct sockaddr*)&sin, sizeof(struct sockaddr));
 
@@ -202,7 +195,7 @@ int  main (int argc, char **argv) {
    }
    }
  */
-																								isPanicButtonPushed_isChecked = 0;
+																isPanicButtonPushed_isChecked = 0;
 
 
 
