@@ -88,9 +88,7 @@ int  main (int argc, char **argv) {
 
 								int32_t sock = socket(AF_INET, SOCK_STREAM, 0);
 								struct sockaddr_in sin;
-
 								int key = 0;
-
 								while ( (opt = getopt(argc, argv, "hs:t:r:")) != -1 ) {
 																switch (opt) {
 																case 'h':
@@ -99,7 +97,8 @@ int  main (int argc, char **argv) {
 																								printf("-s	: set serial id.	(size:: 5)\n");
 																								printf("-t	: set terminal id.	(size:: 4)\n");
 																								printf("-r	: set repeat count.	(min :: 1)\n");
-																								return 0; break;
+																								return 0;
+																								break;
 																case 's':
 																								serialInput = optarg;
 																								if(strlen(serialInput) < 5) {
@@ -126,17 +125,11 @@ int  main (int argc, char **argv) {
 																}
 								}
 
-
-
-
 								init_keyboard();
-
-
-
 
 								memset((char*)&sin, '\0', sizeof(sin));
 								sin.sin_family = AF_INET;
-								sin.sin_port = htons(30000);
+								sin.sin_port = htons(45000);
 								sin.sin_addr.s_addr = inet_addr("113.198.235.247");
 								memset(&(sin.sin_zero), 0, 8);
 								connect(sock, (struct sockaddr*)&sin, sizeof(struct sockaddr));
@@ -222,15 +215,6 @@ int  main (int argc, char **argv) {
 																								isAwake = 1;
 																								g_sensorDataPacket_send.commandCode[0] = COMMAND_CODE_STOP_DRIVING;
 																}
-
-
-
-																if (isPanicButtonPushed) {
-																								g_sensorDataPacket_send.panicButtonIsPushed[0] = 1;
-																								printf(">>>>Panic Button Pushed!\n");
-																}
-
-
 																AddDataToSendBuff_packet(&g_sensorDataPacket_send);
 																percentageOfPacket = send(sock, g_sendBuff, g_sendBuffInsertionLocation, 0);
 																printf("PercentageOf(Send)Packet:: %d (%3.2f%%)\n", percentageOfPacket, (float)percentageOfPacket/g_sensorDataPacket_send.length*100);
