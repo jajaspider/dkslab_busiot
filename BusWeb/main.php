@@ -1,4 +1,5 @@
 <?php
+/*
   $conn = mysqli_connect("localhost", "root", "qwerdf");
   if(mysqli_connect_errno($conn)){
   }else {
@@ -18,6 +19,7 @@
     $userid = $_POST['id'];
     $userpwd = $_POST['pass'];
   }
+  */
  ?>
 
 <!DOCTYPE html>
@@ -57,11 +59,12 @@
   </head>
   <body>
     <?php
-
+/*
      if($userid===$id && $userpwd===$pwd){
        mysqli_query($conn, "UPDATE login_t set only=1");
        echo "login success";
        echo $row[2];
+	     */
      ?>
     <!--네비게이션 바-->
     <nav class="navbar navbar-default">
@@ -277,7 +280,7 @@
                         });
                         maks.setMap(map);
 
-                        var iwContent = '<span style="color: black"><?php echo $row[0]; ?></span>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                        var iwContent = '<span style="color: black"><?php// echo $row[0]; ?></span>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                             iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
                         var infowindow = new daum.maps.InfoWindow({
@@ -307,12 +310,12 @@
       </div><!--row end-->
     </div><!--container end-->
     <?php
-          }else {
+          /*}else {
             echo "login fail";
             echo $row[2];
             echo("<script>location.replace('login.php');</script>");
             }
-
+*/
      ?>
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
