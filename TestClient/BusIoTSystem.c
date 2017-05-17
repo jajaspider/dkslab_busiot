@@ -75,10 +75,6 @@ int random_count(){
         return i;
 }
 
-size_t len_test(char* s) {
-  return strlen(s);
-}
-
 void log_management(char *log_data){
         FILE *f;
         char filename[13];
