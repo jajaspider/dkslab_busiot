@@ -127,7 +127,7 @@ int load_setting(){
                 temp_str4=strtok(NULL," ");
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
-                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9999;
                         settings[i].max = 9999;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
@@ -136,7 +136,7 @@ int load_setting(){
                 }
                 //시간 시 분 초 밀리초 데이터
                 else if(!strcmp(temp_str4,"timeauto2")) {
-                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9998;
                         settings[i].max = 9998;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
@@ -145,7 +145,7 @@ int load_setting(){
                 }
                 //STX 데이터
                 else if(!strcmp(temp_str4,"STX")) {
-                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9997;
                         settings[i].max = 9997;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
@@ -154,7 +154,7 @@ int load_setting(){
                 }
                 //ETX 데이터
                 else if(!strcmp(temp_str4,"ETX")) {
-                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9996;
                         settings[i].max = 9996;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
@@ -163,7 +163,7 @@ int load_setting(){
                 }
                 //ESC 데이터
                 else if(!strcmp(temp_str4,"ESC")) {
-                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9995;
                         settings[i].max = 9995;
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data/2);
@@ -173,7 +173,7 @@ int load_setting(){
                 else{
                         temp_str5=strtok(NULL," ");
                         //세팅 구조체에 세팅값 저장
-                        settings[i].setting_data=atoi(temp_str3)*2;
+                        settings[i].setting_data=atoi(temp_str3);
                         settings[i].min=atoi(temp_str4);
                         settings[i].max=atoi(temp_str5);
                         printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data/2,settings[i].min,settings[i].max);
