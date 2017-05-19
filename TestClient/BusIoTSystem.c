@@ -270,13 +270,15 @@ int main(int argc,char *argv[])
                                         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                                         sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                                         sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
-                                        sprintf(temp_string,"%%0%ds%%0%dS%%0%ds",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
-                                        sprintf(temp_string1,(BYTE)temp_string,t->tm_hour,t->tm_min,t->tm_sec);
+                                        //sprintf(temp_string,"%%0%ds%%0%dS%%0%ds",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
+                                        //sprintf(temp_string1,(BYTE)temp_string,t->tm_hour,t->tm_min,t->tm_sec);
+                                        temp_string=("%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
+                                        temp_string1=temp_string;
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
                                         printf("%s\n",print_str);
 
-                                }                              
+                                }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
                                         sprintf(temp_string1,(BYTE)0x02);
