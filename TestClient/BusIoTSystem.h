@@ -17,6 +17,8 @@
 #define MAXTIMINGS 85
 #define MAX_STR_LEN 4000
 
+#define BYTE unsigned char
+
 struct Settings{
   char setting_name[30];
   int setting_data;
