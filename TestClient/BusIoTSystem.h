@@ -9,6 +9,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <ctype.h>
+#include <stdint.h>
 
 #define BUF_SIZE 1024
 #define BUF_LEN 1024
@@ -17,7 +18,7 @@
 #define MAXTIMINGS 85
 #define MAX_STR_LEN 4000
 
-#define BYTE unsigned char
+#define BYTE						unsigned char
 
 struct Settings{
   char setting_name[30];
@@ -36,6 +37,12 @@ char current_day[20];
 char log_time[50];
 char current_time[50];
 char logdata[1024];
+
+unsigned char g_sendBuff[BUF_SIZE];
+unsigned char g_sendBuffInsertionLocation;
+
+unsigned char g_recvBuff[BUF_SIZE];
+unsigned char g_recvBuffInsertionLocation;
 
 char* trim(char *s);
 char* ltrim(char *s);

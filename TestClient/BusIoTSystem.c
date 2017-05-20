@@ -192,7 +192,7 @@ int main(int argc,char *argv[])
         int client_fd,len;
         struct sockaddr_in client_addr;
         char buffer[BUF_LEN];
-        char temp_string[20];
+        unsigned char temp_string[20];
         char temp_string1[50];
         time_t timer;
         struct tm *t;
@@ -260,7 +260,6 @@ int main(int argc,char *argv[])
                         if(i<0)
                                 i=0;
 
-
                         int j;
                         for(j=0; j<setting_count; j+=1) {
                                 timer = time(NULL);
@@ -272,8 +271,10 @@ int main(int argc,char *argv[])
                                         sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
                                         //sprintf(temp_string,"%%0%ds%%0%dS%%0%ds",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
                                         //sprintf(temp_string1,(BYTE)temp_string,t->tm_hour,t->tm_min,t->tm_sec);
-                                        temp_string=("%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
-                                        temp_string1=temp_string;
+                                        g_sendBuff[0] = (unsigned char)t->tm_hour;
+                                        g_sendBuff[1] = (unsigned char)t->tm_min;
+                                        g_sendBuff[2] = (unsigned char)t->tm_sec;
+
                                         strcat(buffer,temp_string1);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
                                         printf("%s\n",print_str);
