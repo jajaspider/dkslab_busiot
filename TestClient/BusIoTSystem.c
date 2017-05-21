@@ -316,7 +316,7 @@ int main(int argc,char *argv[])
                                 else{
                                         sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                         // sprintf(temp_string1,(unsigned char)temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
-                                        real_temp = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max)
+                                        real_temp = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max);
 
                                         strcat(buffer,real_temp);
                                         // g_sendBuff[data_count++] = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max);
