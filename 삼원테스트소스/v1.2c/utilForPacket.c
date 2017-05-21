@@ -254,9 +254,9 @@ int32_t AddDataToSendBuff_packet (SensorDataPacket *sensorDataPacket) {
 
 
 int32_t GetGpsData_sensor2packet (SensorDataPacket *_output_sensorDataPacket) {
-	_output_sensorDataPacket->gpsTime[0] = 50;
-	_output_sensorDataPacket->gpsTime[1] = 40;
-	_output_sensorDataPacket->gpsTime[2] = 7C;
+	_output_sensorDataPacket->gpsTime[0] = 32;
+	_output_sensorDataPacket->gpsTime[1] = 37;
+	_output_sensorDataPacket->gpsTime[2] = 39;
 
 	_output_sensorDataPacket->gpsX[0] = 0x6F;
 	_output_sensorDataPacket->gpsX[1] = 0xFF;
