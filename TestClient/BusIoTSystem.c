@@ -322,7 +322,7 @@ int main(int argc,char *argv[])
                         // printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(buffer));
                         // sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
                         // log_management(logdata);
-                        send(sock, g_sendBuff, data_count, 0);
+                        send(client_fd, g_sendBuff, data_count, 0);
 
                         printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
                         sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
