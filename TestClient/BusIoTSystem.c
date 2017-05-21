@@ -275,13 +275,18 @@ int main(int argc,char *argv[])
                                         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                                         sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                                         sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
-                                        sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
-                                        sprintf(temp_string1,(unsigned char)temp_string,t->tm_hour,t->tm_min,t->tm_sec);
+                                        // sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
+                                        // sprintf(temp_string1,(unsigned char)temp_string,t->tm_hour,t->tm_min,t->tm_sec);
+                                        temp_string1[0] = (unsigned char)t->tm_hour;
+                                        temp_string1[1] = (unsigned char)t->tm_min;
+                                        temp_string1[2] = (unsigned char)t->tm_sec;
+                                        temp_string1[3] = (unsigned char)t->tm_sec;
                                         // g_sendBuff[data_count++] = (unsigned char)t->tm_hour;
                                         // g_sendBuff[data_count++] = (unsigned char)t->tm_min;
                                         // g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         // g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         strcat(buffer,temp_string1);
+                                        memset(temp_string1,0x00,sizeof(temp_string1));
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
                                         printf("%s\n",print_str);
 
@@ -291,6 +296,7 @@ int main(int argc,char *argv[])
                                         // sprintf(temp_string1,(unsigned char)2);
                                         temp_string1[0] = (unsigned char)2;
                                         strcat(buffer,temp_string1);
+                                        memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)2;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1016);
                                         printf("%s\n",print_str);
@@ -300,6 +306,7 @@ int main(int argc,char *argv[])
                                         // sprintf(temp_string1,(unsigned char)3);
                                         temp_string1[0] = (unsigned char)3;
                                         strcat(buffer,temp_string1);
+                                        memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)3;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1017);
                                         printf("%s\n",print_str);
@@ -309,6 +316,7 @@ int main(int argc,char *argv[])
                                         // sprintf(temp_string1,(unsigned char)10);
                                         temp_string1[0] = (unsigned char)10;
                                         strcat(buffer,temp_string1);
+                                        memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)10;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1010);
                                         printf("%s\n",print_str);
@@ -317,8 +325,8 @@ int main(int argc,char *argv[])
                                         sprintf(temp_string,"%%0%dx",settings[j].setting_data);
                                         // sprintf(temp_string1,(unsigned char)temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         real_temp = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max);
-
                                         strcat(buffer,real_temp);
+                                        memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         printf("%s\n",print_str);
