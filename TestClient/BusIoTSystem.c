@@ -298,7 +298,7 @@ int main(int argc,char *argv[])
                                         strcat(buffer,temp_string1);
                                         memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)2;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1016);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)2);
                                         printf("%s\n",print_str);
                                 }
                                 // ETX 변환규칙
@@ -308,7 +308,7 @@ int main(int argc,char *argv[])
                                         strcat(buffer,temp_string1);
                                         memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)3;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1017);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)3);
                                         printf("%s\n",print_str);
                                 }
                                 // ESC 변환규칙
@@ -318,7 +318,7 @@ int main(int argc,char *argv[])
                                         strcat(buffer,temp_string1);
                                         memset(temp_string1,0x00,sizeof(temp_string1));
                                         // g_sendBuff[data_count++] = (unsigned char)10;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,1010);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)10);
                                         printf("%s\n",print_str);
                                 }
                                 else{
