@@ -40,10 +40,8 @@ char current_time[50];
 char logdata[1024];
 
 unsigned char g_sendBuff[BUF_SIZE];
-unsigned char g_sendBuffInsertionLocation;
 
 unsigned char g_recvBuff[BUF_SIZE];
-unsigned char g_recvBuffInsertionLocation;
 
 
 char* trim(char *s);

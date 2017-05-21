@@ -187,6 +187,11 @@ int load_setting(){
         return 2;
 }
 
+void ClearSendBuff () {
+	memset(g_sendBuff, '\0', BUF_SIZE);
+	data_count = 0;
+}
+
 int main(int argc,char *argv[])
 {
         int client_fd,len;
@@ -323,6 +328,7 @@ int main(int argc,char *argv[])
                         // sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
                         // log_management(logdata);
                         send(client_fd, g_sendBuff, data_count, 0);
+                        ClearSendBuff();
 
                         printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
                         sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
