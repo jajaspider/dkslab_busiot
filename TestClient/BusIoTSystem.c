@@ -318,8 +318,7 @@ int main(int argc,char *argv[])
                                         // sprintf(temp_string1,(unsigned char)temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         real_temp = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max)
 
-                                        temp_string1 =
-                                        strcat(buffer,temp_string1);
+                                        strcat(buffer,real_temp);
                                         // g_sendBuff[data_count++] = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max);
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         printf("%s\n",print_str);
