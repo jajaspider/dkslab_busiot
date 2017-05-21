@@ -325,23 +325,24 @@ int main(int argc,char *argv[])
                                 }
                         }
 
-                        //전송
-                        // write(client_fd,buffer,strlen(buffer));
-                        // printf("[BusIoTSystem] Send Data : %s\n",buffer);
-                        // sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",buffer);
-                        // log_management(logdata);
-                        // printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(buffer));
-                        // sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
-                        // log_management(logdata);
-                        send(client_fd, g_sendBuff, data_count, 0);
-                        ClearSendBuff();
+                        //전송1
+                        write(client_fd,buffer,strlen(buffer));
+                        printf("[BusIoTSystem] Send Data : %s\n",buffer);
+                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",buffer);
+                        log_management(logdata);
+                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(buffer));
+                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
+                        log_management(logdata);
 
-                        printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
-                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
-                        log_management(logdata);
-                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(g_sendBuff));
-                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(g_sendBuff));
-                        log_management(logdata);
+                        //전송2
+                        // send(client_fd, g_sendBuff, data_count, 0);
+                        // ClearSendBuff();
+                        // printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
+                        // sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
+                        // log_management(logdata);
+                        // printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(g_sendBuff));
+                        // sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(g_sendBuff));
+                        // log_management(logdata);
 
                         //전송후 클라이언트 연결 끊음
                         close(client_fd);
