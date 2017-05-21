@@ -31,6 +31,7 @@ struct timeval val;
 struct Settings settings[100];
 
 int setting_count=0;
+int data_count=0;
 char* millisecond;
 
 char current_day[20];
@@ -43,6 +44,7 @@ unsigned char g_sendBuffInsertionLocation;
 
 unsigned char g_recvBuff[BUF_SIZE];
 unsigned char g_recvBuffInsertionLocation;
+
 
 char* trim(char *s);
 char* ltrim(char *s);

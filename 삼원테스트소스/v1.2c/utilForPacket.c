@@ -178,7 +178,7 @@ int32_t AddDataToSendBuff_data (BYTE *data, int32_t dataLength) {
 int32_t AddDataToSendBuff_packet (SensorDataPacket *sensorDataPacket) {
 
 	AddDataToSendBuff_data(sensorDataPacket->control_stx,						1);
-	
+
 	AddDataToSendBuff_data(sensorDataPacket->serialId,							5);
 	AddDataToSendBuff_data(sensorDataPacket->terminalId,						4);
 	AddDataToSendBuff_data(sensorDataPacket->responseCode,						1);
@@ -242,7 +242,7 @@ int32_t AddDataToSendBuff_packet (SensorDataPacket *sensorDataPacket) {
 
 	AddDataToSendBuff_int(sensorDataPacket->imageSize);
 	AddDataToSendBuff_data(sensorDataPacket->imageData,							sensorDataPacket->imageSize);
-	
+
 	AddDataToSendBuff_data(sensorDataPacket->errorCheck,						1);
 	AddDataToSendBuff_data(sensorDataPacket->control_etx,						1);
 
@@ -254,9 +254,9 @@ int32_t AddDataToSendBuff_packet (SensorDataPacket *sensorDataPacket) {
 
 
 int32_t GetGpsData_sensor2packet (SensorDataPacket *_output_sensorDataPacket) {
-	_output_sensorDataPacket->gpsTime[0] = 0x18;
-	_output_sensorDataPacket->gpsTime[1] = 0x3C;
-	_output_sensorDataPacket->gpsTime[2] = 0x3C;
+	_output_sensorDataPacket->gpsTime[0] = 3;
+	_output_sensorDataPacket->gpsTime[1] = 5;
+	_output_sensorDataPacket->gpsTime[2] = 5;
 
 	_output_sensorDataPacket->gpsX[0] = 0x6F;
 	_output_sensorDataPacket->gpsX[1] = 0xFF;
@@ -424,10 +424,10 @@ int32_t GetBeaconData_sensor2packet (SensorDataPacket *_output_sensorDataPacket)
 	_output_sensorDataPacket->beaconTime[1] = resultTime[1];
 	_output_sensorDataPacket->beaconTime[2] = resultTime[2];
 	_output_sensorDataPacket->beaconTime[3] = resultTime[3];
-	
+
 	for (i = 0; i < 16; i++)
 		_output_sensorDataPacket->beaconUuid[i] = 'A';
-	
+
 	_output_sensorDataPacket->beaconMajor[0] = 'B';
 	_output_sensorDataPacket->beaconMajor[1] = 'B';
 
@@ -445,7 +445,7 @@ int32_t GetSpeakerData_sensor2packet (SensorDataPacket *_output_sensorDataPacket
 	_output_sensorDataPacket->speakerTime[1] = resultTime[1];
 	_output_sensorDataPacket->speakerTime[2] = resultTime[2];
 	_output_sensorDataPacket->speakerTime[3] = resultTime[3];
-	
+
 	((int32_t*)&_output_sensorDataPacket->speakerStationId)[0] = 0x05;
 	((int32_t*)&_output_sensorDataPacket->speakerStationId)[1] = 0x00;
 	((int32_t*)&_output_sensorDataPacket->speakerStationId)[2] = 0x60;
@@ -525,7 +525,7 @@ int32_t GetTime2Buff (BYTE buff[SEND_BUFF_MAX_LENGTH], double *_output_time) {
 	buff_time[1] = buff[g_recvBuffInsertionLocation++];
 	buff_time[2] = buff[g_recvBuffInsertionLocation++];
 	buff_time[3] = buff[g_recvBuffInsertionLocation++];
-	
+
 	buff2int = *(int*)buff_time;
 	time = buff2int & 0x1FFFFFFF;
 
@@ -616,7 +616,7 @@ int32_t GetGpsData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDataValue 
 }
 
 int32_t GetThermometerData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDataValue *_output_sensorDataValue) {
-	
+
 	GetTime2Buff (buff, &_output_sensorDataValue->thermometerTime);
 	_output_sensorDataValue->thermometerTemperature = buff[g_recvBuffInsertionLocation++] - 40;
 
@@ -626,7 +626,7 @@ int32_t GetThermometerData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDa
 int32_t GetCoolerData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDataValue *_output_sensorDataValue) {
 	GetTime2Buff (buff, &_output_sensorDataValue->coolerTime);
 	_output_sensorDataValue->coolerTemperature = buff[g_recvBuffInsertionLocation++] - 40;
-	
+
 	return 1;
 }
 
@@ -634,7 +634,7 @@ int32_t GetUsersData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDataValu
 	GetTime2Buff (buff, &_output_sensorDataValue->usersTime);
 	_output_sensorDataValue->usersCount = buff[g_recvBuffInsertionLocation++];
 	_output_sensorDataValue->oldUsersCount = buff[g_recvBuffInsertionLocation++];
-	
+
 	return 1;
 }
 
@@ -654,9 +654,9 @@ int32_t GetPanicButtonData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDa
 
 int32_t GetDisabledPersonReservationData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDataValue *_output_sensorDataValue) {
 	BYTE	buff2id[4] = {0, };
-	
+
 	GetTime2Buff (buff, &_output_sensorDataValue->disabledPersonReservedTime);
-	
+
 	_output_sensorDataValue->disabledPersonIsReserved = buff[g_recvBuffInsertionLocation++];
 
 	buff2id[0] = buff[g_recvBuffInsertionLocation++];
@@ -722,7 +722,7 @@ char	temp[16] = {0, };
 
 int32_t GetBeaconData_buff2value (BYTE buff[SEND_BUFF_MAX_LENGTH], SensorDataValue *_output_sensorDataValue) {
 	int i;
-	
+
 	GetTime2Buff(buff, &_output_sensorDataValue->beaconTime);
 
 	for (i = 0; i < 16; i++)
@@ -835,7 +835,7 @@ int32_t GetDataFromRecvBuff (SensorDataValue *_output_sensorDataValue) {
 
 
 void PrintSensorDataValue (SensorDataValue *sensorDataValue) {
-	
+
 	int i;
 
 	printf("control_stx:: %x\n", *sensorDataValue->control_stx);
@@ -852,7 +852,7 @@ void PrintSensorDataValue (SensorDataValue *sensorDataValue) {
 	printf("length:: %d\n", sensorDataValue->length);
 	printf("\n");
 
-	printf("gpsTime:: %d½Ã %dºÐ %dÃÊ\n", sensorDataValue->gpsTime[0], sensorDataValue->gpsTime[1], sensorDataValue->gpsTime[2]);
+	printf("gpsTime:: %dì‹œ %dë¶„ %dì´ˆ\n", sensorDataValue->gpsTime[0], sensorDataValue->gpsTime[1], sensorDataValue->gpsTime[2]);
 	printf("gpsX:: %.3f\n", sensorDataValue->gpsX);
 	printf("gpsY:: %.3f\n", sensorDataValue->gpsY);
 	printf("gpsSatelliteCount:: %d\n", sensorDataValue->gpsSatelliteCount);
