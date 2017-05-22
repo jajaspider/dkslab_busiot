@@ -221,35 +221,50 @@ int load_setting(){
 }
 
 void auto_increament(int data,int data_length){
-  int quotient[data_length];
-  int real_data[data_length];
-  int j;
-  for(j=0;j<data_length;j+=1){
-    real_data[j]=0;
-  }
-  int i=1;
-  real_data[data_length-1] = data%256;
-  int temp_quotient=data/256;
-  if(temp_quotient<256){
-    real_data[data_length-2] = temp_quotient;
-  }
-  else {
-    int temp=temp_quotient/256;
-    if(temp<256){
-      real_data[data_length-2] = temp_quotient%256;
-      real_data[data_length-3] = temp;
-    }
-    else{
-      int temp1=temp/256;
-      if(temp1<256){
-        real_data[data_length-2] = temp%256;
-        real_data[data_length-3] = temp1;
-      }
-    }
-  }
-  for(i=0;i<data_length;i+=1){
-    g_sendBuff[data_count++] = (unsigned char)real_data[i];
-  }
+        int quotient[data_length];
+        int real_data[data_length];
+        int j;
+        for(j=0; j<data_length; j+=1) {
+                real_data[j]=0;
+        }
+        int i=1;
+        real_data[data_length-1] = data%256;
+        int temp_quotient=data/256;
+        if(temp_quotient<256) {
+                real_data[data_length-2] = temp_quotient;
+        }
+        else {
+                int temp=temp_quotient/256;
+                if(temp<256) {
+                        real_data[data_length-2] = temp_quotient%256;
+                        real_data[data_length-3] = temp;
+                }
+                else{
+                        int temp1=temp/256;
+                        if(temp1<256) {
+                                real_data[data_length-3] = temp%256;
+                                real_data[data_length-4] = temp1;
+                        }
+                }
+        }
+        for(i=0; i<data_length; i+=1) {
+
+                if((unsigned char)real_data[i]==0x02){
+                  g_sendBuff[data_count++] = 0x10;
+                  g_sendBuff[data_count++] = 0x16;
+                }
+                else if((unsigned char)real_data[i]==0x03){
+                  g_sendBuff[data_count++] = 0x10;
+                  g_sendBuff[data_count++] = 0x17;
+                }
+                else if((unsigned char)real_data[i]==0x10){
+                  g_sendBuff[data_count++] = 0x10;
+                  g_sendBuff[data_count++] = 0x10;
+                }
+                else{
+                  g_sendBuff[data_count++] = (unsigned char)real_data[i];
+                }
+        }
 
 
 
