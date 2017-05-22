@@ -5,37 +5,37 @@ char* trim(char *s) {
 }
 
 //비트열 unsigned char 변환 함수
-void ch_test(int Byte_size, int temp) {
-  int i,sum=0,count = 3;
-  int size = Byte_size*8;
-  int *change_U_char = (int*)malloc(sizeof(char)*Byte_size);
-        printf("temp :%d\n", temp);
-        printf("size :%d\n", size);
-        printf("change_U_char :%d\n", sizeof(change_U_char));
-        for(i=1; i<= Byte_size*8; i++) {
-                if((temp>>(size-i))&1) {
-                        change_U_char[i-1] = 1;
-                }
-                else{
-                        change_U_char[i-1] = 0;
-                }
-                printf("change_U_char2 : %d\n",change_U_char[i-1]);
-        }
-printf("\n");
-        for (i = 0; i < Byte_size*8; i++) {
-          sum+=(change_U_char[i]*(pow(2,count)));
-          count--;
-          if(count<0){
-            over_byte_value[obv_size]=(unsigned char)sum;
-            sum=0;
-            obv_size++;
-            count = 3;
-          }
-        }
-        for (i = 0; i < obv_size; i++) {
-          printf("%c\n",over_byte_value[obv_size]);
-        }
-}
+// void ch_test(int Byte_size, int temp) {
+//   int i,sum=0,count = 3;
+//   int size = Byte_size*8;
+//   int *change_U_char = (int*)malloc(sizeof(char)*Byte_size);
+//         printf("temp :%d\n", temp);
+//         printf("size :%d\n", size);
+//         printf("change_U_char :%d\n", sizeof(change_U_char));
+//         for(i=1; i<= Byte_size*8; i++) {
+//                 if((temp>>(size-i))&1) {
+//                         change_U_char[i-1] = 1;
+//                 }
+//                 else{
+//                         change_U_char[i-1] = 0;
+//                 }
+//                 printf("change_U_char2 : %d\n",change_U_char[i-1]);
+//         }
+// printf("\n");
+//         for (i = 0; i < Byte_size*8; i++) {
+//           sum+=(change_U_char[i]*(pow(2,count)));
+//           count--;
+//           if(count<0){
+//             over_byte_value[obv_size]=(unsigned char)sum;
+//             sum=0;
+//             obv_size++;
+//             count = 3;
+//           }
+//         }
+//         for (i = 0; i < obv_size; i++) {
+//           printf("%c\n",over_byte_value[obv_size]);
+//         }
+// }
 
 // 문자열 우측 공백문자 삭제 함수
 char* rtrim(char* s) {
