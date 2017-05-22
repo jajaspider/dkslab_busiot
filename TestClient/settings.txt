@@ -1,6 +1,6 @@
 ﻿Header = 1 STX
-Header = 5 0000 0001
-Header = 4 0000 0001
+Header = 5 0 1
+Header = 4 0 1
 Header = 1 0 1
 Header = 1 0 1
 Header = 1 2 3

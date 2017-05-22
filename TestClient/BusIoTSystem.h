@@ -10,6 +10,7 @@
 #include <time.h>
 #include <ctype.h>
 #include <stdint.h>
+#include <math.h>
 
 #define BUF_SIZE 1024
 #define BUF_LEN 1024
@@ -30,6 +31,7 @@ struct Settings{
 struct timeval val;
 struct Settings settings[100];
 
+int obv_size = 0;
 int setting_count=0;
 int data_count=0;
 char* millisecond;
@@ -38,6 +40,8 @@ char current_day[20];
 char log_time[50];
 char current_time[50];
 char logdata[1024];
+
+unsigned char over_byte_value[50];
 
 unsigned char g_sendBuff[BUF_SIZE];
 

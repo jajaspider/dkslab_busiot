@@ -1,8 +1,91 @@
+<?php
+// $tns = "
+// (DESCRIPTION =
+//   (ADDRESS_LIST =
+//     (ADDRESS = (PROTOCOL = TCP)(HOST = 113.198.235.247)(PORT = 1521))
+//   )
+//   (CONNECT_DATA = (SERVICE_NAME = iotsen)
+//   )
+// ) ";
+// try {
+//     $conn = new PDO("oci:dbname=".$tns.";charset=utf8", "iot915", "dkslab915");
+// }
+// catch (PDOException $e) {
+//   echo "Failed to obtain database handle " . $e->getMessage();
+// }
+//
+// $stmt = $conn->prepare("SELECT * FROM account");
+// var_dump($stmt);
+// $stmt->execute();
+// var_dump($stmt);
+// $row = $stmt->fetch(PDO::FETCH_ASSOC);
+//
+// // $stmt = $conn->query("select * from account");
+// // $row = $stmt->fetch(PDO::FETCH_ASSOC);
+//
+// $id = $row['id'];
+//
+// echo $row['id'];
+// $pwd = $row['password'];
+// echo $row['password'];
+//
+// $userid = $_POST['id'];
+// $userpwd = $_POST['pass'];
+
+$srv = '113.198.235.247';
+$sid = 'iotsen';
+$port = 1521;
+$conn = oci_connect('iot915', 'dkslab915', "(DESCRIPTION =
+                                                                  (ADDRESS = (PROTOCOL = tcp) (HOST = 113.198.235.247) (PORT = 1521))
+                                                                  (CONNECT_DATA = (SID = iotsen))
+                                                              )");
+
+if (!$conn) {
+    $e = oci_error();
+    echo "An Error occured! " .  $e['message'] . "\n";
+    exit(1);
+}
+
+$sql = "SELECT * FROM account";
+
+$parse = oci_parse($conn, $sql);
+oci_execute($parse);
+$row = oci_fetch_array($parse,OCI_ASSOC);
+$id = $row['id'];
+$pwd = $row['password'];
+
+$userid = $_POST['id'];
+$userpwd = $_POST['pass'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <?php
+      if($userid==$id&&$pwd==$userpwd){
+    ?>
+    <div class="modal-body">
+      로그인 성공
+    </div>
+    <?php
+      } else {
+    ?>
+    <p style="text-align:center;">
+      로그인 실패
+    </p>
+    <p style="text-align:center;"><a href="login.php">
+        다시 로그인하기
+    </a>
+    </p>
+
+    <?php
+      }
+    ?>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" constent="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DKS BUS IoT</title>
     <base href="http://ids.deu.ac.kr">
