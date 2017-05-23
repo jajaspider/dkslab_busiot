@@ -222,9 +222,14 @@ int load_setting(){
 
 void auto_increament(int data,int data_length){
         //int quotient[data_length];
-        int real_data[data_length]={0};
+        int real_data[data_length];
         int j;
+        for(j=0;j<data_length;j+=1){
+          real_data[j]=0;
+        }
+
         int i=1;
+
         real_data[data_length-1] = data%256;
         if(data>256) {
                 int temp_quotient=data/256;
@@ -264,10 +269,6 @@ void auto_increament(int data,int data_length){
                         g_sendBuff[data_count++] = (unsigned char)real_data[i];
                 }
         }
-
-
-
-
 }
 
 void ClearSendBuff () {

@@ -1,0 +1,554 @@
+[2017-05-24 00:17:21]BusIoTSystem : 시스템 시작
+[2017-05-24 00:17:21]BusIoTSystem : 시스템 세팅값 불러오는 중
+[2017-05-24 00:17:21]BusIoTSystem : ﻿Header 세팅값 : 1 byte, STX setting
+[2017-05-24 00:17:21]BusIoTSystem : Header 세팅값 : 5 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : Header 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : Header 세팅값 : 1 byte,min = 0, max = 5
+[2017-05-24 00:17:21]BusIoTSystem : Header 세팅값 : 1 byte,min = 0, max = 6
+[2017-05-24 00:17:21]BusIoTSystem : Header 세팅값 : 1 byte,min = 2, max = 3
+[2017-05-24 00:17:21]BusIoTSystem : GpsTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : GpsX 세팅값 : 4 byte,min = 0, max = 7
+[2017-05-24 00:17:21]BusIoTSystem : GpsY 세팅값 : 4 byte,min = 0, max = 8
+[2017-05-24 00:17:21]BusIoTSystem : GpsCnt 세팅값 : 1 byte,min = 0, max = 9
+[2017-05-24 00:17:21]BusIoTSystem : GpsSpeed 세팅값 : 4 byte,min = 0, max = 10
+[2017-05-24 00:17:21]BusIoTSystem : GpsHeading 세팅값 : 3 byte,min = 0, max = 11
+[2017-05-24 00:17:21]BusIoTSystem : GpsReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : ObdTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : BusSpeed 세팅값 : 3 byte,min = 0, max = 12
+[2017-05-24 00:17:21]BusIoTSystem : BusInnerOxygen 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : RunTimeToEngineStart 세팅값 : 2 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : AbsoluteBarometricPressure 세팅값 : 3 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : FuelTankLevelInput 세팅값 : 3 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : EngineRPM 세팅값 : 2 byte,min = 0, max = 17
+[2017-05-24 00:17:21]BusIoTSystem : EngineOilTemperature 세팅값 : 1 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : EngineCoolantTemperature 세팅값 : 1 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : ObdReserved 세팅값 : 10 byte,min = 0, max = 29
+[2017-05-24 00:17:21]BusIoTSystem : UsrCntTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : UsrCnt 세팅값 : 3 byte,min = 0, max = 50
+[2017-05-24 00:17:21]BusIoTSystem : OldUsrCnt 세팅값 : 3 byte,min = 2, max = 254
+[2017-05-24 00:17:21]BusIoTSystem : UsrCntReserved 세팅값 : 10 byte,min = 3, max = 73
+[2017-05-24 00:17:21]BusIoTSystem : WildDrivingTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : isWildDriving 세팅값 : 1 byte,min = 0, max = 2
+[2017-05-24 00:17:21]BusIoTSystem : GSensorX 세팅값 : 2 byte,min = 0, max = 8
+[2017-05-24 00:17:21]BusIoTSystem : GSensorY 세팅값 : 2 byte,min = 0, max = 9
+[2017-05-24 00:17:21]BusIoTSystem : GSensorZ 세팅값 : 2 byte,min = 0, max = 60
+[2017-05-24 00:17:21]BusIoTSystem : WildDrivingReserved 세팅값 : 10 byte,min = 0, max = 80
+[2017-05-24 00:17:21]BusIoTSystem : BeaconTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : BeaconUuid 세팅값 : 16 byte,min = 0, max = 81
+[2017-05-24 00:17:21]BusIoTSystem : BeaconMajor 세팅값 : 2 byte,min = 0, max = 32
+[2017-05-24 00:17:21]BusIoTSystem : BeaconMinor 세팅값 : 2 byte,min = 0, max = 68
+[2017-05-24 00:17:21]BusIoTSystem : BeaconReserved 세팅값 : 10 byte,min = 0, max = 76
+[2017-05-24 00:17:21]BusIoTSystem : ThermometerTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : ThermometerTemperature 세팅값 : 1 byte,min = 0, max = 255
+[2017-05-24 00:17:21]BusIoTSystem : HygrometerTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : HygrometerHumidity 세팅값 : 3 byte,min = 0, max = 100
+[2017-05-24 00:17:21]BusIoTSystem : HygrothermalReserved 세팅값 : 10 byte,min = 0, max = 45
+[2017-05-24 00:17:21]BusIoTSystem : PanicButtonTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : isPanicButtonPushed 세팅값 : 1 byte,min = 0, max = 2
+[2017-05-24 00:17:21]BusIoTSystem : PanicButtonReserved 세팅값 : 10 byte,min = 0, max = 46
+[2017-05-24 00:17:21]BusIoTSystem : ImageTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : ImageName 세팅값 : 30 byte,min = 0, max = 68
+[2017-05-24 00:17:21]BusIoTSystem : ImageReserved 세팅값 : 10 byte,min = 0, max = 25
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerBusStopID 세팅값 : 2 byte,min = 0, max = 46
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : IoTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : IoInput 세팅값 : 2 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : IoReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : DisabledPersonResvTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:17:21]BusIoTSystem : BusNo 세팅값 : 3 byte,min = 0, max = 100
+[2017-05-24 00:17:21]BusIoTSystem : BusLicenseNo 세팅값 : 12 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : ResvUsrGpsX 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : ResvUsrGpsY 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : isResvSuccess 세팅값 : 1 byte,min = 0, max = 2
+[2017-05-24 00:17:21]BusIoTSystem : ResvBusStopID 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : ResvPhone 세팅값 : 12 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : DisabledPersonResvReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:17:21]BusIoTSystem : ErrorCheck 세팅값 : 1 byte, STX setting
+[2017-05-24 00:17:21]BusIoTSystem : Control 세팅값 : 1 byte, ETX setting
+[2017-05-24 00:17:21]BusIoTSystem : 시스템 세팅값 불러오기 완료
+[2017-05-24 00:17:21]BusIoTSystem : 접속 성공
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GpsX 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GpsX 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GpsY 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : GpsY 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : GpsCnt 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GpsCnt 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GpsSpeed 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : GpsSpeed 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : GpsHeading 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 5
+[2017-05-24 00:17:21]BusIoTSystem : GpsHeading 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 5
+[2017-05-24 00:17:21]BusIoTSystem : GpsReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : GpsReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : BusSpeed 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : BusSpeed 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : BusInnerOxygen 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : BusInnerOxygen 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : RunTimeToEngineStart 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : RunTimeToEngineStart 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : AbsoluteBarometricPressure 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : AbsoluteBarometricPressure 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : FuelTankLevelInput 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : FuelTankLevelInput 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : EngineRPM 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 15
+[2017-05-24 00:17:21]BusIoTSystem : EngineRPM 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 15
+[2017-05-24 00:17:21]BusIoTSystem : EngineOilTemperature 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : EngineOilTemperature 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : EngineCoolantTemperature 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : EngineCoolantTemperature 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ObdReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:17:21]BusIoTSystem : ObdReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:17:21]BusIoTSystem : UsrCnt 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 48
+[2017-05-24 00:17:21]BusIoTSystem : UsrCnt 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 48
+[2017-05-24 00:17:21]BusIoTSystem : OldUsrCnt 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 130
+[2017-05-24 00:17:21]BusIoTSystem : OldUsrCnt 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 130
+[2017-05-24 00:17:21]BusIoTSystem : UsrCntReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 61
+[2017-05-24 00:17:21]BusIoTSystem : UsrCntReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 61
+[2017-05-24 00:17:21]BusIoTSystem : isWildDriving 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : isWildDriving 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : GSensorX 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : GSensorX 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : GSensorY 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GSensorY 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:17:21]BusIoTSystem : GSensorZ 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : GSensorZ 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : WildDrivingReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : WildDrivingReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : BeaconUuid 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 20
+[2017-05-24 00:17:21]BusIoTSystem : BeaconUuid 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 20
+[2017-05-24 00:17:21]BusIoTSystem : BeaconMajor 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : BeaconMajor 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:17:21]BusIoTSystem : BeaconMinor 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 32
+[2017-05-24 00:17:21]BusIoTSystem : BeaconMinor 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 32
+[2017-05-24 00:17:21]BusIoTSystem : BeaconReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 4
+[2017-05-24 00:17:21]BusIoTSystem : BeaconReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 4
+[2017-05-24 00:17:21]BusIoTSystem : ThermometerTemperature 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 83
+[2017-05-24 00:17:21]BusIoTSystem : ThermometerTemperature 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 83
+[2017-05-24 00:17:21]BusIoTSystem : HygrometerHumidity 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 48
+[2017-05-24 00:17:21]BusIoTSystem : HygrometerHumidity 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 48
+[2017-05-24 00:17:21]BusIoTSystem : HygrothermalReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 38
+[2017-05-24 00:17:21]BusIoTSystem : HygrothermalReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 38
+[2017-05-24 00:17:21]BusIoTSystem : isPanicButtonPushed 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : isPanicButtonPushed 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : PanicButtonReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 42
+[2017-05-24 00:17:21]BusIoTSystem : PanicButtonReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 42
+[2017-05-24 00:17:21]BusIoTSystem : ImageName 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 32
+[2017-05-24 00:17:21]BusIoTSystem : ImageName 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 32
+[2017-05-24 00:17:21]BusIoTSystem : ImageReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 23
+[2017-05-24 00:17:21]BusIoTSystem : ImageReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 23
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerBusStopID 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 42
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerBusStopID 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 42
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : SpeakerReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : IoInput 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : IoInput 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : IoReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : IoReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : BusNo 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 48
+[2017-05-24 00:17:21]BusIoTSystem : BusNo 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 48
+[2017-05-24 00:17:21]BusIoTSystem : BusLicenseNo 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : BusLicenseNo 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvUsrGpsX 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvUsrGpsX 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvUsrGpsY 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvUsrGpsY 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : isResvSuccess 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : isResvSuccess 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvBusStopID 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvBusStopID 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvPhone 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : ResvPhone 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : DisabledPersonResvReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : DisabledPersonResvReserved 값 랜덤생성
+[2017-05-24 00:17:21]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:17:21]BusIoTSystem : 전송된 데이터 : 
+[2017-05-24 00:17:21][BusIoTSystem] 데이터 총 길이 : 0
+[2017-05-24 00:17:21]BusIoTSystem : 접속 종료
+[2017-05-24 00:19:17]BusIoTSystem : 시스템 시작
+[2017-05-24 00:19:17]BusIoTSystem : 시스템 세팅값 불러오는 중
+[2017-05-24 00:19:17]BusIoTSystem : ﻿Header 세팅값 : 1 byte, STX setting
+[2017-05-24 00:19:17]BusIoTSystem : Header 세팅값 : 5 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : Header 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : Header 세팅값 : 1 byte,min = 0, max = 5
+[2017-05-24 00:19:17]BusIoTSystem : Header 세팅값 : 1 byte,min = 0, max = 6
+[2017-05-24 00:19:17]BusIoTSystem : Header 세팅값 : 1 byte,min = 2, max = 3
+[2017-05-24 00:19:17]BusIoTSystem : GpsTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : GpsX 세팅값 : 4 byte,min = 0, max = 7
+[2017-05-24 00:19:17]BusIoTSystem : GpsY 세팅값 : 4 byte,min = 0, max = 8
+[2017-05-24 00:19:17]BusIoTSystem : GpsCnt 세팅값 : 1 byte,min = 0, max = 9
+[2017-05-24 00:19:17]BusIoTSystem : GpsSpeed 세팅값 : 4 byte,min = 0, max = 10
+[2017-05-24 00:19:17]BusIoTSystem : GpsHeading 세팅값 : 3 byte,min = 0, max = 11
+[2017-05-24 00:19:17]BusIoTSystem : GpsReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : ObdTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : BusSpeed 세팅값 : 3 byte,min = 0, max = 12
+[2017-05-24 00:19:17]BusIoTSystem : BusInnerOxygen 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : RunTimeToEngineStart 세팅값 : 2 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : AbsoluteBarometricPressure 세팅값 : 3 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : FuelTankLevelInput 세팅값 : 3 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : EngineRPM 세팅값 : 2 byte,min = 0, max = 17
+[2017-05-24 00:19:17]BusIoTSystem : EngineOilTemperature 세팅값 : 1 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : EngineCoolantTemperature 세팅값 : 1 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : ObdReserved 세팅값 : 10 byte,min = 0, max = 29
+[2017-05-24 00:19:17]BusIoTSystem : UsrCntTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : UsrCnt 세팅값 : 3 byte,min = 0, max = 50
+[2017-05-24 00:19:17]BusIoTSystem : OldUsrCnt 세팅값 : 3 byte,min = 2, max = 254
+[2017-05-24 00:19:17]BusIoTSystem : UsrCntReserved 세팅값 : 10 byte,min = 3, max = 73
+[2017-05-24 00:19:17]BusIoTSystem : WildDrivingTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : isWildDriving 세팅값 : 1 byte,min = 0, max = 2
+[2017-05-24 00:19:17]BusIoTSystem : GSensorX 세팅값 : 2 byte,min = 0, max = 8
+[2017-05-24 00:19:17]BusIoTSystem : GSensorY 세팅값 : 2 byte,min = 0, max = 9
+[2017-05-24 00:19:17]BusIoTSystem : GSensorZ 세팅값 : 2 byte,min = 0, max = 60
+[2017-05-24 00:19:17]BusIoTSystem : WildDrivingReserved 세팅값 : 10 byte,min = 0, max = 80
+[2017-05-24 00:19:17]BusIoTSystem : BeaconTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : BeaconUuid 세팅값 : 16 byte,min = 0, max = 81
+[2017-05-24 00:19:17]BusIoTSystem : BeaconMajor 세팅값 : 2 byte,min = 0, max = 32
+[2017-05-24 00:19:17]BusIoTSystem : BeaconMinor 세팅값 : 2 byte,min = 0, max = 68
+[2017-05-24 00:19:17]BusIoTSystem : BeaconReserved 세팅값 : 10 byte,min = 0, max = 76
+[2017-05-24 00:19:17]BusIoTSystem : ThermometerTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : ThermometerTemperature 세팅값 : 1 byte,min = 0, max = 255
+[2017-05-24 00:19:17]BusIoTSystem : HygrometerTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : HygrometerHumidity 세팅값 : 3 byte,min = 0, max = 100
+[2017-05-24 00:19:17]BusIoTSystem : HygrothermalReserved 세팅값 : 10 byte,min = 0, max = 45
+[2017-05-24 00:19:17]BusIoTSystem : PanicButtonTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : isPanicButtonPushed 세팅값 : 1 byte,min = 0, max = 2
+[2017-05-24 00:19:17]BusIoTSystem : PanicButtonReserved 세팅값 : 10 byte,min = 0, max = 46
+[2017-05-24 00:19:17]BusIoTSystem : ImageTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : ImageName 세팅값 : 30 byte,min = 0, max = 68
+[2017-05-24 00:19:17]BusIoTSystem : ImageReserved 세팅값 : 10 byte,min = 0, max = 25
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerBusStopID 세팅값 : 2 byte,min = 0, max = 46
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : IoTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : IoInput 세팅값 : 2 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : IoReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : DisabledPersonResvTime 세팅값 : 4 byte, autotime1 setting
+[2017-05-24 00:19:17]BusIoTSystem : BusNo 세팅값 : 3 byte,min = 0, max = 100
+[2017-05-24 00:19:17]BusIoTSystem : BusLicenseNo 세팅값 : 12 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : ResvUsrGpsX 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : ResvUsrGpsY 세팅값 : 4 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : isResvSuccess 세팅값 : 1 byte,min = 0, max = 2
+[2017-05-24 00:19:17]BusIoTSystem : ResvBusStopID 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : ResvPhone 세팅값 : 12 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : DisabledPersonResvReserved 세팅값 : 10 byte,min = 0, max = 1
+[2017-05-24 00:19:17]BusIoTSystem : ErrorCheck 세팅값 : 1 byte, STX setting
+[2017-05-24 00:19:17]BusIoTSystem : Control 세팅값 : 1 byte, ETX setting
+[2017-05-24 00:19:17]BusIoTSystem : 시스템 세팅값 불러오기 완료
+[2017-05-24 00:19:17]BusIoTSystem : 접속 성공
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:19:17]BusIoTSystem : Header 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 2
+[2017-05-24 00:19:17]BusIoTSystem : GpsX 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GpsX 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GpsY 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GpsY 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GpsCnt 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 6
+[2017-05-24 00:19:17]BusIoTSystem : GpsCnt 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 6
+[2017-05-24 00:19:17]BusIoTSystem : GpsSpeed 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:19:17]BusIoTSystem : GpsSpeed 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 3
+[2017-05-24 00:19:17]BusIoTSystem : GpsHeading 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 9
+[2017-05-24 00:19:17]BusIoTSystem : GpsHeading 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 9
+[2017-05-24 00:19:17]BusIoTSystem : GpsReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : GpsReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : BusSpeed 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 9
+[2017-05-24 00:19:17]BusIoTSystem : BusSpeed 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 9
+[2017-05-24 00:19:17]BusIoTSystem : BusInnerOxygen 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : BusInnerOxygen 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : RunTimeToEngineStart 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : RunTimeToEngineStart 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : AbsoluteBarometricPressure 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : AbsoluteBarometricPressure 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : FuelTankLevelInput 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : FuelTankLevelInput 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : EngineRPM 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 4
+[2017-05-24 00:19:17]BusIoTSystem : EngineRPM 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 4
+[2017-05-24 00:19:17]BusIoTSystem : EngineOilTemperature 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : EngineOilTemperature 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : EngineCoolantTemperature 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : EngineCoolantTemperature 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ObdReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 21
+[2017-05-24 00:19:17]BusIoTSystem : ObdReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 21
+[2017-05-24 00:19:17]BusIoTSystem : UsrCnt 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : UsrCnt 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : OldUsrCnt 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 143
+[2017-05-24 00:19:17]BusIoTSystem : OldUsrCnt 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 143
+[2017-05-24 00:19:17]BusIoTSystem : UsrCntReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 46
+[2017-05-24 00:19:17]BusIoTSystem : UsrCntReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 46
+[2017-05-24 00:19:17]BusIoTSystem : isWildDriving 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : isWildDriving 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GSensorX 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GSensorX 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : GSensorY 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 6
+[2017-05-24 00:19:17]BusIoTSystem : GSensorY 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 6
+[2017-05-24 00:19:17]BusIoTSystem : GSensorZ 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : GSensorZ 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : WildDrivingReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : WildDrivingReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : BeaconUuid 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 15
+[2017-05-24 00:19:17]BusIoTSystem : BeaconUuid 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 15
+[2017-05-24 00:19:17]BusIoTSystem : BeaconMajor 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 17
+[2017-05-24 00:19:17]BusIoTSystem : BeaconMajor 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 17
+[2017-05-24 00:19:17]BusIoTSystem : BeaconMinor 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 21
+[2017-05-24 00:19:17]BusIoTSystem : BeaconMinor 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 21
+[2017-05-24 00:19:17]BusIoTSystem : BeaconReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 25
+[2017-05-24 00:19:17]BusIoTSystem : BeaconReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 25
+[2017-05-24 00:19:17]BusIoTSystem : ThermometerTemperature 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 123
+[2017-05-24 00:19:17]BusIoTSystem : ThermometerTemperature 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 123
+[2017-05-24 00:19:17]BusIoTSystem : HygrometerHumidity 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : HygrometerHumidity 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : HygrothermalReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : HygrothermalReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : isPanicButtonPushed 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : isPanicButtonPushed 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : PanicButtonReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : PanicButtonReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : ImageName 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 21
+[2017-05-24 00:19:17]BusIoTSystem : ImageName 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 21
+[2017-05-24 00:19:17]BusIoTSystem : ImageReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:19:17]BusIoTSystem : ImageReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 8
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerBusStopID 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerBusStopID 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : SpeakerReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : IoInput 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : IoInput 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : IoReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : IoReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : BusNo 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : BusNo 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 33
+[2017-05-24 00:19:17]BusIoTSystem : BusLicenseNo 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : BusLicenseNo 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvUsrGpsX 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvUsrGpsX 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvUsrGpsY 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvUsrGpsY 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : isResvSuccess 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : isResvSuccess 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 1
+[2017-05-24 00:19:17]BusIoTSystem : ResvBusStopID 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvBusStopID 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvPhone 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : ResvPhone 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : DisabledPersonResvReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : DisabledPersonResvReserved 값 랜덤생성
+[2017-05-24 00:19:17]BusIoTSystem : 생성된 데이터 : 0
+[2017-05-24 00:19:17]BusIoTSystem : 전송된 데이터 : 
+[2017-05-24 00:19:17][BusIoTSystem] 데이터 총 길이 : 0
+[2017-05-24 00:19:17]BusIoTSystem : 접속 종료
