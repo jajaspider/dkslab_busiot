@@ -222,7 +222,7 @@ int load_setting(){
 
 void auto_increament(int data,int data_length){
         //int quotient[data_length];
-        int real_data[data_length]={0,};
+        int real_data[data_length]={0};
         int j;
         int i=1;
         real_data[data_length-1] = data%256;
