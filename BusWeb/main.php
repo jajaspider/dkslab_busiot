@@ -272,7 +272,7 @@ else{
               <label for="inputSearch" class="sr-only">Search</label>
               <input type="search" class="form-control" id="inputSearch" placeholder="Search...">
             </div>
-            <button type="submit" class="btn btn-default">Search</button>
+            <button type="reset" class="btn btn-default">Search</button>
           </form>
         </div>
 
