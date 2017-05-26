@@ -429,8 +429,14 @@ int main(int argc,char *argv[])
                         // 전송2
                         send(client_fd, g_sendBuff, data_count, 0);
                         ClearSendBuff();
-                        printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
-                        sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
+                        //printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
+                        //sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
+                        printf("[BusIoTSystem] Send Data : ");
+                        int max_leng=0;
+                        for(max_leng=0;max_leng<data_count;max_leng+=1){
+                          printf("%x ",g_sendBuff[max_leng]);
+                        }
+                        printf("\n");
                         log_management(logdata);
                         printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(g_sendBuff));
                         sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(g_sendBuff));
