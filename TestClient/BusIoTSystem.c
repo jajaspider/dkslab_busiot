@@ -432,7 +432,7 @@ int main(int argc,char *argv[])
                         //printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
                         //sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
                         printf("[BusIoTSystem] Send Data : ");
-                        int max_leng=0;
+                        int max_leng;
                         for(max_leng=0;max_leng<data_count;max_leng+=1){
                           printf("%x ",g_sendBuff[max_leng]);
                         }
