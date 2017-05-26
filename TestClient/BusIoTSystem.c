@@ -431,7 +431,7 @@ int main(int argc,char *argv[])
                         printf("[BusIoTSystem] Send Data : ");
                         int max_leng;
                         for(max_leng=0;max_leng<data_count;max_leng+=1){
-                          printf("0x%02x ",g_sendBuff[max_leng]);
+                          printf("%02x ",g_sendBuff[max_leng]);
                         }
                         ClearSendBuff();
                         //printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
