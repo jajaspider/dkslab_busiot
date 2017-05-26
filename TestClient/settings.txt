@@ -64,5 +64,5 @@ isResvSuccess = 1 0 2
 ResvBusStopID = 10 0 1
 ResvPhone = 12 0 1
 DisabledPersonResvReserved = 10 0 1
-ErrorCheck = 1 STX
+ErrorCheck = 1 0 1
 Control = 1 ETX 
