@@ -256,17 +256,21 @@ void auto_increament(int data,int data_length){
                 if((unsigned char)real_data[i]==0x02) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x16;
+                        read_data_count++;
                 }
                 else if((unsigned char)real_data[i]==0x03) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x17;
+                        read_data_count++;
                 }
                 else if((unsigned char)real_data[i]==0x10) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x10;
+                        read_data_count++;
                 }
                 else{
                         g_sendBuff[data_count++] = (unsigned char)real_data[i];
+                        read_data_count++;
                 }
         }
 }
@@ -274,6 +278,7 @@ void auto_increament(int data,int data_length){
 void ClearSendBuff () {
         memset(g_sendBuff, '\0', BUF_SIZE);
         data_count = 0;
+        read_data_count =0;
 }
 
 int main(int argc,char *argv[])
@@ -369,6 +374,7 @@ int main(int argc,char *argv[])
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_min;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
+                                        read_data_count=read_data_count+4;
                                         // strcat(buffer,temp_string1);
                                         // memset(temp_string1,0x00,sizeof(temp_string1));
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
@@ -382,6 +388,7 @@ int main(int argc,char *argv[])
                                         // strcat(buffer,temp_string1);
                                         // memset(temp_string1,0x00,sizeof(temp_string1));
                                         g_sendBuff[data_count++] = (unsigned char)2;
+                                        read_data_count++;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)2);
                                         printf("%s\n",print_str);
                                 }
@@ -390,8 +397,9 @@ int main(int argc,char *argv[])
                                         // sprintf(temp_string1,(unsigned char)3);
                                         // temp_string1[0] = (unsigned char)3;
                                         // strcat(buffer,temp_string1);
-                                        memset(temp_string1,0x00,sizeof(temp_string1));
+                                        //memset(temp_string1,0x00,sizeof(temp_string1));
                                         g_sendBuff[data_count++] = (unsigned char)3;
+                                        read_data_count++;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)3);
                                         printf("%s\n",print_str);
                                 }
@@ -402,6 +410,7 @@ int main(int argc,char *argv[])
                                         // strcat(buffer,temp_string1);
                                         // memset(temp_string1,0x00,sizeof(temp_string1));
                                         g_sendBuff[data_count++] = (unsigned char)10;
+                                        read_data_count++;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)10);
                                         printf("%s\n",print_str);
                                 }
@@ -439,8 +448,8 @@ int main(int argc,char *argv[])
 
                         printf("\n");
                         log_management(logdata);
-                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",data_count);
-                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",data_count);
+                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",read_data_count);
+                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",read_data_count);
                         log_management(logdata);
                         ClearSendBuff();
                         //전송후 클라이언트 연결 끊음
