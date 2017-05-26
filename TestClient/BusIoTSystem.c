@@ -433,7 +433,7 @@ int main(int argc,char *argv[])
                         for(max_leng=0;max_leng<data_count;max_leng+=1){
                           printf("%02x ",g_sendBuff[max_leng]);
                         }
-                        ClearSendBuff();
+
                         //printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
                         //sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
 
@@ -442,7 +442,7 @@ int main(int argc,char *argv[])
                         printf("[BusIoTSystem] 데이터 총 길이 : %d\n",data_count);
                         sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",data_count);
                         log_management(logdata);
-
+                        ClearSendBuff();
                         //전송후 클라이언트 연결 끊음
                         close(client_fd);
                         printf("[BusIoTSystem] Close Connection\n");
