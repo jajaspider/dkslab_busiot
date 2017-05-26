@@ -12,8 +12,8 @@
 #include <stdint.h>
 #include <math.h>
 
-#define BUF_SIZE 2048
-#define BUF_LEN 2048
+#define BUF_SIZE 1330693
+#define BUF_LEN 1330693
 #define PORT 45000
 #define IPADDR "113.198.235.247"
 #define MAXTIMINGS 85
