@@ -439,8 +439,8 @@ int main(int argc,char *argv[])
 
                         printf("\n");
                         log_management(logdata);
-                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(g_sendBuff));
-                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(g_sendBuff));
+                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",data_count);
+                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",data_count);
                         log_management(logdata);
 
                         //전송후 클라이언트 연결 끊음
