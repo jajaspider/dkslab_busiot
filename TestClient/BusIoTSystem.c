@@ -187,7 +187,7 @@ int load_setting(){
         return 2;
 }
 
-void auto_increament(int data,int data_length){
+void auto_increament(char *log_data, int data,int data_length){
         //int quotient[data_length];
         int real_data[data_length];
         int j;
@@ -240,6 +240,17 @@ void auto_increament(int data,int data_length){
                         read_data_count++;
                 }
         }
+        char print_str[100];
+        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",settings[i].setting_name);
+        int temp_for;
+        for(temp_for=0;temp_for<data_length;temp_for+=1){
+          char temp_char[100];
+          //temp_char=
+        }
+
+
+        printf("%s\n",print_str);
+
 }
 
 void ClearSendBuff () {
@@ -336,33 +347,33 @@ int main(int argc,char *argv[])
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         read_data_count=read_data_count+4;
-                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
-                                        // printf("%s\n",print_str);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
+                                        printf("%s\n",print_str);
 
                                 }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
                                         g_sendBuff[data_count++] = (unsigned char)2;
                                         read_data_count++;
-                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)2);
-                                        // printf("%s\n",print_str);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,2);
+                                        printf("%s\n",print_str);
                                 }
                                 // ETX 변환규칙
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
                                         g_sendBuff[data_count++] = (unsigned char)3;
                                         read_data_count++;
-                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)3);
-                                        // printf("%s\n",print_str);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,3);
+                                        printf("%s\n",print_str);
                                 }
                                 // ESC 변환규칙
                                 else if(settings[j].min==9995&&settings[j].max==9995) {
                                         g_sendBuff[data_count++] = (unsigned char)10;
                                         read_data_count++;
-                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)10);
-                                        // printf("%s\n",print_str);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,10);
+                                        printf("%s\n",print_str);
                                 }
                                 else{
-                                        auto_increament(random_generation(settings[j].setting_name,settings[j].min,settings[j].max),settings[j].setting_data);
+                                        auto_increament(settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max),settings[j].setting_data);
                                         //sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
                                         //printf("%s\n",print_str);
                                 }
