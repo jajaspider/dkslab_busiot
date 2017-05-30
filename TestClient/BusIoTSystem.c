@@ -4,39 +4,6 @@ char* trim(char *s) {
         return rtrim(ltrim(s));
 }
 
-//비트열 unsigned char 변환 함수
-// void ch_test(int Byte_size, int temp) {
-//   int i,sum=0,count = 3;
-//   int size = Byte_size*8;
-//   int *change_U_char = (int*)malloc(sizeof(char)*Byte_size);
-//         printf("temp :%d\n", temp);
-//         printf("size :%d\n", size);
-//         printf("change_U_char :%d\n", sizeof(change_U_char));
-//         for(i=1; i<= Byte_size*8; i++) {
-//                 if((temp>>(size-i))&1) {
-//                         change_U_char[i-1] = 1;
-//                 }
-//                 else{
-//                         change_U_char[i-1] = 0;
-//                 }
-//                 printf("change_U_char2 : %d\n",change_U_char[i-1]);
-//         }
-// printf("\n");
-//         for (i = 0; i < Byte_size*8; i++) {
-//           sum+=(change_U_char[i]*(pow(2,count)));
-//           count--;
-//           if(count<0){
-//             over_byte_value[obv_size]=(unsigned char)sum;
-//             sum=0;
-//             obv_size++;
-//             count = 3;
-//           }
-//         }
-//         for (i = 0; i < obv_size; i++) {
-//           printf("%c\n",over_byte_value[obv_size]);
-//         }
-// }
-
 // 문자열 우측 공백문자 삭제 함수
 char* rtrim(char* s) {
         char t[MAX_STR_LEN];
@@ -364,87 +331,50 @@ int main(int argc,char *argv[])
                                         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
                                         sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
                                         sprintf(current_time,"%02d%02d%02d",t->tm_hour,t->tm_min,t->tm_sec);
-                                        // sprintf(temp_string,"%%0%dx%%0%dx%%0%dx",(settings[j].setting_data)/3,(settings[j].setting_data)/3,(settings[j].setting_data)/3);
-                                        // sprintf(temp_string1,(unsigned char)temp_string,t->tm_hour,t->tm_min,t->tm_sec);
-                                        // temp_string1[0] = (unsigned char)t->tm_hour;
-                                        // temp_string1[1] = (unsigned char)t->tm_min;
-                                        // temp_string1[2] = (unsigned char)t->tm_sec;
-                                        // temp_string1[3] = (unsigned char)t->tm_sec;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_hour;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_min;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         read_data_count=read_data_count+4;
-                                        // strcat(buffer,temp_string1);
-                                        // memset(temp_string1,0x00,sizeof(temp_string1));
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
-                                        printf("%s\n",print_str);
+                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
+                                        // printf("%s\n",print_str);
 
                                 }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
-                                        // sprintf(temp_string1,(unsigned char)2);
-                                        // temp_string1[0] = (unsigned char)2;
-                                        // strcat(buffer,temp_string1);
-                                        // memset(temp_string1,0x00,sizeof(temp_string1));
                                         g_sendBuff[data_count++] = (unsigned char)2;
                                         read_data_count++;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)2);
-                                        printf("%s\n",print_str);
+                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)2);
+                                        // printf("%s\n",print_str);
                                 }
                                 // ETX 변환규칙
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
-                                        // sprintf(temp_string1,(unsigned char)3);
-                                        // temp_string1[0] = (unsigned char)3;
-                                        // strcat(buffer,temp_string1);
-                                        //memset(temp_string1,0x00,sizeof(temp_string1));
                                         g_sendBuff[data_count++] = (unsigned char)3;
                                         read_data_count++;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)3);
-                                        printf("%s\n",print_str);
+                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)3);
+                                        // printf("%s\n",print_str);
                                 }
                                 // ESC 변환규칙
                                 else if(settings[j].min==9995&&settings[j].max==9995) {
-                                        // sprintf(temp_string1,(unsigned char)10);
-                                        // temp_string1[0] = (unsigned char)10;
-                                        // strcat(buffer,temp_string1);
-                                        // memset(temp_string1,0x00,sizeof(temp_string1));
                                         g_sendBuff[data_count++] = (unsigned char)10;
                                         read_data_count++;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)10);
-                                        printf("%s\n",print_str);
+                                        // sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %c",settings[j].setting_name,(unsigned char)10);
+                                        // printf("%s\n",print_str);
                                 }
                                 else{
-                                        // sprintf(temp_string,"%%0%dx",settings[j].setting_data);
-                                        // sprintf(temp_string1,(unsigned char)temp_string,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
-                                        // real_temp = (unsigned char)random_generation(settings[j].setting_name,settings[j].min,settings[j].max);
-                                        // strcat(buffer,real_temp);
-                                        // memset(temp_string1,0x00,sizeof(temp_string1));
                                         auto_increament(random_generation(settings[j].setting_name,settings[j].min,settings[j].max),settings[j].setting_data);
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
-                                        printf("%s\n",print_str);
+                                        //sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
+                                        //printf("%s\n",print_str);
                                 }
                         }
 
-                        //전송1
-                        // write(client_fd,buffer,strlen(buffer));
-                        // printf("[BusIoTSystem] Send Data : %s\n",buffer);
-                        // sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",buffer);
-                        // log_management(logdata);
-                        // printf("[BusIoTSystem] 데이터 총 길이 : %d\n",strlen(buffer));
-                        // sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",strlen(buffer));
-                        // log_management(logdata);
-
-                        // 전송2
+                        // 데이터 전송
                         send(client_fd, g_sendBuff, data_count, 0);
                         printf("[BusIoTSystem] Send Data : ");
                         int max_leng;
                         for(max_leng=0;max_leng<data_count;max_leng+=1){
                           printf("%02x ",g_sendBuff[max_leng]);
                         }
-
-                        //printf("[BusIoTSystem] Send Data : %s\n",g_sendBuff);
-                        //sprintf(logdata,"BusIoTSystem : 전송된 데이터 : %s",g_sendBuff);
 
                         printf("\n");
                         log_management(logdata);

@@ -441,7 +441,7 @@ int32_t GetSpeakerData_sensor2packet (SensorDataPacket *_output_sensorDataPacket
 	_output_sensorDataPacket->speakerTime[2] = resultTime[2];
 	_output_sensorDataPacket->speakerTime[3] = resultTime[3];
 
-	((int32_t*)&_output_sensorDataPacket->speakerStationId)[0] = 0x05;
+	((int32_t*)&_output_sensorDataPacket->speakerStationId)[0] = "0x05";
 	((int32_t*)&_output_sensorDataPacket->speakerStationId)[1] = 0x00;
 	((int32_t*)&_output_sensorDataPacket->speakerStationId)[2] = 0x60;
 
