@@ -13,9 +13,9 @@ if (!$conn) {
     echo "An Error occured! " .  $e['message'] . "\n";
     exit(1);
 }
-
+?>
+<?php
 $sql = "select * from account";
-
 $parse = oci_parse($conn, $sql);
 oci_execute($parse);
 $row = oci_fetch_array($parse,OCI_ASSOC);
@@ -24,7 +24,6 @@ $pwd = $row['PASSWORD'];
 
 $userid = $_POST['id'];
 $userpwd = $_POST['pass'];
-
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +33,7 @@ $userpwd = $_POST['pass'];
         $prevPage = $_SERVER["HTTP_REFERER"];
 if($userid==$id&&$pwd==$userpwd){
     ?>
-    <div class="modal-body">
-      로그인 성공
-    </div>
+      <script> alert("로그인성공"); </script>
     <?php
       }
 else{
@@ -45,14 +42,14 @@ else{
 
 ?>
 <div class="modal-body">
-  로그인 성공
+  <script> alert("로그인성공"); </script>
 </div>
 
 <?php
   }
     ?>
     <p style="text-align:center;">
-      로그인 실패
+      <script> alert("로그인 실패"); </script>
     </p>
     <p style="text-align:center;"><a href="login.php">
         다시 로그인하기
@@ -198,6 +195,8 @@ else{
           $("#humiditySlider").slider({});
       });
       $('#Disabled').modal()
+
+      $('body').scrollspy({ target: '#menubar' })
     </script>
 
 
@@ -222,14 +221,56 @@ else{
 
   </head>
   <body onload="init()">
+<?php
+$sql_b_bus = "select * from b_bus";
+$parse_b_bus = oci_parse($conn, $sql_b_bus);
+oci_execute($parse_b_bus);
 
+/* 페이지 네이션 구현 할 때
+$LIST_SIZE = 6;
+$MORE_PAGE = 3;
+$page = $_GET['page'] ? intval($_GET['page']) : 1;
+$page_count = "select count(BUS_ID)/$LIST_SIZE FROM b_bus";
+$parse_parse_count = oci_parse($conn, $page_count);
+oci_execute($parse_parse_count);
+
+$start_page = max($page - $MORE_PAGE, 1);
+$end_page = min($page + $MORE_PAGE, $page_count);
+$prev_page = max($start_page - $MORE_PAGE - 1, 1);
+$next_page = min($end_page + $MORE_PAGE + 1, $page_count);
+
+$offset = ( $page - 1 ) * $LIST_SIZE;
+
+$sql_b_bus = "select * from b_bus where rownum >=$offset and rownum <=$LIST_SIZE";
+$parse_b_bus = oci_parse($conn, $sql_b_bus);
+oci_execute($parse_b_bus);
+*/
+//$b_bus_carno = $row_b_bus['CARNO'];
+//$b_bus_busid = $row_b_bus['BUS_ID'];
+?>
     <!-- 목차 -->
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav id="menubar" class="navbar navbar-inverse navbar-static-top">
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#">Bus</a></li>
-          <li><a href="#">Sensor</a></li>
-          <li><a href="#">Panic</a></li>
+          <li><a href="/main.php#busPanel">Bus</a></li>
+          <li><a href="/main.php#sensorPanel">Sensor</a></li>
+          <li>
+            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#Disabled" id="disabledButton">Panic</a>
+            <!-- Modal -->
+            <div class="modal fade" id="Disabled" tabindex="-1" role="dialog" aria-labelledby="DisabledLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="DisabledLabel">Panic</h4>
+                  </div>
+                  <div class="modal-body">
+                    Main text...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
           <li>
             <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#Disabled" id="disabledButton">Disabled Reservations</a>
             <!-- Modal -->
@@ -241,7 +282,7 @@ else{
                     <h4 class="modal-title" id="DisabledLabel">Disabled Reservations</h4>
                   </div>
                   <div class="modal-body">
-                    예약 데이터 없음
+                    Main text...
                   </div>
                 </div>
               </div>
@@ -283,9 +324,18 @@ else{
             <li role="presentation"><a href="#busStop" aria-controls="busStop" role="tab" data-toggle="tab">Bus Stop</a></li>
           </ul>
 
-          <div class="tab-content">
+            <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="busNum">
-              <p>Bus Number</p>
+               <table>
+
+                      <?php
+                      while($row_b_bus = oci_fetch_array($parse_b_bus,OCI_ASSOC)){
+                         $busID = $row_b_bus['BUS_ID'];
+                        echo "<tr><td>버스ID: " . $busID . "</td></tr>";
+                        }
+                        ?>
+
+              </table>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="busStop">
               <p>Bus Stop</p>
