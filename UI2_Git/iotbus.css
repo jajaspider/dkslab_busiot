@@ -1,0 +1,104 @@
+body {
+  position: relative;
+}
+#map {
+  position: relative;
+  width: 100%;
+  height: 700px;
+}
+#formSearch {
+  position: absolute;
+  top: 230px;
+  left: 50px;
+  z-index: 3;
+}
+#inputSearch {
+  width: 230px;
+}
+#busPanel {
+  position: absolute;
+  top: 270px;
+  left: 50px;
+  z-index: 3;
+  background-color: white;
+  width: 300px;
+  height: 400px;
+}
+#sensorPanel {
+  position: absolute;
+  top: 410px;
+  left: 0px;
+  z-index: 3;
+  background-color: white;
+  width: 300px;
+  height: 150px;
+}
+#sensorSubmitButton {
+  position: absolute;
+  top : 150px;
+}
+.slider {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+}
+.jumbotron {
+  color: #fff;
+  height: 150px;
+  background: linear-gradient( to right, #2e6da4, #5bc0de );
+  margin-bottom: 0px;
+}
+#imgStyle {
+  width : 50px;
+  height: 50px;
+}
+#BIMS {
+  color: #fff;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+.navbar {
+  margin-bottom: 0px;
+  height: 40px;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+}
+.navbar .navbar-collapse {
+  text-align: center;
+}
+.nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
+  border-bottom: #C4E17F 3px solid;
+}
+.nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
+  border-bottom: #F7FDCA 3px solid;
+}
+.nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
+  border-bottom: #FECF71 3px solid;
+}
+.nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
+  border-bottom: #F0776C 3px solid;
+}
+.nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
+  border-bottom: #DB9DBE 3px solid;
+}
+.nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
+  border-bottom: #C49CDE 3px solid;
+}
+.nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
+  border-bottom: #669AE1 3px solid;
+}
+.nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
+  border-bottom: #62C2E4 3px solid;
+}
+#disabledButton {
+  color: #9d9d9d;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 15px 15px;
+  border: 0px;
+  outline: 0;
+}
