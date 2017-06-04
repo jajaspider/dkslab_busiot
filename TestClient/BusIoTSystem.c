@@ -477,6 +477,7 @@ int main(int argc,char *argv[])
                                 // ascii 추가
                                 else if(settings[j].min==9994&&settings[j].max==9994) {
                                         printf("[DEBUG] ascii_generation 함수 시작\n");
+                                        printf("[DEBUG] setting_name : %s, ascii_min : %s , ascii_max : %s , setting_data : %d\n",settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                         ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                 }
                                 else{
