@@ -214,6 +214,8 @@ int load_setting(){
                         temp_str5=strtok(NULL," ");
                         temp_str6=strtok(NULL," ");
                         settings[i].setting_data=atoi(temp_str3);
+                        settings[i].min = 9994;
+                        settings[i].max = 9994;
                         settings[i].min=atoi(temp_str5);
                         settings[i].max=atoi(temp_str6);
                         printf("[BusIoTSystem] Setting Data ASCII : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
@@ -224,12 +226,10 @@ int load_setting(){
                         temp_str5=strtok(NULL," ");
                         //세팅 구조체에 세팅값 저장
                         settings[i].setting_data=atoi(temp_str3);
-                        settings[i].min = 9994;
-                        settings[i].max = 9994;
-                        settings[i].ascii_min = temp_str4;
-                        settings[i].ascii_max = temp_str5;
+                        settings[i].min=atoi(temp_str4);
+                        settings[i].max=atoi(temp_str5);
                         printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
-                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
+                        sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         log_management(logdata);
                 }
                 i+=1;
@@ -425,7 +425,7 @@ int main(int argc,char *argv[])
                                         printf("%s\n",print_str);
                                 }
                                 // ascii 추가
-                                else if(settings[j].min==9995&&settings[j].max==9995) {
+                                else if(settings[j].min==9994&&settings[j].max==9994) {
                                         ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                 }
                                 else{
