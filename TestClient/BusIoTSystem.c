@@ -210,7 +210,7 @@ int load_setting(){
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
-                else if(!strcmp(temp_str4,"ascii")) {
+                else if(!strcmp(substr(temp_str4,0,5),"ascii")) {
                         temp_str5=strtok(NULL," ");
                         temp_str6=strtok(NULL," ");
                         settings[i].setting_data=atoi(temp_str3);
