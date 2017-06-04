@@ -163,7 +163,7 @@ int load_setting(){
                 temp_str2=trim(temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
-
+                  printf("[DEBUG]substr : %s",substr(temp_str4,0,5));
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3);
@@ -209,7 +209,6 @@ int load_setting(){
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
-                printf("[DEBUG]substr : %s",substr(temp_str4,0,5));
                 else if(!strcmp(substr(temp_str4,0,5),"ascii")) {
                         temp_str5=strtok(NULL," ");
                         temp_str6=strtok(NULL," ");
