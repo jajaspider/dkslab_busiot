@@ -90,6 +90,9 @@ char *substr(char *pnInput,int nStart,int nLen ){
 void ascii_generation(char *str,char *min,char *max,int data_length){
         srand(gettimeofday(&val,NULL));
         int i;
+        char print_str[100];
+        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",settings[i].setting_name);
+        printf("%s",print_str);
         for(i=0; i<data_length; i+=1) {
                 char *temp1;
                 char *temp2;
@@ -98,10 +101,50 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 int temp_1 = atoi(temp1);
                 int temp_2 = atoi(temp2);
                 int temp_3 = rand()%(temp_2-temp_1)+temp_1;
-                char *temp3;
-                sprintf(temp3,"%d",temp_3);
-                g_sendBuff[data_count++] = (unsigned char)temp3;
+                if(temp_3==0) {
+                        g_sendBuff[data_count++] = 0x30;
+                        printf("30");
+                }
+                if(temp_3==1) {
+                        g_sendBuff[data_count++] = 0x31;
+                        printf("31");
+                }
+                if(temp_3==2) {
+                        g_sendBuff[data_count++] = 0x32;
+                        printf("32");
+                }
+                if(temp_3==3) {
+                        g_sendBuff[data_count++] = 0x33;
+                        printf("33");
+                }
+                if(temp_3==4) {
+                        g_sendBuff[data_count++] = 0x34;
+                        printf("34");
+                }
+                if(temp_3==5) {
+                        g_sendBuff[data_count++] = 0x35;
+                        printf("35");
+                }
+                if(temp_3==6) {
+                        g_sendBuff[data_count++] = 0x36;
+                        printf("36");
+                }
+                if(temp_3==7) {
+                        g_sendBuff[data_count++] = 0x37;
+                        printf("37");
+                }
+                if(temp_3==8) {
+                        g_sendBuff[data_count++] = 0x38;
+                        printf("38");
+                }
+                if(temp_3==9) {
+                        g_sendBuff[data_count++] = 0x39;
+                        printf("39");
+                }
+                printf(" ");
         }
+
+        printf("\n");
 }
 
 int random_count(){
@@ -165,7 +208,6 @@ int load_setting(){
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
                 flag_substr = substr(temp_str4,0,5);
-                printf("\n");
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3);
