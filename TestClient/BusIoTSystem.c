@@ -53,7 +53,7 @@ char* substring(char *input, int i_begin, int i_end)
 
 int random_generation(char *str,int min,int max){
         int i;
-        srand(val.tv_usec/1000);
+        srand((double)val.tv_usec/1E6);
         i=rand()%(max-min)+min;
         //char print_str[100];
         //sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
@@ -88,7 +88,7 @@ char *substr(char *pnInput,int nStart,int nLen ){
 }
 
 void ascii_generation(char *str,char *min,char *max,int data_length){
-        srand(start.tv_usec/1000);
+        srand((double)start.tv_usec/1E6);
         int i;
         char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",str);
