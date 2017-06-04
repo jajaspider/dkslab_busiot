@@ -222,8 +222,6 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9999;
                         settings[i].max = 9999;
-                        settings[i].ascii_min="9999";
-                        settings[i].ascii_max="9999";
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, autotime1 setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
@@ -233,8 +231,6 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9998;
                         settings[i].max = 9998;
-                        settings[i].ascii_min="9998";
-                        settings[i].ascii_max="9998";
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, autotime2 setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
@@ -244,8 +240,6 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9997;
                         settings[i].max = 9997;
-                        settings[i].ascii_min="9997";
-                        settings[i].ascii_max="9997";
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, STX setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
@@ -255,8 +249,6 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9996;
                         settings[i].max = 9996;
-                        settings[i].ascii_min="9996";
-                        settings[i].ascii_max="9996";
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ETX setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
@@ -266,8 +258,6 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9995;
                         settings[i].max = 9995;
-                        settings[i].ascii_min="9995";
-                        settings[i].ascii_max="9995";
                         printf("[BusIoTSystem] Setting Data : %s = %d\n",settings[i].setting_name,settings[i].setting_data);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
@@ -291,8 +281,6 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min=atoi(temp_str4);
                         settings[i].max=atoi(temp_str5);
-                        settings[i].ascii_min="a";
-                        settings[i].ascii_max="a";
                         printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         log_management(logdata);
