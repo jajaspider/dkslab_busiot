@@ -67,31 +67,42 @@ int random_generation(char *str,int min,int max){
         return i;
 }
 
+char *substr(char *pnInput,int nStart,int nLen ){
+        int nLoop;
+        int nLength;
+        char *pszOutPut;
+
+        if( pnInput == NULL ) {
+                return NULL;
+        }
+        pszOutPut = (char *)malloc( sizeof(char) * nLen + 1 );
+        nLength = strlen( pnInput );
+        if( nLength > nStart + nLen ) {
+                nLength = nStart + nLen;
+        }
+        for( nLoop = nStart; nLoop < nLength; nLoop++ ) {
+                pszOutPut[nLoop-nStart] = pnInput[nLoop];
+        }
+        pszOutPut[nLoop - nStart] = '\0';
+        return pszOutPut;
+}
+
 void ascii_generation(char *str,char *min,char *max,int data_length){
         srand(gettimeofday(&val,NULL));
         int i;
-        for(i=0;i<data_length;i+=1){
-          char *temp1;
-          char *temp2;
-          temp1 = substr(min,i,1);
-          temp2 = substr(max,i,1);
-          int temp_1 = atoi(temp1);
-          int temp_2 = atoi(temp2);
-          int temp_3 = rand()%temp_1+temp_2;
-          g_sendBuff[data_count++] = itoa(temp_3);
+        for(i=0; i<data_length; i+=1) {
+                char *temp1;
+                char *temp2;
+                temp1 = substr(min,i,1);
+                temp2 = substr(max,i,1);
+                int temp_1 = atoi(temp1);
+                int temp_2 = atoi(temp2);
+                int temp_3 = rand()%temp_1+temp_2;
+                char *temp3;
+                sprintf(temp3,"%d",temp_3);
+                g_sendBuff[data_count++] = temp3;
         }
 
-        //i=rand()%(max-min)+min;
-        //char print_str[100];
-        //sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
-        //printf("%s\n",print_str);
-
-        sprintf(logdata,"BusIoTSystem : %s 값 랜덤생성",str);
-        log_management(logdata);
-        sprintf(logdata,"BusIoTSystem : 생성된 데이터 : %d",i);
-        log_management(logdata);
-
-        return i;
 }
 
 int random_count(){
@@ -415,7 +426,7 @@ int main(int argc,char *argv[])
                                 }
                                 // ascii 추가
                                 else if(settings[j].min==9995&&settings[j].max==9995) {
-                                  ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
+                                        ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                 }
                                 else{
                                         auto_byte_generation(settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max),settings[j].setting_data);
