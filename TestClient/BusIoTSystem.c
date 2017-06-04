@@ -337,7 +337,7 @@ void auto_byte_generation(char *log_data, int data,int data_length){
                 }
         }
         char print_str[100];
-        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",settings[i].setting_name);
+        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",log_data);
         int temp_for;
         printf("%s",print_str);
         for(temp_for=0; temp_for<data_length; temp_for+=1) {
