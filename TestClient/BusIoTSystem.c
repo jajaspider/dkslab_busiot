@@ -164,7 +164,9 @@ int load_setting(){
                 temp_str2=trim(temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
-                  flag_substr = substr(temp_str4,0,5);
+                flag_substr = substr(temp_str4,0,5);
+                printf("%s",flag_substr);
+                printf("\n");
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3);
