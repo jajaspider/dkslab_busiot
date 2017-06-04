@@ -53,8 +53,35 @@ char* substring(char *input, int i_begin, int i_end)
 
 int random_generation(char *str,int min,int max){
         int i;
-        srand((unsigned int)time(NULL));
+        srand(gettimeofday(&val,NULL));
         i=rand()%(max-min)+min;
+        //char print_str[100];
+        //sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
+        //printf("%s\n",print_str);
+
+        sprintf(logdata,"BusIoTSystem : %s 값 랜덤생성",str);
+        log_management(logdata);
+        sprintf(logdata,"BusIoTSystem : 생성된 데이터 : %d",i);
+        log_management(logdata);
+
+        return i;
+}
+
+void ascii_generation(char *str,char *min,char *max,int data_length){
+        srand(gettimeofday(&val,NULL));
+        int i;
+        for(i=0;i<data_length;i+=1){
+          char *temp1;
+          char *temp2;
+          temp1 = substr(min,i,1);
+          temp2 = substr(max,i,1);
+          int temp_1 = atoi(temp1);
+          int temp_2 = atoi(temp2);
+          int temp_3 = rand()%temp_1+temp_2;
+          g_sendBuff[data_count++] = itoa(temp_3);
+        }
+
+        //i=rand()%(max-min)+min;
         //char print_str[100];
         //sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
         //printf("%s\n",print_str);
@@ -99,6 +126,7 @@ int load_setting(){
         char *temp_str3;
         char *temp_str4;
         char *temp_str5;
+        char *temp_str6;
 
         //파일이 있을 때
         if(access("settings.txt",0)==0) {
@@ -125,6 +153,7 @@ int load_setting(){
                 temp_str2=trim(temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
+
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3);
@@ -170,12 +199,24 @@ int load_setting(){
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
+                else if(!strcmp(temp_str4,"ascii")) {
+                        temp_str5=strtok(NULL," ");
+                        temp_str6=strtok(NULL," ");
+                        settings[i].setting_data=atoi(temp_str3);
+                        settings[i].min=atoi(temp_str5);
+                        settings[i].max=atoi(temp_str6);
+                        printf("[BusIoTSystem] Setting Data ASCII : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
+                        sprintf(logdata,"BusIoTSystem : %s ASCII 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
+                        log_management(logdata);
+                }
                 else{
                         temp_str5=strtok(NULL," ");
                         //세팅 구조체에 세팅값 저장
                         settings[i].setting_data=atoi(temp_str3);
-                        settings[i].min=atoi(temp_str4);
-                        settings[i].max=atoi(temp_str5);
+                        settings[i].min = 9994;
+                        settings[i].max = 9994;
+                        settings[i].ascii_min = temp_str4;
+                        settings[i].ascii_max = temp_str5;
                         printf("[BusIoTSystem] Setting Data : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
                         log_management(logdata);
@@ -187,12 +228,12 @@ int load_setting(){
         return 2;
 }
 
-void auto_increament(char *log_data, int data,int data_length){
+void auto_byte_generation(char *log_data, int data,int data_length){
         //int quotient[data_length];
         int real_data[data_length];
         int j;
-        for(j=0;j<data_length;j+=1){
-          real_data[j]=0;
+        for(j=0; j<data_length; j+=1) {
+                real_data[j]=0;
         }
 
         int i=1;
@@ -243,13 +284,13 @@ void auto_increament(char *log_data, int data,int data_length){
         char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",settings[i].setting_name);
         int temp_for;
-        for(temp_for=0;temp_for<data_length;temp_for+=1){
-          char temp_char[100];
-          //temp_char=
+        printf("%s",print_str);
+        for(temp_for=0; temp_for<data_length; temp_for+=1) {
+                char temp_char[100];
+                temp_char[temp_for]=g_sendBuff[data_count-data_length+temp_for];
+                printf("%02x ",temp_char[temp_for]);
         }
-
-
-        printf("%s\n",print_str);
+        printf("\n");
 
 }
 
@@ -372,10 +413,12 @@ int main(int argc,char *argv[])
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,10);
                                         printf("%s\n",print_str);
                                 }
+                                // ascii 추가
+                                else if(settings[j].min==9995&&settings[j].max==9995) {
+                                  ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
+                                }
                                 else{
-                                        auto_increament(settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max),settings[j].setting_data);
-                                        //sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max));
-                                        //printf("%s\n",print_str);
+                                        auto_byte_generation(settings[j].setting_name,random_generation(settings[j].setting_name,settings[j].min,settings[j].max),settings[j].setting_data);
                                 }
                         }
 
@@ -383,8 +426,8 @@ int main(int argc,char *argv[])
                         send(client_fd, g_sendBuff, data_count, 0);
                         printf("[BusIoTSystem] Send Data : ");
                         int max_leng;
-                        for(max_leng=0;max_leng<data_count;max_leng+=1){
-                          printf("%02x ",g_sendBuff[max_leng]);
+                        for(max_leng=0; max_leng<data_count; max_leng+=1) {
+                                printf("%02x ",g_sendBuff[max_leng]);
                         }
 
                         printf("\n");
