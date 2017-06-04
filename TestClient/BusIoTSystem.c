@@ -104,7 +104,9 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 temp2 = substr(max,i,1);
                 printf("[DEBUG] ascii_generation 함수 temp2 분류\n");
                 int temp_1 = atoi(temp1);
+                printf("[DEBUG] ascii_generation 함수 atoi(temp1)처리 완료 값 : %d\n",temp_1);
                 int temp_2 = atoi(temp2);
+                printf("[DEBUG] ascii_generation 함수 atoi(temp2)처리 완료 값 : %d\n",temp_2);
                 int temp_3 = rand()%(temp_2-temp_1)+temp_1;
                 printf("[DEBUG] ascii_generation 함수 랜덤값 생성 %d\n",temp_3);
                 if(temp_3==0) {
