@@ -91,7 +91,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
         srand(gettimeofday(&val,NULL));
         int i;
         char print_str[100];
-        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",settings[i].setting_name);
+        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",str);
         printf("%s",print_str);
         for(i=0; i<data_length; i+=1) {
                 char *temp1;
@@ -143,7 +143,6 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 }
                 printf(" ");
         }
-
         printf("\n");
 }
 
@@ -440,7 +439,7 @@ int main(int argc,char *argv[])
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         read_data_count=read_data_count+4;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[i].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
                                         printf("%s\n",print_str);
 
                                 }
