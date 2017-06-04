@@ -88,7 +88,8 @@ char *substr(char *pnInput,int nStart,int nLen ){
 }
 
 void ascii_generation(char *str,char *min,char *max,int data_length){
-  printf("[DEBUG] ascii_generation 함수 내부 진입\n");
+        printf("[DEBUG] str : %s, min : %s, max : %s, data_length : %d\n",str,min,max,data_length);
+        printf("[DEBUG] ascii_generation 함수 내부 진입\n");
         srand(gettimeofday(&val,NULL));
         printf("[DEBUG] ascii_generation 함수 랜덤 세팅 완료\n");
         int i;
