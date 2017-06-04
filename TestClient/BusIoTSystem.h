@@ -23,8 +23,8 @@
 
 struct Settings{
   char setting_name[30];
-  char *ascii_min;
-  char *ascii_max;
+  char ascii_min[50];
+  char ascii_max[50];
   int setting_data;
   int min;
   int max;
