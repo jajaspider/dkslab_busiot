@@ -137,6 +137,7 @@ int load_setting(){
         char *temp_str4;
         char *temp_str5;
         char *temp_str6;
+        char *flag_substr;
 
         //파일이 있을 때
         if(access("settings.txt",0)==0) {
@@ -163,7 +164,7 @@ int load_setting(){
                 temp_str2=trim(temp_str2);
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
-                  printf("[DEBUG]substr : %s \n",substr(temp_str4,0,5));
+                  flag_substr = substr(temp_str4,0,5);
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
                         settings[i].setting_data=atoi(temp_str3);
@@ -209,7 +210,7 @@ int load_setting(){
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
-                else if(!strcmp(substr(temp_str4,0,5),"ascii")) {
+                else if(!strcmp(flag_substr,"ascii")) {
                         temp_str5=strtok(NULL," ");
                         temp_str6=strtok(NULL," ");
                         settings[i].setting_data=atoi(temp_str3);
