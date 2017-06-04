@@ -100,7 +100,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 int temp_3 = rand()%(temp_2-temp_1)+temp_1;
                 char *temp3;
                 sprintf(temp3,"%d",temp_3);
-                g_sendBuff[data_count++] = temp3;
+                g_sendBuff[data_count++] = (unsigned char)temp3;
         }
 }
 
@@ -165,7 +165,6 @@ int load_setting(){
                 temp_str3=strtok(temp_str2," ");
                 temp_str4=strtok(NULL," ");
                 flag_substr = substr(temp_str4,0,5);
-                printf("%s",flag_substr);
                 printf("\n");
                 //시간 시 분 초 데이터
                 if(!strcmp(temp_str4,"timeauto1")) {
@@ -212,6 +211,7 @@ int load_setting(){
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
+                // ascii 값
                 else if(!strcmp(flag_substr,"ascii")) {
                         temp_str5=strtok(NULL," ");
                         temp_str6=strtok(NULL," ");
@@ -220,8 +220,8 @@ int load_setting(){
                         settings[i].max = 9994;
                         settings[i].ascii_min=temp_str5;
                         settings[i].ascii_max=temp_str6;
-                        printf("[BusIoTSystem] Setting Data ASCII : %s = %d ,min = %d, max = %d\n",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
-                        sprintf(logdata,"BusIoTSystem : %s ASCII 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].min,settings[i].max);
+                        printf("[BusIoTSystem] Setting Data ASCII : %s = %d ,min = %s, max = %s\n",settings[i].setting_name,settings[i].setting_data,settings[i].ascii_min,settings[i].ascii_max);
+                        sprintf(logdata,"BusIoTSystem : %s ASCII 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].ascii_min,settings[i].ascii_max);
                         log_management(logdata);
                 }
                 else{
