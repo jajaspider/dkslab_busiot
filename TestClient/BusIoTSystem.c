@@ -279,8 +279,8 @@ int load_setting(){
                         settings[i].setting_data=atoi(temp_str3);
                         settings[i].min = 9994;
                         settings[i].max = 9994;
-                        settings[i].ascii_min=temp_str5;
-                        settings[i].ascii_max=temp_str6;
+                        strcpy(settings[i].ascii_min,temp_str5);
+                        strcpy(settings[i].ascii_max,temp_str6);
                         printf("[BusIoTSystem] Setting Data ASCII : %s = %d ,min = %s, max = %s\n",settings[i].setting_name,settings[i].setting_data,settings[i].ascii_min,settings[i].ascii_max);
                         sprintf(logdata,"BusIoTSystem : %s ASCII 세팅값 : %d byte,min = %d, max = %d",settings[i].setting_name,settings[i].setting_data,settings[i].ascii_min,settings[i].ascii_max);
                         log_management(logdata);
