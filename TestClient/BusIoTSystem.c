@@ -95,15 +95,18 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
         char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",str);
         printf("%s",print_str);
-
+        printf("[DEBUG] ascii_generation 함수 for 진입전\n");
         for(i=0; i<data_length; i+=1) {
                 char *temp1;
                 char *temp2;
                 temp1 = substr(min,i,1);
+                printf("[DEBUG] ascii_generation 함수 temp1 분류\n");
                 temp2 = substr(max,i,1);
+                printf("[DEBUG] ascii_generation 함수 temp2 분류\n");
                 int temp_1 = atoi(temp1);
                 int temp_2 = atoi(temp2);
                 int temp_3 = rand()%(temp_2-temp_1)+temp_1;
+                printf("[DEBUG] ascii_generation 함수 랜덤값 생성 %d\n",temp_3);
                 if(temp_3==0) {
                         g_sendBuff[data_count++] = 0x30;
                         printf("30");
@@ -146,6 +149,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 }
                 printf(" ");
         }
+        printf("[DEBUG] ascii_generation 함수 for 완료\n");
         printf("\n");
 }
 
