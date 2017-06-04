@@ -154,6 +154,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
         }
         printf("[DEBUG] ascii_generation 함수 for 완료\n");
         printf("\n");
+        read_data_count++;
 }
 
 int random_count(){
