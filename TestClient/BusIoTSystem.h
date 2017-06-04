@@ -31,7 +31,7 @@ struct Settings{
 } ;
 
 struct timeval val;
-struct Settings settings[200];
+struct Settings settings[500];
 
 int obv_size = 0;
 int setting_count=0;
