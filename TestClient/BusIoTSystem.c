@@ -439,7 +439,7 @@ int main(int argc,char *argv[])
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         g_sendBuff[data_count++] = (unsigned char)t->tm_sec;
                                         read_data_count=read_data_count+4;
-                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d%d%d",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec);
+                                        sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %02x %02x %02x %02x",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec,t->tm_sec);
                                         printf("%s\n",print_str);
 
                                 }
