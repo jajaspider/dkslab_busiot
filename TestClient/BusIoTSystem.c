@@ -88,11 +88,14 @@ char *substr(char *pnInput,int nStart,int nLen ){
 }
 
 void ascii_generation(char *str,char *min,char *max,int data_length){
+  printf("[DEBUG] ascii_generation 함수 내부 진입\n");
         srand(gettimeofday(&val,NULL));
+        printf("[DEBUG] ascii_generation 함수 랜덤 세팅 완료\n");
         int i;
         char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",str);
         printf("%s",print_str);
+
         for(i=0; i<data_length; i+=1) {
                 char *temp1;
                 char *temp2;
@@ -466,6 +469,7 @@ int main(int argc,char *argv[])
                                 }
                                 // ascii 추가
                                 else if(settings[j].min==9994&&settings[j].max==9994) {
+                                        printf("[DEBUG] ascii_generation 함수 시작\n");
                                         ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                 }
                                 else{
