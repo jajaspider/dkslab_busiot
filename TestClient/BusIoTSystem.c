@@ -88,28 +88,19 @@ char *substr(char *pnInput,int nStart,int nLen ){
 }
 
 void ascii_generation(char *str,char *min,char *max,int data_length){
-        printf("[DEBUG] str : %s, min : %s, max : %s, data_length : %d\n",str,min,max,data_length);
-        printf("[DEBUG] ascii_generation 함수 내부 진입\n");
         srand(gettimeofday(&val,NULL));
-        printf("[DEBUG] ascii_generation 함수 랜덤 세팅 완료\n");
         int i;
         char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",str);
         printf("%s",print_str);
-        printf("[DEBUG] ascii_generation 함수 for 진입전\n");
         for(i=0; i<data_length; i+=1) {
                 char *temp1;
                 char *temp2;
                 temp1 = substr(min,i,1);
-                printf("[DEBUG] ascii_generation 함수 temp1 분류\n");
                 temp2 = substr(max,i,1);
-                printf("[DEBUG] ascii_generation 함수 temp2 분류\n");
                 int temp_1 = atoi(temp1);
-                printf("[DEBUG] ascii_generation 함수 atoi(temp1)처리 완료 값 : %d\n",temp_1);
                 int temp_2 = atoi(temp2);
-                printf("[DEBUG] ascii_generation 함수 atoi(temp2)처리 완료 값 : %d\n",temp_2);
                 int temp_3 = rand()%(temp_2-temp_1+1)-1+temp_1;
-                printf("[DEBUG] ascii_generation 함수 랜덤값 생성 %d\n",temp_3);
                 if(temp_3==0) {
                         g_sendBuff[data_count++] = 0x30;
                         printf("30");
@@ -151,10 +142,10 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                         printf("39");
                 }
                 printf(" ");
+                read_data_count++;
         }
-        printf("[DEBUG] ascii_generation 함수 for 완료\n");
         printf("\n");
-        read_data_count++;
+
 }
 
 int random_count(){
@@ -477,8 +468,6 @@ int main(int argc,char *argv[])
                                 }
                                 // ascii 추가
                                 else if(settings[j].min==9994&&settings[j].max==9994) {
-                                        printf("[DEBUG] ascii_generation 함수 시작\n");
-                                        printf("[DEBUG] setting_name : %s, ascii_min : %s , ascii_max : %s , setting_data : %d\n",settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                         ascii_generation(settings[j].setting_name,settings[j].ascii_min,settings[j].ascii_max,settings[j].setting_data);
                                 }
                                 else{
