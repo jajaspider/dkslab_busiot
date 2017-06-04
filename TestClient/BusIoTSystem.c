@@ -341,12 +341,9 @@ void auto_byte_generation(char *log_data, int data,int data_length){
         int temp_for;
         printf("%s",print_str);
         for(temp_for=0; temp_for<data_length; temp_for+=1) {
-                char temp_char[100];
-                temp_char[temp_for]=g_sendBuff[data_count-data_length+temp_for];
-                printf("%02x ",temp_char[temp_for]);
+                printf("%02x ",real_data[temp_for]);
         }
         printf("\n");
-
 }
 
 void ClearSendBuff () {
