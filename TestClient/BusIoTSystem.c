@@ -97,7 +97,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 temp2 = substr(max,i,1);
                 int temp_1 = atoi(temp1);
                 int temp_2 = atoi(temp2);
-                int temp_3 = rand()%temp_1+temp_2;
+                int temp_3 = rand()%(temp_2-temp_1)+temp_1;
                 char *temp3;
                 sprintf(temp3,"%d",temp_3);
                 g_sendBuff[data_count++] = temp3;
