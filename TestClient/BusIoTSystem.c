@@ -53,7 +53,7 @@ char* substring(char *input, int i_begin, int i_end)
 
 int random_generation(char *str,int min,int max){
         int i;
-        srand(gettimeofday(&start, NULL));
+        srand(val.tv_usec/1000);
         i=rand()%(max-min)+min;
         //char print_str[100];
         //sprintf(print_str,"[BusIoTSystem] %s generation : %d",str,i);
@@ -88,7 +88,7 @@ char *substr(char *pnInput,int nStart,int nLen ){
 }
 
 void ascii_generation(char *str,char *min,char *max,int data_length){
-        srand(gettimeofday(&start, NULL));
+        srand(start.tv_usec/1000);
         int i;
         char print_str[100];
         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : ",str);
@@ -371,6 +371,7 @@ int main(int argc,char *argv[])
         //현재 시간 데이터 받아오기
         timer = time(NULL);
         t = localtime(&timer);
+        gettimeofday(&start, NULL);
         sprintf(current_day,"%d%02d%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday);
         sprintf(log_time,"%d-%02d-%02d %02d:%02d:%02d",t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);
 
