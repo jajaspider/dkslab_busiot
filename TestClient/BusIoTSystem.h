@@ -23,11 +23,11 @@
 
 struct Settings{
   char setting_name[30];
+  char *ascii_min;
+  char *ascii_max;
   int setting_data;
   int min;
   int max;
-  char *ascii_min;
-  char *ascii_max;
 } ;
 
 struct timeval val;
