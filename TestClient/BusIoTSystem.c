@@ -102,7 +102,6 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 sprintf(temp3,"%d",temp_3);
                 g_sendBuff[data_count++] = temp3;
         }
-
 }
 
 int random_count(){
@@ -210,6 +209,7 @@ int load_setting(){
                         sprintf(logdata,"BusIoTSystem : %s 세팅값 : %d byte, ESC setting",settings[i].setting_name,settings[i].setting_data);
                         log_management(logdata);
                 }
+                printf("[DEBUG]substr : %s",substr(temp_str4,0,5));
                 else if(!strcmp(substr(temp_str4,0,5),"ascii")) {
                         temp_str5=strtok(NULL," ");
                         temp_str6=strtok(NULL," ");
