@@ -100,46 +100,52 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 temp2 = substr(max,i,1);
                 int temp_1 = atoi(temp1);
                 int temp_2 = atoi(temp2);
-                int temp_3 = rand()%(temp_2-temp_1+1)-1+temp_1;
-                if(temp_3==0) {
-                        g_sendBuff[data_count++] = 0x30;
-                        printf("30");
+                if(temp_1==temp_2) {
+                        g_sendBuff[data_count++] = temp_1;
+                        printf("%c",temp_1);
                 }
-                if(temp_3==1) {
-                        g_sendBuff[data_count++] = 0x31;
-                        printf("31");
-                }
-                if(temp_3==2) {
-                        g_sendBuff[data_count++] = 0x32;
-                        printf("32");
-                }
-                if(temp_3==3) {
-                        g_sendBuff[data_count++] = 0x33;
-                        printf("33");
-                }
-                if(temp_3==4) {
-                        g_sendBuff[data_count++] = 0x34;
-                        printf("34");
-                }
-                if(temp_3==5) {
-                        g_sendBuff[data_count++] = 0x35;
-                        printf("35");
-                }
-                if(temp_3==6) {
-                        g_sendBuff[data_count++] = 0x36;
-                        printf("36");
-                }
-                if(temp_3==7) {
-                        g_sendBuff[data_count++] = 0x37;
-                        printf("37");
-                }
-                if(temp_3==8) {
-                        g_sendBuff[data_count++] = 0x38;
-                        printf("38");
-                }
-                if(temp_3==9) {
-                        g_sendBuff[data_count++] = 0x39;
-                        printf("39");
+                else{
+                        int temp_3 = rand()%(temp_2-temp_1)+temp_1;
+                        if(temp_3==0) {
+                                g_sendBuff[data_count++] = 0x30;
+                                printf("30");
+                        }
+                        if(temp_3==1) {
+                                g_sendBuff[data_count++] = 0x31;
+                                printf("31");
+                        }
+                        if(temp_3==2) {
+                                g_sendBuff[data_count++] = 0x32;
+                                printf("32");
+                        }
+                        if(temp_3==3) {
+                                g_sendBuff[data_count++] = 0x33;
+                                printf("33");
+                        }
+                        if(temp_3==4) {
+                                g_sendBuff[data_count++] = 0x34;
+                                printf("34");
+                        }
+                        if(temp_3==5) {
+                                g_sendBuff[data_count++] = 0x35;
+                                printf("35");
+                        }
+                        if(temp_3==6) {
+                                g_sendBuff[data_count++] = 0x36;
+                                printf("36");
+                        }
+                        if(temp_3==7) {
+                                g_sendBuff[data_count++] = 0x37;
+                                printf("37");
+                        }
+                        if(temp_3==8) {
+                                g_sendBuff[data_count++] = 0x38;
+                                printf("38");
+                        }
+                        if(temp_3==9) {
+                                g_sendBuff[data_count++] = 0x39;
+                                printf("39");
+                        }
                 }
                 printf(" ");
                 read_data_count++;
