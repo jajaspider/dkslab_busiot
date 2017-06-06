@@ -7,14 +7,15 @@ $('#listTab a').click(function (e) {
   $(this).tab('show')
 })
 $(document).ready(function() {
-    $("#passengerSlider").slider({});
-    $("#temperatureSlider").slider({});
-    $("#humiditySlider").slider({});
+    $("#passengerSlider").slider();
+    $("#temperatureSlider").slider();
 });
+
 
 $('#Disabled').modal()
 
 $('body').scrollspy({ target: '#menubar' })
+
 /*
   var map;
   function init() {
@@ -86,46 +87,91 @@ $('body').scrollspy({ target: '#menubar' })
     }
   });
   }
-  */
-  var clickCount = 0;
 
+*/
+
+  var clickCount = 0;
+  var passengerSliderValue;
+  var temperatureSliderValue;
+  var passengerVal;
+  var passenger_num = new Array(23, 41, 88, 3, 62, 43, 55);
+  var mapContainer;
+  var map;
+  var clusterer;
+  var markers = [];
+  var positions = [
+  {"lat":35.147814,"lng":129.034641,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue0"></span>온도 : <span id="temperatureValue">31</span></div>'},
+  {"lat":35.157818,"lng":129.058025,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue1"></span>온도 : <span id="temperatureValue">36</span></div>'},
+  {"lat":35.163357,"lng":129.063777,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue2"></span>온도 : <span id="temperatureValue">18</span></div>'},
+  {"lat":35.173202,"lng":129.071120,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue3"></span>온도 : <span id="temperatureValue">5</span></div>'},
+  {"lat":35.186167,"lng":129.081328,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue4"></span>온도 : <span id="temperatureValue">11</span></div>'},
+  {"lat":35.209991,"lng":129.078317,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue5"></span>온도 : <span id="temperatureValue">21</span></div>'},
+  {"lat":35.155608,"lng":129.041998,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue6"></span>온도 : <span id="temperatureValue">32</span></div>'}
+  ];
+  var marker;
+  var infowindow;
   function init() {
-  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+  mapContainer = document.getElementById('map'), // 지도를 표시할 div
   mapOption = {
       center: new daum.maps.LatLng(35.144809, 129.034790), // 지도의 중심좌표
       level: 5 // 지도의 확대 레벨
   };
-  var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+  map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
   // 마커 클러스터러를 생성합니다
-  var clusterer = new daum.maps.MarkerClusterer({
+  clusterer = new daum.maps.MarkerClusterer({
       map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
       averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
       minLevel: 5 // 클러스터 할 최소 지도 레벨
   });
 
-  var markers = [];
+  //var markers = [];
+  /*
   var positions = [
-  {"lat":35.147814,"lng":129.034641,"store":'110-1'},
-  {"lat":35.155608,"lng":129.041998,"store":'110-1'},
-  {"lat":35.157818,"lng":129.058025,"store":'110-1'},
-  {"lat":35.163357,"lng":129.063777,"store":'110-1'},
-  {"lat":35.173202,"lng":129.071120,"store":'110-1'},
-  {"lat":35.186167,"lng":129.081328,"store":'110-1'},
-  {"lat":35.209991,"lng":129.078317,"store":'110-1'},
-  {"lat":35.216471,"lng":129.083311,"store":'110-1'},
-  {"lat":35.256418,"lng":129.091168,"store":'110-1'}	];
+  {"lat":35.147814,"lng":129.034641,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">23 </span>온도 : <span id="temperatureValue">31</span></div>'},
+  {"lat":35.157818,"lng":129.058025,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">41 </span>온도 : <span id="temperatureValue">36</span></div>'},
+  {"lat":35.163357,"lng":129.063777,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">88 </span>온도 : <span id="temperatureValue">18</span></div>'},
+  {"lat":35.173202,"lng":129.071120,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">3 </span>온도 : <span id="temperatureValue">5</span></div>'},
+  {"lat":35.186167,"lng":129.081328,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">62 </span>온도 : <span id="temperatureValue">11</span></div>'},
+  {"lat":35.209991,"lng":129.078317,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">43 </span>온도 : <span id="temperatureValue">21</span></div>'},
+  {"lat":35.155608,"lng":129.041998,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span name="passengerValue">55 </span>온도 : <span id="temperatureValue">32</span></div>'}
+];
+*/
 
+
+/*
+for(var i = 0; i< bus_num.length;i++)
+{
+  alert(bus_num[i]);
+}
+document.getElementById("#passengerValue0").innerHTML = bus_num[0];
+document.getElementById("#passengerValue2").innerHTML = bus_num[2];
+document.getElementById("#passengerValue1").innerHTML = bus_num[1];
+document.getElementById("#passengerValue3").innerHTML = bus_num[3];
+document.getElementById("#passengerValue4").innerHTML = bus_num[4];
+document.getElementById("#passengerValue5").innerHTML = bus_num[5];
+document.getElementById("#passengerValue6").innerHTML = bus_num[6];
+
+
+var positions = [
+{"lat":35.147814,"lng":129.034641,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue0"></span>온도 : <span id="temperatureValue">31</span></div>);'},
+{"lat":35.157818,"lng":129.058025,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue1"></span>온도 : <span id="temperatureValue">36</span></div>'},
+{"lat":35.163357,"lng":129.063777,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue2"></span>온도 : <span id="temperatureValue">18</span></div>'},
+{"lat":35.173202,"lng":129.071120,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue3"></span>온도 : <span id="temperatureValue">5</span></div>'},
+{"lat":35.186167,"lng":129.081328,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue4"></span>온도 : <span id="temperatureValue">11</span></div>'},
+{"lat":35.209991,"lng":129.078317,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue5"></span>온도 : <span id="temperatureValue">21</span></div>'},
+{"lat":35.155608,"lng":129.041998,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue6"></span>온도 : <span id="temperatureValue">32</span></div>'}
+];*/
   for (var i=0, len=positions.length; i<len; i++) {
     markers.push(addMarker(positions[i]));
    }
 
    function addMarker(position) {
-     var marker = new daum.maps.Marker({
+     marker = new daum.maps.Marker({
        position : new daum.maps.LatLng(position.lat, position.lng)
      });
 
-    var infowindow = new daum.maps.InfoWindow({
+    infowindow = new daum.maps.InfoWindow({
       content: position.store // 인포윈도우에 표시할 내용
     });
 
@@ -134,11 +180,22 @@ $('body').scrollspy({ target: '#menubar' })
 
      return marker;
    };
+   /*
+   //버스 승객 수 온도 확인
+   var passengerValueArray = document.getElementById("passengerValue");
+   var passengerVal;
+   for(var i in passengerValueArray)
+   {
+     passengerVal = passengerValueArray[i].value;
+   }
+   alert(passengerVal);
+   */
 
   $('#110-1').click(function () {
     if(clickCount == 0){
     clusterer.addMarkers(markers);
     clickCount = 1;
+
     }
     else{
       clusterer.clear();
@@ -149,6 +206,11 @@ $('body').scrollspy({ target: '#menubar' })
   function makeOverListener(map, marker, infowindow) {
     return function() {
       infowindow.open(map, marker);
+      //승객 값
+
+      for(var i =0;i<passenger_num.length;i++){
+      $("#passengerValue" + i).text(passenger_num[i]);
+      }
     };
   }
 
@@ -158,4 +220,23 @@ $('body').scrollspy({ target: '#menubar' })
       infowindow.close();
     };
   }
+}
+function sensorSubmit() {
+    //슬라이더 값
+    passengerSliderValue = document.getElementById("passengerSlider").value;
+    temperatureSliderValue = document.getElementById("temperatureSlider").value;
+    clickCount = 1;
+
+  //  alert(passengerSliderValue);
+  //  alert(temperatureSliderValue);
+    for(var i =0; i<passenger_num.length;i++)
+    {
+      if(passenger_num[i] <= passengerSliderValue)
+      {
+
+        //markers[i].setMap(null); // 지도에서 제거한다.
+        //clusterer.removeMarkers( markers );
+        clusterer.removeMarker(markers[i]);
+      }
+    }
 }
