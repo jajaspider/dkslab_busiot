@@ -102,7 +102,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 int temp_2 = atoi(temp2);
                 if(temp_1==temp_2) {
                         g_sendBuff[data_count++] = (unsigned char)temp_1;
-                        printf("%02x",(unsigned char)temp_1);
+                        printf("%02c",(unsigned char)temp_1);
                 }
                 else{
                         int temp_3 = rand()%(temp_2-temp_1)+temp_1;
