@@ -106,7 +106,43 @@ $('body').scrollspy({ target: '#menubar' })
   {"lat":35.173202,"lng":129.071120,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue3"></span>온도 : <span id="temperatureValue">5</span></div>'},
   {"lat":35.186167,"lng":129.081328,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue4"></span>온도 : <span id="temperatureValue">11</span></div>'},
   {"lat":35.209991,"lng":129.078317,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue5"></span>온도 : <span id="temperatureValue">21</span></div>'},
-  {"lat":35.155608,"lng":129.041998,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue6"></span>온도 : <span id="temperatureValue">32</span></div>'}
+  {"lat":35.155608,"lng":129.041998,"store":'<div>버스 번호 : <span id="bus_number">110-1 </span>승객 수 : <span id="passengerValue6"></span>온도 : <span id="temperatureValue">32</span></div>'},
+  {"lat":35.147825,"lng":129.034699,"store":
+    '<table style=\"text-align: center;\">'+
+    '<thead>'+
+    '<tr>'+
+    '<td>'+
+    '110-1 정보'+
+    '</td>'+
+    '</tr>'+
+    '</thead>'+
+    '<tbody>'+
+    '<tr>'+
+    '<td width="100" height="50">'+
+    '온도 : 50'+
+    '</td>'+
+    '<td width="100" height="50">'+
+    '습도 : 50'+
+    '</td>'+
+    '</tr>'+
+    '<tr>'+
+    '<td width="100" height="50">'+
+    '승객수 : 50'+
+    '</td>'+
+    '<td width="100" height="50">'+
+    '정보1 : 50'+
+    '</tr>'+
+    '<tr>'+
+    '</td>'+
+    '<td width="100" height="50">'+
+    '정보2 : 50'+
+    '<td width="100" height="50">'+
+    '정보3 : 50'+
+    '</td>'+
+    '</tr>'+
+    '</tbody>'+
+    '</table>'
+    }
   ];
   var marker;
   var infowindow;
