@@ -239,12 +239,12 @@ int  main (int argc, char **argv) {
 																g_sendValue.commandCode = COMMAND_CODE_SEND_SENSOR_DATA;
 
 																if (isAwake) {
-																								g_sendValue.commandCode = COMMAND_CODE_START_DRIVING;
+																								g_sendValue.commandCode = COMMAND_CODE_SEND_SENSOR_DATA;
 																								isAwake = 0;
 																}
 
 																if(count >= repeatCount) {
-																								g_sendValue.commandCode = COMMAND_CODE_STOP_DRIVING;
+																								g_sendValue.commandCode = COMMAND_CODE_SEND_SENSOR_DATA;
 																}
 
 
