@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdarg.h>
 
-#define SEND_BUFF_MAX_LENGTH		336
+#define SEND_BUFF_MAX_LENGTH		339
 #define BYTE						unsigned char
 #define DIV256						0.00390625f
 
