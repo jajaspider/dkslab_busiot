@@ -934,7 +934,6 @@ int32_t BakeBuffToSend (BYTE buff[SEND_BUFF_MAX_LENGTH], int32_t buffSize, BYTE 
 
 								_output_bakedbuff[length++] = _buff[buffSize-1];
 								_output_bakedbuff[338] = 0x03;
-								_output_bakedbuff[339] = '\0';
 								return length;
 }
 //packet2buff end
