@@ -166,8 +166,8 @@ int  main (int argc, char **argv) {
 
 								memset((char*)&sin, '\0', sizeof(sin));
 								sin.sin_family = AF_INET;
-								sin.sin_port = htons(4200);
-								sin.sin_addr.s_addr = inet_addr("169.254.227.239");
+								sin.sin_port = htons(45000);
+								sin.sin_addr.s_addr = inet_addr("113.198.235.247");
 								memset(&(sin.sin_zero), 0, 8);
 								connect(sock, (struct sockaddr*)&sin, sizeof(struct sockaddr));
 								printf("Connected\n");
