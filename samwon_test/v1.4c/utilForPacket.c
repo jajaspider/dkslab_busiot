@@ -917,7 +917,7 @@ int32_t BakeBuffToSend (BYTE buff[SEND_BUFF_MAX_LENGTH], int32_t buffSize, BYTE 
 								memcpy((char*)_buff, (char*)buff, SEND_BUFF_MAX_LENGTH);
 
 								_output_bakedbuff[length++] = _buff[0];
-								for (i = length; i < buffSize-1; i++) {
+								for (i = length; i < buffSize-10; i++) {
 																if(_buff[i] == CONTROL_STX) {
 																								_output_bakedbuff[length++] = 0x10;
 																								_output_bakedbuff[length++] = 0x16;
