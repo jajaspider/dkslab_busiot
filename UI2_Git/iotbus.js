@@ -24,6 +24,13 @@ $userpwd = $_POST['pass'];
 $data_sql = "select GPSX, GPSY, BUSSPEED, USRCNT, ThermometerTemperature, HygrometerHumidity from sensordatainfo";
 $data_parse = oci_parse($conn, $data_sql);
 oci_execute($data_parse);
+$data_row;
+$gpsx;
+$gpsy;
+$busSpeed;
+$usrcnt;
+$thermometertemperature;
+$hygrometerhumidity;
 ?>
 
 <!DOCTYPE html>
@@ -92,17 +99,16 @@ var marker;
 var infowindow;
 var markers = [];
 var positions = [
-
-    <?php
-      while (null!=$data_row = oci_fetch_array($data_parse,OCI_ASSOC);) {
-        $gpsx = $data_row['GPSX'];
-        $gpsy = $data_row['GPSY'];
-        $busSpeed = $data_row['BUSSPEED'];
-        $usrcnt = $data_row['USRCNT'];
-        $thermometertemperature = $data_row['THERMOMETERTEMPERATURE'];
-        $hygrometerhumidity = $data_row['HYGROMETERHUMIDITY'];
-    ?>
-  {  
+  <?php
+  while(null!=($data_row = oci_fetch_array($data_parse,OCI_ASSOC))){
+  $gpsx = $data_row['GPSX'];
+  $gpsy = $data_row['GPSY'];
+  $busSpeed = $data_row['BUSSPEED'];
+  $usrcnt = $data_row['USRCNT'];
+  $thermometertemperature = $data_row['THERMOMETERTEMPERATURE'];
+  $hygrometerhumidity = $data_row['HYGROMETERHUMIDITY'];
+  ?>
+  {
       "lat": <?php echo $gpsx/1000000 ?>,
       "lng": <?php echo $gpsy/1000000 ?>,
       "store":
@@ -140,7 +146,7 @@ var positions = [
   },
   <?php
 }
-  ?>
+?>
 ];
 
 function init() {
