@@ -4,14 +4,14 @@
 #include <stdint.h>
 #include <stdarg.h>
 
-#define SEND_BUFF_MAX_LENGTH		672
+#define SEND_BUFF_MAX_LENGTH		336
 #define BYTE						unsigned char
 #define DIV256						0.00390625f
 
 /**
-	*@brief		¼¾¼­ µ¥ÀÌÅÍ¸¦ ÆÐÅ¶ÀÇ ÇüÅÂ·Î °¡Áö°í ÀÖ´Â ±¸Á¶Ã¼.
-	*@details	°¢ µ¥ÀÌÅÍ´Â ÇÁ·ÎÅäÄÝ¿¡ Á¤ÀÇ µÈ ¼ø¼­´ë·Î ¼±¾ðµÇ¾ú½À´Ï´Ù.\n
-				Å¬¶óÀÌ¾ðÆ®¿¡¼­ ¼¾¼­¿¡ Á÷Á¢ Á¢±ÙÇÏ¿© ÃÊ±âÈ­ ¹× °»½ÅµË´Ï´Ù.
+	*@brief		ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼.
+	*@details	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\n
+				Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ÅµË´Ï´ï¿½.
 	*@see		InitSensorDataPacket
 	*@see		GetSensorDataPacketSize
 	*@see		UpdateSensorDataPacket
@@ -22,33 +22,33 @@
 	*@see		GetHygrometerData_sensor2packet
 	*@see		GetPanicButtonData_sensor2packet
 	*@see		GetDisabledPersonReservationData_sensor2packet
-	*@see		GetWildDrivingData_sensor2packet	
+	*@see		GetWildDrivingData_sensor2packet
 	*@see		GetGSensorData_sensor2packet
 	*@see		GetOBD2Data_sensor2packet
 	*@see		GetBeaconData_sensor2packet
 	*@see		GetSpeakerData_sensor2packet
 	*@see		GetIoData_sensor2packet
 	*@see		GetImageData_sonsor2packet
-	*@author	Á¤µ¿Áø
+	*@author	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	*@date		2017.04.02
 */
 typedef struct _SensorDataPacket {
 //header
 	BYTE	control_stx						[1];
 
-	//!¼¾¼­º¸µåÀÇ ½Ã¸®¾ó ID.
+	//!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ID.
 	BYTE	serialId						[5];
-	//!¼¾¼­º¸µåÀÇ ÅÍ¹Ì³Î ID.
+	//!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¹Ì³ï¿½ ID.
 	BYTE	terminalId						[4];
 	/**
-	@brief	ÀÀ´ä ÄÚµå.
+	@brief	ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½.
 	@see	RESPONSE_CODE_ACK
 	@see	RESPONSE_CODE_NACK
 	@see	RESPONSE_CODE_REQ
 	*/
 	BYTE	responseCode					[1];
 	/**
-	@brief	¿¡·¯ ÄÚµå.
+	@brief	ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½.
 	@see	ERROR_CODE_SUCCESS
 	@see	ERROR_CODE_DATA_LENGTH_ERROR
 	@see	ERROR_CODE_DATA_FORMAT_ERROR
@@ -65,7 +65,7 @@ typedef struct _SensorDataPacket {
 	*/
 	BYTE	errorCode						[1];
 	/**
-	@brief	¸í·É ÄÚµå.
+	@brief	ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½.
 	@see	COMMAND_CODE_INIT
 	@see	COMMAND_CODE_SEND_SENSOR_DATA
 	@see	COMMAND_CODE_START_DRIVING
@@ -107,7 +107,7 @@ typedef struct _SensorDataPacket {
 	char	engineCoolantTemperature		[1];
 	BYTE	obdReserved						[10];
 //OBD-II end
-	
+
 	int32_t	usrCntTime;
 	BYTE	usrCnt							[3];
 	BYTE	oldUsrCnt						[3];
@@ -177,9 +177,9 @@ typedef struct _SensorDataPacket {
 
 
 /**
-	*@brief		¼¾¼­ µ¥ÀÌÅÍ¸¦ º¯¼öÀÇ ÇüÅÂ·Î °¡Áö°í ÀÖ´Â ±¸Á¶Ã¼.
-	*@details	°¢ µ¥ÀÌÅÍ´Â ÇÁ·ÎÅäÄÝ¿¡ Á¤ÀÇ µÈ ¼ø¼­´ë·Î ¼±¾ðµÇ¾ú½À´Ï´Ù.\n
-				¹öÆÛ¿¡ ÀúÀåµÈ °ªÀ» ÅëÇØ ÃÊ±âÈ­ ¹× °»½ÅµË´Ï´Ù.
+	*@brief		ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼.
+	*@details	ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.\n
+				ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ÅµË´Ï´ï¿½.
 	*@see		GetDataFromRecvBuff
 	*@see		PrintSensorDataValue
 	*@see		GetGpsData_buff2value
@@ -196,7 +196,7 @@ typedef struct _SensorDataPacket {
 	*@see		GetSpeakerData_buff2value
 	*@see		GetIoData_buff2value
 	*@see		GetImageData_buff2value
-	*@author	Á¤µ¿Áø
+	*@author	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	*@date		2017.04.02
 */
 typedef struct _SensorDataValue {
@@ -214,7 +214,7 @@ typedef struct _SensorDataValue {
 	int32_t	length;
 //header end
 
-	
+
 
 
 	int32_t	gpsTime;
@@ -298,20 +298,20 @@ typedef struct _SensorDataValue {
 //char g_serialId[5];
 //char g_terminalId[4];
 
-//!ÆÐÅ¶À» Àü¼ÛÇÏ±â À§ÇÑ ¹öÆÛÀÔ´Ï´Ù.
+//!ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 //BYTE g_sendBuff[SEND_BUFF_MAX_LENGTH];
-//!g_sendBuff¿¡ ÆÐÅ¶À» ÀÔ·ÂÇÒ ¶§, ÇöÀç ÀÔ·ÂÇØ¾ß ÇÒ À§Ä¡¸¦ ³ªÅ¸³À´Ï´Ù.\nÇöÀç±îÁö ÀÔ·Â ÇÑ µ¥ÀÌÅÍÀÇ ±æÀÌ ÀÌ±âµµ ÇÕ´Ï´Ù.
+//!g_sendBuffï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì±âµµ ï¿½Õ´Ï´ï¿½.
 //int32_t g_sendBuffInsertionLocation;
 
-//!ÆÐÅ¶À» ¼ö½ÅÇÏ±â À§ÇÑ ¹öÆÛÀÔ´Ï´Ù.
+//!ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 //BYTE g_recvBuff[SEND_BUFF_MAX_LENGTH];
-//!g_recvBuff¿¡¼­ ÆÐÅ¶À» ÀÐÀ» ¶§, ÇöÀç ÀÐ¾î¾ß ÇÒ À§Ä¡¸¦ ³ªÅ¸³À´Ï´Ù.\nÇöÀç±îÁö ÀÐÀº µ¥ÀÌÅÍÀÇ ±æÀÌ ÀÌ±âµµ ÇÕ´Ï´Ù.
+//!g_recvBuffï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ï´ï¿½.\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì±âµµ ï¿½Õ´Ï´ï¿½.
 //int32_t g_recvBuffInsertionLocation;
 
 //void SensorDataValueCpoy (SensorDataValue *src, SensorDataValue *dst);
 //void initReservedValue (BYTE *reserved, int length);
 
-//ÆÐÅ¶À» '\0'À¸·Î ÃÊ±âÈ­ÇÕ´Ï´Ù.
+//ï¿½ï¿½Å¶ï¿½ï¿½ '\0'ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Õ´Ï´ï¿½.
 void InitSensorDataPacket (SensorDataPacket *sensorDataPacket);
 
 
