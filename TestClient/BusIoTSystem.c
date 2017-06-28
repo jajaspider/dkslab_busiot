@@ -41,9 +41,9 @@ char* substring(char *input, int i_begin, int i_end)
         int cnt = 0;
         int size = (i_end - i_begin)+2;
         char *str = (char*)malloc(size);
-
+	int i;
         memset(str, 0, size);
-        for(int i = i_begin; i <= i_end; i++)
+        for(i = i_begin; i <= i_end; i++)
         {
                 str[cnt] = input[i];
                 cnt++;
