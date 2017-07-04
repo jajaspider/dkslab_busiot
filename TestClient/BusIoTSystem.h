@@ -37,6 +37,7 @@ struct timeval start;
 int obv_size = 0;
 int setting_count=0;
 int data_count=0;
+int real_data_count=0;
 int read_data_count=0;
 char* millisecond;
 

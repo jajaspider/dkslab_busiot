@@ -41,7 +41,7 @@ char* substring(char *input, int i_begin, int i_end)
         int cnt = 0;
         int size = (i_end - i_begin)+2;
         char *str = (char*)malloc(size);
-	int i;
+        int i;
         memset(str, 0, size);
         for(i = i_begin; i <= i_end; i++)
         {
@@ -187,6 +187,7 @@ void ascii_generation(char *str,char *min,char *max,int data_length){
                 }
                 printf(" ");
                 read_data_count++;
+                real_data_count++;
         }
         printf("\n");
 
@@ -365,20 +366,24 @@ void auto_byte_generation(char *log_data, int data,int data_length){
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x16;
                         read_data_count++;
+                        real_data_count+=2;
                 }
                 else if((unsigned char)real_data[i]==0x03) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x17;
                         read_data_count++;
+                        real_data_count+=2;
                 }
                 else if((unsigned char)real_data[i]==0x10) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x10;
                         read_data_count++;
+                        real_data_count+=2;
                 }
                 else{
                         g_sendBuff[data_count++] = (unsigned char)real_data[i];
                         read_data_count++;
+                        real_data_count+=1;
                 }
         }
         char print_str[100];
@@ -396,6 +401,7 @@ void ClearSendBuff () {
         memset(g_recvBuff, '\0', BUF_SIZE);
         data_count = 0;
         read_data_count =0;
+        real_data_count =0;
 }
 
 int main(int argc,char *argv[])
@@ -492,6 +498,7 @@ int main(int argc,char *argv[])
                                         g_sendBuff[data_count++] = (unsigned char)(( timestamp >> 8 ) & 0xFF);
                                         g_sendBuff[data_count++] = (unsigned char)(timestamp & 0xFF);
                                         read_data_count=read_data_count+4;
+                                        real_data_count=real_data_count+4;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %02x %02x %02x %02x",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec,t->tm_sec);
                                         printf("%s\n",print_str);
                                 }
@@ -499,6 +506,7 @@ int main(int argc,char *argv[])
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
                                         g_sendBuff[data_count++] = (unsigned char)2;
                                         read_data_count++;
+                                        real_data_count+=1;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,2);
                                         printf("%s\n",print_str);
                                 }
@@ -506,6 +514,7 @@ int main(int argc,char *argv[])
                                 else if(settings[j].min==9996&&settings[j].max==9996) {
                                         g_sendBuff[data_count++] = (unsigned char)3;
                                         read_data_count++;
+                                        real_data_count+=1;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,3);
                                         printf("%s\n",print_str);
                                 }
@@ -513,6 +522,7 @@ int main(int argc,char *argv[])
                                 else if(settings[j].min==9995&&settings[j].max==9995) {
                                         g_sendBuff[data_count++] = (unsigned char)10;
                                         read_data_count++;
+                                        real_data_count+=1;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %d",settings[j].setting_name,10);
                                         printf("%s\n",print_str);
                                 }
@@ -547,11 +557,11 @@ int main(int argc,char *argv[])
                         }
                         fprintf(f,"\n");
                         // 데이터 수신
-                        recv(client_fd,(char*) g_recvBuff, BUF_SIZE, 0);
+                        recv(client_fd,(char*) g_recvBuff, real_data_count, 0);
                         printf("\n");
                         printf("[BusIoTSystem] Received Data : ");
                         fprintf(f, "[BusIoTSystem] Received Data : ");
-                        for(max_leng=0; max_leng<BUF_SIZE; max_leng+=1) {
+                        for(max_leng=0; max_leng<real_data_count; max_leng+=1) {
                                 printf("%02x ",g_recvBuff[max_leng]);
                                 fprintf(f, "%02x ",g_recvBuff[max_leng]);
                         }
@@ -561,8 +571,10 @@ int main(int argc,char *argv[])
 
                         printf("\n");
                         log_management(logdata);
-                        printf("[BusIoTSystem] 데이터 총 길이 : %d\n",read_data_count);
-                        sprintf(logdata,"[BusIoTSystem] 데이터 총 길이 : %d",read_data_count);
+                        printf("[BusIoTSystem] 송신 데이터 총 길이 : %d\n",read_data_count);
+                        sprintf(logdata,"[BusIoTSystem] 송신 데이터 총 길이 : %d",read_data_count);
+                        printf("[BusIoTSystem] 수신 데이터 총 길이 : %d\n",real_data_count);
+                        sprintf(logdata,"[BusIoTSystem] 수신 데이터 총 길이 : %d",real_data_count);
                         log_management(logdata);
                         ClearSendBuff();
                         //전송후 클라이언트 연결 끊음
