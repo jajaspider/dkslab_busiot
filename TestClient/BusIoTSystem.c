@@ -546,7 +546,6 @@ int main(int argc,char *argv[])
                                 f = fopen(filename,"w");
                         }
                         printf("[BusIoTSystem] Received Data : ");
-                        int max_leng;
                         for(max_leng=0; max_leng<data_count; max_leng+=1) {
                                 printf("%02x ",g_recvBuff[max_leng]);
                                 fprintf(f, "%02x ",g_recvBuff[max_leng]);
