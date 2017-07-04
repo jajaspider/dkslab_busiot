@@ -544,6 +544,7 @@ int main(int argc,char *argv[])
                                 printf("%02x ",g_sendBuff[max_leng]);
                                 fprintf(f, "%02x ",g_sendBuff[max_leng]);
                         }
+                        printf("\n");
                         fprintf(f,"\n");
                         // 데이터 수신
                         recv(client_fd,(char*) g_recvBuff, data_count, 0);
