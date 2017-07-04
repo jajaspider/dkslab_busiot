@@ -393,6 +393,7 @@ void auto_byte_generation(char *log_data, int data,int data_length){
 
 void ClearSendBuff () {
         memset(g_sendBuff, '\0', BUF_SIZE);
+        memset(g_recvBuff, '\0', BUF_SIZE);
         data_count = 0;
         read_data_count =0;
 }
