@@ -547,11 +547,11 @@ int main(int argc,char *argv[])
                         }
                         fprintf(f,"\n");
                         // 데이터 수신
-                        recv(client_fd,(char*) g_recvBuff, data_count, 0);
+                        recv(client_fd,(char*) g_recvBuff, BUF_SIZE, 0);
                         printf("\n");
                         printf("[BusIoTSystem] Received Data : ");
                         fprintf(f, "[BusIoTSystem] Received Data : ");
-                        for(max_leng=0; max_leng<data_count; max_leng+=1) {
+                        for(max_leng=0; max_leng<BUF_SIZE; max_leng+=1) {
                                 printf("%02x ",g_recvBuff[max_leng]);
                                 fprintf(f, "%02x ",g_recvBuff[max_leng]);
                         }
