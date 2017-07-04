@@ -534,11 +534,26 @@ int main(int argc,char *argv[])
 
                         // 데이터 수신
                         recv(client_fd,(char*) g_recvBuff, data_count, 0);
+                        FILE *f;
+                        char filename[13];
+                        sprintf(filename,"%s.log",current_day);
+                        //파일이 있을 때
+                        if(access(filename,0)==0) {
+                                f = fopen(filename,"a");
+                        }
+                        //파일이 없을 때
+                        else if(access(filename,0)==-1) {
+                                f = fopen(filename,"w");
+                        }
                         printf("[BusIoTSystem] Received Data : ");
                         int max_leng;
                         for(max_leng=0; max_leng<data_count; max_leng+=1) {
                                 printf("%02x ",g_recvBuff[max_leng]);
+                                fprintf(f, "%02x ",g_recvBuff[max_leng]);
                         }
+                        fprintf(f,"\n");
+                        fclose(f);
+
 
                         printf("\n");
                         log_management(logdata);
