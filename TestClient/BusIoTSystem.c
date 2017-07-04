@@ -366,19 +366,19 @@ void auto_byte_generation(char *log_data, int data,int data_length){
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x16;
                         read_data_count++;
-                        real_data_count+=2;
+                        real_data_count=real_data_count+2;
                 }
                 else if((unsigned char)real_data[i]==0x03) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x17;
                         read_data_count++;
-                        real_data_count+=2;
+                        real_data_count=real_data_count+2;
                 }
                 else if((unsigned char)real_data[i]==0x10) {
                         g_sendBuff[data_count++] = 0x10;
                         g_sendBuff[data_count++] = 0x10;
                         read_data_count++;
-                        real_data_count+=2;
+                        real_data_count=real_data_count+2;
                 }
                 else{
                         g_sendBuff[data_count++] = (unsigned char)real_data[i];
@@ -571,10 +571,10 @@ int main(int argc,char *argv[])
 
                         printf("\n");
                         log_management(logdata);
-                        printf("[BusIoTSystem] 송신 데이터 총 길이 : %d\n",read_data_count);
-                        sprintf(logdata,"[BusIoTSystem] 송신 데이터 총 길이 : %d",read_data_count);
-                        printf("[BusIoTSystem] 수신 데이터 총 길이 : %d\n",real_data_count);
-                        sprintf(logdata,"[BusIoTSystem] 수신 데이터 총 길이 : %d",real_data_count);
+                        printf("[BusIoTSystem] 정의된 데이터 총 길이 : %d\n",read_data_count);
+                        sprintf(logdata,"[BusIoTSystem] 정의된 데이터 총 길이 : %d",read_data_count);
+                        printf("[BusIoTSystem] 변환전 데이터 총 길이 : %d\n",real_data_count);
+                        sprintf(logdata,"[BusIoTSystem] 변환전 데이터 총 길이 : %d",real_data_count);
                         log_management(logdata);
                         ClearSendBuff();
                         //전송후 클라이언트 연결 끊음
