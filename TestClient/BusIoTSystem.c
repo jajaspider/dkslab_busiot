@@ -493,7 +493,6 @@ int main(int argc,char *argv[])
                                         read_data_count=read_data_count+4;
                                         sprintf(print_str,"[BusIoTSystem] %s 값 추가 : %02x %02x %02x %02x",settings[j].setting_name,t->tm_hour,t->tm_min,t->tm_sec,t->tm_sec);
                                         printf("%s\n",print_str);
-
                                 }
                                 // STX 변환규칙
                                 else if(settings[j].min==9997&&settings[j].max==9997) {
@@ -525,12 +524,20 @@ int main(int argc,char *argv[])
                                 }
                         }
 
-                        // 데이터 전송
+                        // 데이터 송신
                         send(client_fd, g_sendBuff, data_count, 0);
                         printf("[BusIoTSystem] Send Data : ");
                         int max_leng;
                         for(max_leng=0; max_leng<data_count; max_leng+=1) {
                                 printf("%02x ",g_sendBuff[max_leng]);
+                        }
+
+                        // 데이터 수신
+                        recv(client_fd,(char*) g_recvBuff, data_count, 0);
+                        printf("[BusIoTSystem] Received Data : ");
+                        int max_leng;
+                        for(max_leng=0; max_leng<data_count; max_leng+=1) {
+                                printf("%02x ",g_recvBuff[max_leng]);
                         }
 
                         printf("\n");
