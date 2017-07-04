@@ -116,14 +116,6 @@ void initReservedValue (BYTE *reserved, int length) {
 }
 
 
-
-
-
-
-
-
-
-
 //sensor2value
 int32_t MoveData_sensor2value (SensorDataValue *_output_sensorDataValue, BYTE *serialId, BYTE *terminalId) {
 	memset(_output_sensorDataValue, '\0', sizeof(SensorDataValue));
@@ -181,7 +173,7 @@ int32_t MoveOBD2Data_sensor2value (SensorDataValue *_output_sensorDataValue) {
 	_output_sensorDataValue->busInnerOxygen[1] = 0xFF * _100_DIV_128_ - 100;
 
 	_output_sensorDataValue->runTimeToEngineStart		= 0xFFFF;
-	
+
 	_output_sensorDataValue->absoluteBarometricPressure	= 101;
 
 	_output_sensorDataValue->fuelTankLevelInput			= 50;
@@ -213,7 +205,7 @@ int32_t MoveWildDrivingData_sensor2value (SensorDataValue *_output_sensorDataVal
 	_output_sensorDataValue->wildDrivingTime = (int32_t)time(NULL);
 
 	_output_sensorDataValue->isWildDriving = 0;
-	
+
 	_output_sensorDataValue->gSensorX[0] = 0x00;
 	_output_sensorDataValue->gSensorX[1] = 0x00;
 
@@ -232,10 +224,10 @@ int32_t MoveBeaconData_sensor2value (SensorDataValue *_output_sensorDataValue) {
 	int i;
 
 	_output_sensorDataValue->beaconTime = (int32_t)time(NULL);
-	
+
 	for (i = 0; i < 16; i++)
 		_output_sensorDataValue->beaconUuid[i] = 'A';
-	
+
 	_output_sensorDataValue->beaconMajor[0] = 'B';
 	_output_sensorDataValue->beaconMajor[1] = 'B';
 
@@ -273,7 +265,7 @@ int32_t MoveImageData_sensor2value (SensorDataValue *_output_sensorDataValue) {
 	BYTE buff[30];
 	memset(buff, '\0', 30);
 
-	
+
 
 	_output_sensorDataValue->imageTime = (int32_t)time(NULL);
 	timeInfo = localtime((time_t*)&_output_sensorDataValue->imageTime);
@@ -289,7 +281,7 @@ int32_t MoveImageData_sensor2value (SensorDataValue *_output_sensorDataValue) {
 		timeInfo->tm_sec,
 		"F0"
 		);
-	
+
 	memcpy((char*)_output_sensorDataValue->imageName, (char*)buff, 30);
 
 	initReservedValue(_output_sensorDataValue->imageReserved, 10);
@@ -299,7 +291,7 @@ int32_t MoveImageData_sensor2value (SensorDataValue *_output_sensorDataValue) {
 
 int32_t MoveSpeakerData_sensor2value (SensorDataValue *_output_sensorDataValue) {
 	_output_sensorDataValue->speakerTime = (int32_t)time(NULL);
-	
+
 	_output_sensorDataValue->speakerStationId[0] = 0x05;
 	_output_sensorDataValue->speakerStationId[1] = 0x00;
 	_output_sensorDataValue->speakerStationId[2] = 0x60;
@@ -360,10 +352,10 @@ int32_t MoveDisabledPersonResvData_sensor2value (SensorDataValue *_output_sensor
 //value2packet
 int32_t MoveData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
+
 	memset(_output_sensorDataPacket, '\0', sizeof(SensorDataPacket));
-	
-	
+
+
 	_output_sensorDataPacket->control_stx[0] = sensorDataValue->control_stx;
 	movedDataSize++;
 	memcpy((char*)_output_sensorDataPacket->serialId,						(char*)sensorDataValue->serialId,		5);
@@ -446,11 +438,11 @@ int32_t MoveGpsData_value2packet (SensorDataValue *sensorDataValue, SensorDataPa
 
 int32_t MoveOBD2Data_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->obdTime = sensorDataValue->obdTime;
 	_output_sensorDataPacket->obdTime	= htonl(_output_sensorDataPacket->obdTime);
-	
+
 	sprintf((char*)_output_sensorDataPacket->busSpeed,						"%03d", sensorDataValue->busSpeed);
 
 	_output_sensorDataPacket->busInnerOxygen[0]				= (BYTE)(sensorDataValue->busInnerOxygen[0] * 200);
@@ -461,7 +453,7 @@ int32_t MoveOBD2Data_value2packet (SensorDataValue *sensorDataValue, SensorDataP
 
 	sprintf((char*)_output_sensorDataPacket->absoluteBarometricPressure,	"%03d", sensorDataValue->absoluteBarometricPressure);
 	sprintf((char*)_output_sensorDataPacket->fuelTankLevelInput,			"%03d", sensorDataValue->fuelTankLevelInput);
-	
+
 	_output_sensorDataPacket->engineRPM[0]					= (BYTE)(sensorDataValue->engineRPM * 4 * DIV256);
 	_output_sensorDataPacket->engineRPM[1]					= (BYTE)(sensorDataValue->engineRPM * 4	- _output_sensorDataPacket->engineRPM[0] * 256);
 
@@ -486,13 +478,13 @@ int32_t MoveOBD2Data_value2packet (SensorDataValue *sensorDataValue, SensorDataP
 
 int32_t MoveUsrCntData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->usrCntTime					= sensorDataValue->usrCntTime;
 	_output_sensorDataPacket->usrCntTime	= htonl(_output_sensorDataPacket->usrCntTime);
 	sprintf((char*)_output_sensorDataPacket->usrCnt,					"%03d", sensorDataValue->usrCnt);
 	sprintf((char*)_output_sensorDataPacket->oldUsrCnt,					"%03d", sensorDataValue->oldUsrCnt);
-	
+
 	memcpy((char*)_output_sensorDataPacket->usrCntReserved,				(char*)_output_sensorDataPacket->usrCntReserved,	10);
 
 
@@ -534,11 +526,11 @@ int32_t MoveWildDrivingData_value2packet (SensorDataValue *sensorDataValue, Sens
 
 int32_t MoveBeaconData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->beaconTime					= sensorDataValue->beaconTime;
 	_output_sensorDataPacket->beaconTime	= htonl(_output_sensorDataPacket->beaconTime);
-	
+
 	memcpy((char*)_output_sensorDataPacket->beaconUuid,						(char*)sensorDataValue->beaconUuid,		16);
 	memcpy((char*)_output_sensorDataPacket->beaconMajor,					(char*)sensorDataValue->beaconMajor,		2);
 	memcpy((char*)_output_sensorDataPacket->beaconMinor,					(char*)sensorDataValue->beaconMinor,		2);
@@ -556,16 +548,16 @@ int32_t MoveBeaconData_value2packet (SensorDataValue *sensorDataValue, SensorDat
 
 int32_t MoveHygrothermalData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->thermometerTime				= sensorDataValue->thermometerTime;
 	_output_sensorDataPacket->thermometerTime	= htonl(_output_sensorDataPacket->thermometerTime);
 	_output_sensorDataPacket->thermometerTemperature[0]		= sensorDataValue->thermometerTemperature + 40;
-	
+
 	_output_sensorDataPacket->hygrometerTime				= sensorDataValue->hygrometerTime;
 	_output_sensorDataPacket->hygrometerTime	= htonl(_output_sensorDataPacket->hygrometerTime);
 	sprintf((char*)_output_sensorDataPacket->hygrometerHumidity,			"%03d", sensorDataValue->hygrometerHumidity);
-	
+
 	memcpy((char*)_output_sensorDataPacket->hygrothermalReserved,			(char*)_output_sensorDataPacket->hygrothermalReserved,	10);
 
 
@@ -579,15 +571,15 @@ int32_t MoveHygrothermalData_value2packet (SensorDataValue *sensorDataValue, Sen
 
 int32_t MovePanicButtonData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->panicButtonTime				= sensorDataValue->panicButtonTime;
 	_output_sensorDataPacket->panicButtonTime	= htonl(_output_sensorDataPacket->panicButtonTime);
 
 	_output_sensorDataPacket->panicButtonIsPushed[0]		= sensorDataValue->panicButtonIsPushed;
 	memcpy((char*)_output_sensorDataPacket->panicButtonReserved,			(char*)_output_sensorDataPacket->panicButtonReserved,	10);
 
-	
+
 	movedDataSize = sizeof (_output_sensorDataPacket->panicButtonTime)
 		+ sizeof (_output_sensorDataPacket->panicButtonIsPushed)
 		+ sizeof (_output_sensorDataPacket->panicButtonReserved);
@@ -596,14 +588,14 @@ int32_t MovePanicButtonData_value2packet (SensorDataValue *sensorDataValue, Sens
 
 int32_t MoveImageData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->imageTime						= sensorDataValue->imageTime;
 	_output_sensorDataPacket->imageTime	= htonl(_output_sensorDataPacket->imageTime);
 
 	memcpy((char*)_output_sensorDataPacket->imageName,						(char*)sensorDataValue->imageName,	30);
 	memcpy((char*)_output_sensorDataPacket->imageReserved,					(char*)sensorDataValue->imageReserved,	10);
-	
+
 
 	movedDataSize = sizeof (_output_sensorDataPacket->imageTime)
 		+ sizeof (_output_sensorDataPacket->imageName)
@@ -613,14 +605,14 @@ int32_t MoveImageData_value2packet (SensorDataValue *sensorDataValue, SensorData
 
 int32_t MoveSpeakerData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->speakerTime					= sensorDataValue->speakerTime;
 	_output_sensorDataPacket->speakerTime	= htonl(_output_sensorDataPacket->speakerTime);
 
 	memcpy((char*)_output_sensorDataPacket->speakerStationId,				(char*)sensorDataValue->speakerStationId,	4);
 	memcpy((char*)_output_sensorDataPacket->speakerReserved,				(char*)sensorDataValue->speakerReserved,	10);
-	
+
 
 	movedDataSize = sizeof (_output_sensorDataPacket->speakerTime)
 		+ sizeof (_output_sensorDataPacket->speakerStationId)
@@ -630,14 +622,14 @@ int32_t MoveSpeakerData_value2packet (SensorDataValue *sensorDataValue, SensorDa
 
 int32_t MoveIoData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->ioTime						= sensorDataValue->ioTime;
 	_output_sensorDataPacket->ioTime	= htonl(_output_sensorDataPacket->ioTime);
 
 	memcpy((char*)_output_sensorDataPacket->ioInput,						(char*)sensorDataValue->ioInput,	2);
 	memcpy((char*)_output_sensorDataPacket->ioReserved,					(char*)sensorDataValue->ioReserved,	10);
-	
+
 
 	movedDataSize = sizeof (_output_sensorDataPacket->ioTime)
 		+ sizeof (_output_sensorDataPacket->ioInput)
@@ -647,11 +639,11 @@ int32_t MoveIoData_value2packet (SensorDataValue *sensorDataValue, SensorDataPac
 
 int32_t MoveDisabledPersonResvData_value2packet (SensorDataValue *sensorDataValue, SensorDataPacket *_output_sensorDataPacket) {
 	int32_t movedDataSize = 0;
-	
-	
+
+
 	_output_sensorDataPacket->disabledPersonResvTime		= sensorDataValue->disabledPersonResvTime;
 	_output_sensorDataPacket->disabledPersonResvTime		= htonl(_output_sensorDataPacket->disabledPersonResvTime);
-	
+
 	memcpy((char*)_output_sensorDataPacket->busNo,							(char*)sensorDataValue->busNo,			10);
 	memcpy((char*)_output_sensorDataPacket->busLicenseNo,					(char*)sensorDataValue->busLicenseNo,	12);
 
@@ -663,7 +655,7 @@ int32_t MoveDisabledPersonResvData_value2packet (SensorDataValue *sensorDataValu
 
 	memcpy((char*)_output_sensorDataPacket->resvBusStopId,					(char*)sensorDataValue->resvBusStopId,	10);
 	memcpy((char*)_output_sensorDataPacket->resvPhone,						(char*)sensorDataValue->resvPhone,	12);
-	
+
 	memcpy((char*)_output_sensorDataPacket->disabledPersonResvReserved,	(char*)sensorDataValue->disabledPersonResvReserved,	10);
 
 
@@ -682,22 +674,13 @@ int32_t MoveDisabledPersonResvData_value2packet (SensorDataValue *sensorDataValu
 
 
 
-
-
-
-
-
-
-
-
-
 //packet2buff
 int32_t MoveData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff) {
 	int32_t insertionLocation = 0;
 	int32_t movedDataSize = 0;
 	memset(_output_buff, '\0', SEND_BUFF_MAX_LENGTH);
 
-	
+
 	MoveData_byte2buff (sensorDataPacket->control_stx,	1, _output_buff, &insertionLocation);
 	movedDataSize++;
 	MoveData_byte2buff (sensorDataPacket->serialId,		5, _output_buff, &insertionLocation);
@@ -783,7 +766,7 @@ int32_t MoveOBD2Data_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_out
 	MoveData_byte2buff ((BYTE*)sensorDataPacket->engineOilTemperature,			1	, _output_buff, insertionLocation);
 	MoveData_byte2buff ((BYTE*)sensorDataPacket->engineCoolantTemperature,		1	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->obdReserved,							10	, _output_buff, insertionLocation);
-	
+
 
 	return *insertionLocation - movedDataSize;
 }
@@ -796,15 +779,15 @@ int32_t MoveUsrCntData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_o
 	MoveData_byte2buff (sensorDataPacket->usrCnt,								3	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->oldUsrCnt,							3	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->usrCntReserved,						10	, _output_buff, insertionLocation);
-	
+
 
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveWildDrivingData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->wildDrivingTime,				4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->isWildDriving,						1	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->gSensorX,								2	, _output_buff, insertionLocation);
@@ -818,15 +801,15 @@ int32_t MoveWildDrivingData_packet2buff (SensorDataPacket *sensorDataPacket, BYT
 
 int32_t MoveBeaconData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->beaconTime,					4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->beaconUuid,							16	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->beaconMajor,							2	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->beaconMinor,							2	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->beaconReserved,						10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
@@ -840,62 +823,62 @@ int32_t MoveHygrothermalData_packet2buff (SensorDataPacket *sensorDataPacket, BY
 	MoveData_byte2buff (sensorDataPacket->hygrometerHumidity,					3	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->hygrothermalReserved,					10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MovePanicButtonData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->panicButtonTime,				4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->panicButtonIsPushed,					1	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->panicButtonReserved,					10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveImageData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->imageTime,					4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->imageName,							30	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->imageReserved,						10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveSpeakerData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->speakerTime,					4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->speakerStationId,						4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->speakerReserved,						10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveIoData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->ioTime,						4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->ioInput,								2	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->ioReserved,							10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveDisabledPersonResvData_packet2buff (SensorDataPacket *sensorDataPacket, BYTE *_output_buff, int32_t *insertionLocation) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_byte2buff ((BYTE*)&sensorDataPacket->disabledPersonResvTime,		4	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->busNo,								10	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->busLicenseNo,							12	, _output_buff, insertionLocation);
@@ -906,7 +889,7 @@ int32_t MoveDisabledPersonResvData_packet2buff (SensorDataPacket *sensorDataPack
 	MoveData_byte2buff (sensorDataPacket->resvPhone,							12	, _output_buff, insertionLocation);
 	MoveData_byte2buff (sensorDataPacket->disabledPersonResvReserved,			10	, _output_buff, insertionLocation);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
@@ -957,7 +940,7 @@ int32_t MoveData_buff2value (BYTE *buff, SensorDataValue *_output_sensorDataValu
 	int32_t movedDataSize = 0;
 
 	memset(_output_sensorDataValue, '\0', sizeof(SensorDataValue));
-	
+
 
 	MoveData_buff2byte (buff, &insertionLocation, &_output_sensorDataValue->control_stx,							1);
 	movedDataSize++;
@@ -1029,7 +1012,7 @@ int32_t MoveGpsData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDa
 	MoveData_buff2byte (buff, insertionLocation, &_output_sensorDataValue->gpsCnt,								1);
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->gpsSpeed,						4);
 	_output_sensorDataValue->gpsSpeed = (float)ntohl(_output_sensorDataValue->gpsSpeed);
-	
+
 	MoveData_buff2byte (buff, insertionLocation, tmpBuff, 3);
 	_output_sensorDataValue->gpsHeading = atoi((char*)tmpBuff);
 
@@ -1044,7 +1027,7 @@ int32_t MoveOBD2Data_buff2value (BYTE *buff, int32_t *insertionLocation, SensorD
 	int32_t movedDataSize = *insertionLocation;
 	BYTE tmpBuff[4];
 
-	
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->obdTime,						4);
 	_output_sensorDataValue->obdTime = ntohl(_output_sensorDataValue->obdTime);
 
@@ -1069,18 +1052,18 @@ int32_t MoveOBD2Data_buff2value (BYTE *buff, int32_t *insertionLocation, SensorD
 
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->obdReserved,							10);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveUsrCntData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
 	BYTE tmpBuff[4];
-	
+
 
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->usrCntTime,					4);
 	_output_sensorDataValue->usrCntTime = ntohl(_output_sensorDataValue->usrCntTime);
-	
+
 	MoveData_buff2byte (buff, insertionLocation, tmpBuff, 3);
 	_output_sensorDataValue->usrCnt		= atoi((char*)tmpBuff);
 	MoveData_buff2byte (buff, insertionLocation, tmpBuff, 3);
@@ -1094,11 +1077,11 @@ int32_t MoveUsrCntData_buff2value (BYTE *buff, int32_t *insertionLocation, Senso
 
 int32_t MoveWildDrivingData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->wildDrivingTime,				4);
 	_output_sensorDataValue->wildDrivingTime = ntohl(_output_sensorDataValue->wildDrivingTime);
-	
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->isWildDriving,				1);
 
 	_output_sensorDataValue->gSensorX[0] = buff[(*insertionLocation)++];
@@ -1111,22 +1094,22 @@ int32_t MoveWildDrivingData_buff2value (BYTE *buff, int32_t *insertionLocation, 
 	_output_sensorDataValue->gSensorZ[1] = buff[(*insertionLocation)++];
 
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->wildDrivingReserved,					10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveBeaconData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->beaconTime,					4);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->beaconUuid,							16);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->beaconMajor,							2);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->beaconMinor,							2);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->beaconReserved,						10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
@@ -1137,10 +1120,10 @@ int32_t MoveHygrothermalData_buff2value (BYTE *buff, int32_t *insertionLocation,
 
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->thermometerTime,				4);
 	_output_sensorDataValue->thermometerTime = ntohl(_output_sensorDataValue->thermometerTime);
-	
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->thermometerTemperature,		1);
 	_output_sensorDataValue->thermometerTemperature -= 40;
-	
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->hygrometerTime,				4);
 	_output_sensorDataValue->hygrometerTime = ntohl(_output_sensorDataValue->hygrometerTime);
 
@@ -1149,62 +1132,62 @@ int32_t MoveHygrothermalData_buff2value (BYTE *buff, int32_t *insertionLocation,
 
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->hygrothermalReserved,					10);
 
-	
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MovePanicButtonData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->panicButtonTime,				4);
 	_output_sensorDataValue->panicButtonTime = ntohl(_output_sensorDataValue->panicButtonTime);
 
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->panicButtonIsPushed,			1);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->panicButtonReserved,					10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveImageData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
-	
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->imageTime,					4);
 	_output_sensorDataValue->imageTime = ntohl(_output_sensorDataValue->imageTime);
 
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->imageName,							30);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->imageReserved,						10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveSpeakerData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->speakerTime,					4);
 	_output_sensorDataValue->speakerTime = ntohl(_output_sensorDataValue->speakerTime);
 
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->speakerStationId,						4);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->speakerReserved,						10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
 int32_t MoveIoData_buff2value (BYTE *buff, int32_t *insertionLocation, SensorDataValue *_output_sensorDataValue) {
 	int32_t movedDataSize = *insertionLocation;
-	
-	
+
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->ioTime,						4);
 	_output_sensorDataValue->ioTime = ntohl(_output_sensorDataValue->ioTime);
 
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->ioInput,								2);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->ioReserved,							10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
@@ -1212,25 +1195,25 @@ int32_t MoveDisabledPersonResvData_buff2value (BYTE *buff, int32_t *insertionLoc
 	int32_t movedDataSize = *insertionLocation;
 	BYTE tmpBuff[4];
 
-	
-	
+
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->disabledPersonResvTime,		4);
 	_output_sensorDataValue->disabledPersonResvTime = ntohl(_output_sensorDataValue->disabledPersonResvTime);
-	
+
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->busNo,								10);
 	MoveData_buff2byte (buff, insertionLocation, _output_sensorDataValue->busLicenseNo,							12);
-	
+
 	MoveData_buff2byte (buff, insertionLocation, tmpBuff, 4);
 	_output_sensorDataValue->resvUsrGpsX = ntohl(*(int32_t*)tmpBuff) * 0.000001f;
 	MoveData_buff2byte (buff, insertionLocation, tmpBuff, 4);
 	_output_sensorDataValue->resvUsrGpsY = ntohl(*(int32_t*)tmpBuff) * 0.000001f;
-	
+
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->isResvSuccess,				1);
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->resvBusStopId,				10);
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->resvPhone,					12);
 	MoveData_buff2byte (buff, insertionLocation, (BYTE*)&_output_sensorDataValue->disabledPersonResvReserved,	10);
-	
-	
+
+
 	return *insertionLocation - movedDataSize;
 }
 
@@ -1300,14 +1283,14 @@ void PrintTime (char *head, int32_t printTime) {
 			timeInfo->tm_min,
 			timeInfo->tm_sec
 		);
-	
+
 	printf("%s %s\n", head, buff);
 	printf("%s src:: %d\n", head, printTime);
 }
 
 
 void PrintSensorDataValue (SensorDataValue *sensorDataValue) {
-	
+
 	int i;
 
 	/*
@@ -1360,14 +1343,14 @@ void PrintSensorDataValue (SensorDataValue *sensorDataValue) {
 	printf		("    usrCnt:: %d\n", sensorDataValue->usrCnt);
 	printf		(" oldUsrCnt:: %d\n", sensorDataValue->oldUsrCnt);
 	printf		("\n");
-	
+
 	PrintTime	("wildDrivingTime::", sensorDataValue->wildDrivingTime);
 	printf		("  isWildDriving:: %d\n", sensorDataValue->isWildDriving);
 	printf		("       gSensorX:: %d, %d\n", sensorDataValue->gSensorX[0], sensorDataValue->gSensorX[1]);
 	printf		("       gSensorY:: %d, %d\n", sensorDataValue->gSensorY[0], sensorDataValue->gSensorY[1]);
 	printf		("       gSensorZ:: %d, %d\n", sensorDataValue->gSensorZ[0], sensorDataValue->gSensorZ[1]);
 	printf		("\n");
-	
+
 	PrintTime	(" beaconTime::", sensorDataValue->beaconTime);
 	printf		(" beaconUuid:: ");
 	for (i = 0; i < 16; i++)
