@@ -1,0 +1,8 @@
+[BusLocationSystem] Start Crolling
+[BusLocationSystem] Url Connetion
+[BusLocationSystem] Start Parse
+[BusLocationSystem] 1 buslinenum Find
+[BusLocationSystem] 일반버스 bustype Find
+[BusLocationSystem] 부암역 endpoint Find
+[BusLocationSystem] 5200001000 lineId Find
+[BusLocationSystem] 민락동 startpoint Find
