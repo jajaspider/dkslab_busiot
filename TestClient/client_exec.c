@@ -5,6 +5,7 @@
 #define MAX_CLIENT 30000
 char current_day[20];
 char log_time[50];
+void log_management(char *log_data);
 
 void log_management(char *log_data){
         FILE *f;
