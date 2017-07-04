@@ -524,19 +524,9 @@ int main(int argc,char *argv[])
                                 }
                         }
 
-                        // 데이터 송신
-                        send(client_fd, g_sendBuff, data_count, 0);
-                        printf("[BusIoTSystem] Send Data : ");
-                        int max_leng;
-                        for(max_leng=0; max_leng<data_count; max_leng+=1) {
-                                printf("%02x ",g_sendBuff[max_leng]);
-                        }
-
-                        // 데이터 수신
-                        recv(client_fd,(char*) g_recvBuff, data_count, 0);
                         FILE *f;
-                        char filename[13];
-                        sprintf(filename,"%s.log",current_day);
+                        char filename[20];
+                        sprintf(filename,"%s_data.log",current_day);
                         //파일이 있을 때
                         if(access(filename,0)==0) {
                                 f = fopen(filename,"a");
@@ -545,7 +535,21 @@ int main(int argc,char *argv[])
                         else if(access(filename,0)==-1) {
                                 f = fopen(filename,"w");
                         }
+                        // 데이터 송신
+                        send(client_fd, g_sendBuff, data_count, 0);
+                        printf("[BusIoTSystem] Send Data : ");
+                        fprintf(f, "[BusIoTSystem] Send Data : ");
+                        int max_leng;
+                        for(max_leng=0; max_leng<data_count; max_leng+=1) {
+                                printf("%02x ",g_sendBuff[max_leng]);
+                                fprintf(f, "%02x ",g_sendBuff[max_leng]);
+                        }
+                        fprintf(f,"\n");
+                        // 데이터 수신
+                        recv(client_fd,(char*) g_recvBuff, data_count, 0);
+
                         printf("[BusIoTSystem] Received Data : ");
+                        fprintf(f, "[BusIoTSystem] Received Data : ");
                         for(max_leng=0; max_leng<data_count; max_leng+=1) {
                                 printf("%02x ",g_recvBuff[max_leng]);
                                 fprintf(f, "%02x ",g_recvBuff[max_leng]);
