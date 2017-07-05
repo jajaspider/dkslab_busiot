@@ -1,7 +1,0 @@
-[BusLocationSystem] Start Crolling
-[BusLocationSystem] Url Connetion
-[BusLocationSystem] Start Parse
-[BusLocationSystem] 167970102 bstopId Find
-[BusLocationSystem] 영주삼거리 bstopNm Find
-[BusLocationSystem] 129.0332616667 gpsX Find
-[BusLocationSystem] 35.1153233333 gpsY Find
