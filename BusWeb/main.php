@@ -1,13 +1,8 @@
 <?php
-
 $srv = '113.198.235.247';
 $sid = 'iotsen';
 $port = 1521;
-$conn = oci_connect('iot915', 'dkslab915', "(DESCRIPTION =
-                                                                  (ADDRESS = (PROTOCOL = tcp) (HOST = 113.198.235.247) (PORT = 1521))
-                                                                  (CONNECT_DATA = (SID = iotsen))
-                                                              )");
-
+$conn = oci_connect('iot915', 'dkslab915', "(DESCRIPTION =(ADDRESS = (PROTOCOL = tcp) (HOST = 113.198.235.247) (PORT = 1521))(CONNECT_DATA = (SID = iotsen)))",'AL32UTF8');
 if (!$conn) {
     $e = oci_error();
     echo "An Error occured! " .  $e['message'] . "\n";
@@ -25,7 +20,29 @@ $pwd = $row['PASSWORD'];
 $userid = $_POST['id'];
 $userpwd = $_POST['pass'];
 ?>
-
+<?php
+$data_sql = "select GPSX, GPSY, BUSSPEED, USRCNT, ThermometerTemperature, HygrometerHumidity from sensordatainfo";
+$data_parse = oci_parse($conn, $data_sql);
+oci_execute($data_parse);
+$data_row;
+$gpsx=0;
+$gpsy=0;
+$busSpeed=0;
+$usrcnt=0;
+$thermometertemperature=0;
+$hygrometerhumidity=0;
+$passenger = "";
+$i = 0;
+?>
+<?php
+$BS_sql = "select BSTOPNM, GPSX, GPSY from bus_station";
+$BS_parse = oci_parse($conn, $BS_sql);
+oci_execute($BS_parse);
+$BS_row;
+$BS_gpsx=0;
+$BS_gpsy=0;
+$BS_name;
+?>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -70,153 +87,363 @@ else{
 
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./bootstrap-slider.min.css" rel="stylesheet">
+    <link href="./iotbus.css" rel="stylesheet">
     <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="./bootstrap/js/bootstrap.min.js"></script>
     <script src="./bootstrap-slider.min.js"></script>
-    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=b3138577083cb1fe9cd9d4d6474e2a8e" charset="utf-8"></script>
-    <style>
-    #map {
-      position: relative;
-      width: 100%;
-      height: 700px;
-    }
-    #formSearch {
-      position: absolute;
-      top: 230px;
-      left: 50px;
-      z-index: 3;
-    }
-    #inputSearch {
-      width: 230px;
-    }
-    #busPanel {
-      position: absolute;
-      top: 270px;
-      left: 50px;
-      z-index: 3;
-      background-color: white;
-      width: 300px;
-      height: 400px;
-    }
-    #sensorPanel {
-      position: absolute;
-      top: 410px;
-      left: 0px;
-      z-index: 3;
-      background-color: white;
-      width: 300px;
-      height: 150px;
-    }
-    #sensorSubmitButton {
-      position: absolute;
-      top : 150px;
-    }
-    .slider {
-      text-align: center;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      width: 300px;
-    }
-    .jumbotron {
-      color: #fff;
-      height: 150px;
-      background: linear-gradient( to right, #2e6da4, #5bc0de );
-      margin-bottom: 0px;
-    }
-    #imgStyle {
-      width : 50px;
-      height: 50px;
-    }
-    #BIMS {
-      color: #fff;
-      font-style: italic;
-      font-weight: bold;
-      text-align: center;
-    }
-    .navbar {
-      margin-bottom: 0px;
-      height: 40px;
-    }
-    .navbar .navbar-nav {
-      display: inline-block;
-      float: none;
-    }
-    .navbar .navbar-collapse {
-      text-align: center;
-    }
-    .nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
-      border-bottom: #C4E17F 3px solid;
-    }
-    .nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
-      border-bottom: #F7FDCA 3px solid;
-    }
-    .nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
-      border-bottom: #FECF71 3px solid;
-    }
-    .nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
-      border-bottom: #F0776C 3px solid;
-    }
-    .nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
-      border-bottom: #DB9DBE 3px solid;
-    }
-    .nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
-      border-bottom: #C49CDE 3px solid;
-    }
-    .nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
-      border-bottom: #669AE1 3px solid;
-    }
-    .nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
-      border-bottom: #62C2E4 3px solid;
-    }
-    #disabledButton {
-      color: #9d9d9d;
-      background-color: transparent;
-      border-color: transparent;
-      padding: 15px 15px;
-      border: 0px;
-      outline: 0;
-    }
-    </style>
+    <!--<script src="./js/iotbus.js"></script>-->
+    <script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=f06db548c98701cea74fdd012ba4bbec&libraries=services,clusterer,drawing"></script>
+
 
     <script>
-      $('#busTab a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-      })
-      $('#listTab a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-      })
-      $(document).ready(function() {
-          $("#passengerSlider").slider({});
-          $("#temperatureSlider").slider({});
-          $("#humiditySlider").slider({});
-      });
-      $('#Disabled').modal()
+var clickCount = 0;
+var busStopClick = 0;
+var passengerSliderValue;
+var temperatureSliderValue;
+var passengerVal;
+var mapContainer;
+var map;
+var clusterer;
+var clusterer2;
+var markers = [];
+var markers2 = [];
+  var busmarkers = [];
 
-      $('body').scrollspy({ target: '#menubar' })
-    </script>
+function init() {
+
+var marker;
+var infowindow;
+var positions = [
+  <?php
+  while(null!=($data_row = oci_fetch_array($data_parse,OCI_ASSOC))){//DB테이블 행 하나씩 읽어서 값 가져오기
+  $gpsx = $data_row['GPSX'];
+  $gpsy = $data_row['GPSY'];
+  $busSpeed = $data_row['BUSSPEED'];
+  $usrcnt = (int)$data_row['USRCNT'];
+  $thermometertemperature = $data_row['THERMOMETERTEMPERATURE'];
+  $hygrometerhumidity = $data_row['HYGROMETERHUMIDITY'];
+  if($i++ !=0){//자바스크립트로 넘겨주기 위해 하나의 스트링 데이터로 파싱한다. 조건문을 통해 첫 스트링에는 콤마 구분자를 넣지 않는다.
+    $passenger.=",";
+  }
+  $passenger.="'".$usrcnt."'";//각데이터를 스트링 형태로 저장한다. 결과적으로 하나의 긴 스트링 데이터가 만들어진다.
+  ?>
+  {
+      "lat": <?php echo $gpsx/1000000 ?>,
+      "lng": <?php echo $gpsy/1000000 ?>,
+      "store":
+    '<table style="text-align: center;">'+
+    '<thead>'+
+    '<tr>'+
+    '<td>'+
+    '110-1 정보'+
+    '</td>'+
+    '</tr>'+
+    '</thead>'+
+    '<tbody>'+
+    '<tr>'+
+    '<td width="100" height="50" style="text-align: center;" >'+
+    '<img src="/img/temparature.png" width="15" height="30">'+
+    ' <?php echo $thermometertemperature ?>ºc'+
+    '</td>'+
+    '<td width="100" height="50">'+
+    '<img src="/img/humidity.png" width="25" height="25">'+
+    ' <?php echo $hygrometerhumidity ?>%'+
+    '</td>'+
+    '</tr>'+
+    '<tr>'+
+    '<td width="100" height="50">'+
+    '<img src="/img/user_count.png" width="25" height="25">'+
+    ' <?php echo $usrcnt ?>명'+
+    '</td>'+
+    '<td width="100" height="50">'+
+    '<img src="/img/bus_speed.png" width="30" height="20">'+
+    ' <?php echo $busSpeed ?>km/h'+
+    '</td>'+
+    '</tr>'+
+    '</tbody>'+
+    '</table>'
+  },
+  <?php
+}
+?>
+];
+
+    mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(35.144809, 129.034790), // 지도의 중심좌표
+            level: 5 // 지도의 확대 레벨
+        };
+daum.maps.disableBusSymbol();
+    map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	var imageSrc = './img/BusIcon.png', // 마커이미지의 주소입니다
+        imageSize = new daum.maps.Size(20, 25), // 마커이미지의 크기입니다
+        imageOprion = {offset: new daum.maps.Point(27, 69)};
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOprion);
+    // 마커 클러스터러를 생성합니다
+    clusterer = new daum.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 5 // 클러스터 할 최소 지도 레벨
+    });
+
+    for (var i = 0, len = positions.length; i < len; i++) {
+        markers.push(addMarker(positions[i]));
+    }
+
+    function addMarker(position) {
+        marker = new daum.maps.Marker({
+            position: new daum.maps.LatLng(position.lat, position.lng),
+image: markerImage // 마커이미지 설정
+        });
+
+        infowindow = new daum.maps.InfoWindow({
+            content: position.store // 인포윈도우에 표시할 내용
+        });
+
+        daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
+        return marker;
+    };
+
+    $('#110-1').click(function() {
+        if (clickCount == 0) {
+            clusterer.addMarkers(markers);
+            clickCount = 1;
+
+        } else {
+            clusterer.clear();
+            clickCount = 0;
+        }
+    })
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function() {
+            infowindow.open(map, marker);
+            //승객 값
+
+            for (var i = 0; i < passenger_num.length; i++) {
+                $("#passengerValue" + i).text(passenger_num[i]);
+            }
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function() {
+            infowindow.close();
+        };
+    }
+}
+
+var passenger_num = new Array(<?php echo $passenger?>);//만들어진 긴 스트링 데이터를 그대로 출력하면 자바스트립트에서의 배열 생성시 초기 값들을 생성하듯이 생성 된다. 이 배열을 자바스크립트 변수로 사용할 수 있다.
+
+function sensorSubmit() {
+    //슬라이더 값
+    passengerSliderValue = document.getElementById("passengerSlider").value;
+    temperatureSliderValue = document.getElementById("temperatureSlider").value;
+    clickCount = 1;
+
+    for (var i = 0; i < passenger_num.length; i++) {
+        if (parseInt(passenger_num[i]) >= passengerSliderValue) {
+            clusterer.redraw();
+        }
+    }
+}
 
 
-    <script type="text/javascript">
-	var map;
-    	function init() {
-    		map = new daum.maps.Map(document.getElementById('map'), {
-    			center: new daum.maps.LatLng(35.144809, 129.034790)
-    		});
-        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-      var mapTypeControl = new daum.maps.MapTypeControl();
+$(document).ready(function() {
+    $(".search").keyup(function () {
+    var searchTerm = $(".search").val();
+    var listItem = $('.results tbody').children('tr');
+    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
 
-      // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-      // daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-      map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+    $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
+      return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+    });
 
-      // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-      var zoomControl = new daum.maps.ZoomControl();
-      map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-    	}
+    $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','false');
+    });
+
+    $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
+    $(this).attr('visible','true');
+    });
+
+    var jobCount = $('.results tbody tr[visible="true"]').length;
+    $('.counter').text(jobCount + ' item');
+
+    if(jobCount == '0') {$('.no-result').show();}
+    else {$('.no-result').hide();}
+        });
+  });
+var vbusTag;
+var vsensorTag;
+
+function callBus(){
+
+  var busTag = document.getElementById("Bus");
+  var style = window.getComputedStyle(busTag);
+  vbusTag = style.getPropertyValue("visibility");
+
+  if(vbusTag == "hidden"){
+    busTag.style.visibility = "visible";
+  }else{
+    busTag.style.visibility = "hidden";
+  }
+}
+
+function callSensor(){
+var sensorTag = document.getElementById("Sensor");
+  var style = window.getComputedStyle(sensorTag);
+  vsensorTag = style.getPropertyValue("visibility");
+
+  if(vsensorTag == "hidden"){
+  document.getElementById("ac1").setAttribute('class', 'SliderVisible');
+  document.getElementById("ac2").setAttribute('class', 'SliderVisible');
+  document.getElementById("ac3").setAttribute('class', 'SliderVisible');
+  document.getElementById("ac4").setAttribute('class', 'SliderVisible');
+    sensorTag.style.visibility = "visible";
+  }else{
+    document.getElementById("ac1").setAttribute('class', 'SliderHidden');
+    document.getElementById("ac2").setAttribute('class', 'SliderHidden');
+    document.getElementById("ac3").setAttribute('class', 'SliderHidden');
+    document.getElementById("ac4").setAttribute('class', 'SliderHidden');
+    sensorTag.style.visibility = "hidden";
+
+  }
+
+}
+
+function callBusStop(){
+  var maker;
+  var infowindow;
+  if(busStopClick == 0){
+
+    var positions = [
+      <?php
+      $count = 0;
+      while(null!=($ch=($BS_row = oci_fetch_array($BS_parse,OCI_ASSOC)))){//DB테이블 행 하나씩 읽어서 값 가져오기
+      $BS_name = $BS_row['BSTOPNM'];
+      $BS_gpsx = $BS_row['GPSX'];
+      $BS_gpsy = $BS_row['GPSY'];
+      $count++;
+      ?>
+        {
+            content: '<div><?php echo $BS_name ?></div>',
+            latlng: new daum.maps.LatLng(<?php echo $BS_gpsy ?>, <?php echo $BS_gpsx ?>)
+        }<?php if($count != 8760){ echo ",";}
+       }
+        ?>
+
+    ];
+    var imageSrc = './img/busStop.png', // 마커이미지의 주소입니다
+        imageSize = new daum.maps.Size(20, 20), // 마커이미지의 크기입니다
+        imageOprion = {offset: new daum.maps.Point(11, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOprion);
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+    clusterer2 = new daum.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 3 // 클러스터 할 최소 지도 레벨
+    });
+    for (var i = 0, len = positions.length; i < len; i++) {
+        markers2.push(addMarker(positions[i]));
+    }
+    function addMarker(position) {
+        marker = new daum.maps.Marker({
+            position: positions[i].latlng,
+image: markerImage // 마커이미지 설정
+        });
+
+        infowindow = new daum.maps.InfoWindow({
+            content: position.content // 인포윈도우에 표시할 내용
+        });
+
+        daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
+        return marker;
+    };
+clusterer2.addMarkers(markers2);
+/*
+    for (var i = 0; i < positions.length; i ++) {
+        // 마커를 생성합니다
+        marker = new daum.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커의 위치
+            image: markerImage
+        });
+        busmarkers.push(marker);
+        // 마커에 표시할 인포윈도우를 생성합니다
+        var infowindow = new daum.maps.InfoWindow({
+            content: positions[i].content // 인포윈도우에 표시할 내용
+        });
+
+        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+        // 이벤트 리스너로는 클로저를 만들어 등록합니다
+        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+        daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+    }
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+    function makeOverListener(map, marker, infowindow) {
+        return function() {
+            infowindow.open(map, marker);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+    function makeOutListener(infowindow) {
+        return function() {
+            infowindow.close();
+        };
+    }
+
+  setMarkers(map);
+  */
+
+  busStopClick = 1;
+  }
+  else{
+    //setMarkers(null);
+    clusterer2.clear();
+    busStopClick = 0;
+  }
+
+  // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+  function makeOverListener(map, marker, infowindow) {
+      return function() {
+          infowindow.open(map, marker);
+      };
+  }
+
+  // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+  function makeOutListener(infowindow) {
+      return function() {
+          infowindow.close();
+      };
+  }
+}
+/*
+function setMarkers(map) {
+    for (var i = 0; i < busmarkers.length; i++) {
+        busmarkers[i].setMap(map);
+    }
+}*/
+
+$(document).ready(function() {
+    $("#passengerSlider").slider();
+    $("#temperatureSlider").slider();
+    $("#humiditySlider").slider();
+    $("#carspeedSlider").slider();
+});
+
+
     </script>
 
   </head>
@@ -248,150 +475,173 @@ oci_execute($parse_b_bus);
 //$b_bus_carno = $row_b_bus['CARNO'];
 //$b_bus_busid = $row_b_bus['BUS_ID'];
 ?>
-    <!-- 목차 -->
-    <nav id="menubar" class="navbar navbar-inverse navbar-static-top">
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="/main.php#busPanel">Bus</a></li>
-          <li><a href="/main.php#sensorPanel">Sensor</a></li>
-          <li>
-            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#Disabled" id="disabledButton">Panic</a>
-            <!-- Modal -->
-            <div class="modal fade" id="Disabled" tabindex="-1" role="dialog" aria-labelledby="DisabledLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="DisabledLabel">Panic</h4>
-                  </div>
-                  <div class="modal-body">
-                    Main text...
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <a class="btn btn-default" href="#" role="button" data-toggle="modal" data-target="#Disabled" id="disabledButton">Disabled Reservations</a>
-            <!-- Modal -->
-            <div class="modal fade" id="Disabled" tabindex="-1" role="dialog" aria-labelledby="DisabledLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="DisabledLabel">Disabled Reservations</h4>
-                  </div>
-                  <div class="modal-body">
-                    Main text...
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!-- 머리말 -->
+<div id="map"></div>
     <header>
-      <div class="jumbotron">
-        <img id="imgStyle" src="./Img/Bus.png" class="img-responsive center-block" alt="Not Img" />
-        <p id="BIMS">
-            Bus Information Management System
-        </p>
-      </div>
+      <nav class="menu">
+       <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+       <label class="menu-open-button" for="menu-open">
+         <!--
+        <span class="lines line-1"></span>
+        <span class="lines line-2"></span>
+        <span class="lines line-3"></span>
+        -->
+      <img src="img/Bus.png" width="50%" height="50%">
+      </label>
+
+       <a href="javascript:void(0);" onclick="callBus()" class="menu-item blue"> 버스 </a>
+       <a href="javascript:void(0);" onclick="callSensor()" class="menu-item green"> 센서 </a>
+       <a href="javascript:void(0);" onclick="callBusStop()" class="menu-item red"> 정류장 </a>
+       <a href="javascript:void(0);" class="menu-item purple"> 장애인 </a>
+       <a href="javascript:void(0);" class="menu-item orange"> 패닉 </a>
+       <a href="javascript:void(0);" class="menu-item lightblue"> 통계 </a>
+     </nav>
     </header>
 
-    <!-- 내용 -->
     <section>
-        <!-- 지도 -->
-        <div id="map"></div>
 
-        <!-- 검색 -->
-        <div id="formSearch">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="inputSearch" class="sr-only">Search</label>
-              <input type="search" class="form-control" id="inputSearch" placeholder="Search...">
-            </div>
-            <button type="reset" class="btn btn-default">Search</button>
+      <article>
+        <div id="Bus" >
+          <form class="searchform form-group pull-right">
+            <input class="searchfield search form-control" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
           </form>
-        </div>
+              <table cellspacing='0' class="table table-hover table-bordered results">
+                <thead>
+                  <tr>
+                    <th>버스 번호</th>
+                    <th>출발 - 종착</th>
+                    <th>버스 종류</th>
+                  </tr>
+                </thead><!-- Table Header -->
 
-        <!-- 버스 값들 -->
-        <div role="tabpanel" id="busPanel">
-          <ul class="nav nav-tabs nav-justified" role="tablist" id="busTab">
-            <li role="presentation" class="active"><a href="#busNum" aria-controls="busNum" role="tab" data-toggle="tab">Bus Number</a></li>
-            <li role="presentation"><a href="#busStop" aria-controls="busStop" role="tab" data-toggle="tab">Bus Stop</a></li>
-          </ul>
+                  <tbody>
+                    <tr>
+                      <td><a href"javascript:void(0);" id="110-1">110-1</a></td>
+                      <td>가야동 - 동래</td>
+                      <td>일반</td>
+                    </tr><!-- Table Row -->
 
-            <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="busNum">
-               <table>
+                    <tr>
+                      <td>11</td>
+                      <td>다대포 - 영도</td>
+                      <td>일반</td>
+                    </tr><!-- Darker Table Row -->
 
-                      <?php
-                      while($row_b_bus = oci_fetch_array($parse_b_bus,OCI_ASSOC)){
-                         $busID = $row_b_bus['BUS_ID'];
-                        echo "<tr><td>버스ID: " . $busID . "</td></tr>";
-                        }
-                        ?>
+                    <tr>
+                      <td>23</td>
+                      <td>용선 - 구포</td>
+                      <td>마을</td>
+                    </tr>
 
+                    <tr>
+                      <td>87</td>
+                      <td>토곡 - 까치고개</td>
+                      <td>일반</td>
+                    </tr>
+
+                    <tr>
+                      <td>115</td>
+                      <td>토곡 - 왕자맨션</td>
+                      <td>마을</td>
+                    </tr>
+
+                    <tr>
+                      <td>168</td>
+                      <td>용당 - 녹산동신호민원센터</td>
+                      <td>일반</td>
+                    </tr>
+
+                    <tr>
+                      <td>203</td>
+                      <td>죽전마을 - 온천장역</td>
+                      <td>좌석</td>
+                    </tr>
+
+                  </tbody>
               </table>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="busStop">
-              <p>Bus Stop</p>
-            </div>
-          </div>
 
-        <!-- 센서 값들 -->
-        <div role="tabpanel" id="sensorPanel">
-          <ul class="nav nav-tabs nav-justified" role="tablist" id="listTab">
-            <li role="presentation" class="active"><a href="#Passenger" aria-controls="Passenger" role="tab" data-toggle="tab">Passenger</a></li>
-            <li role="presentation"><a href="#Temperature" aria-controls="Temperature" role="tab" data-toggle="tab">Temperature</a></li>
-            <li role="presentation"><a href="#State" aria-controls="State" role="tab" data-toggle="tab">State</a></li>
-          </ul>
 
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="Passenger">
-              <p>Passenger</p>
-              <div class='slider'>
-                  <input id="passengerSlider" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
+            </div>
+
+      </article>
+
+      <article>
+	        <div id="Sensor">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" >
+                    승객 수
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <div class='slider' id="ac1">
+                    <input id="passengerSlider" type="text" data-slider-min="0" data-slider-max="300" data-slider-step="1" data-slider-value="0"/>
+                  </div>
+                </div>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="Temperature">
-              <p>Temperature</p>
-              <div class='slider'>
-                  <input id="temperatureSlider" type="text" class="span2" value="" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="[1,100]"/>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    온도
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <div class='slider' id="ac2">
+                    <input id="temperatureSlider" type="text" data-slider-min="0" data-slider-max="300" data-slider-step="1" data-slider-value="0"/>
+                  </div>
+                </div>
               </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="State">
-              <p>State</p>
-
-              <div class='slider'>
-                  <input id="statusSlider" type="text"
-                  data-provide="slider"
-                  data-slider-ticks="[1, 2, 3]"
-                  data-slider-ticks-labels='["Bad", "Normal", "Good"]'
-                  data-slider-min="1"
-                  data-slider-max="3"
-                  data-slider-step="1"
-                  data-slider-value="3"
-                  data-slider-tooltip="hide"
-                  />
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    습도
+                  </a>
+                </h4>
               </div>
+              <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                  <div class='slider' id="ac3">
+                    <input id="humiditySlider" type="text" data-slider-min="0" data-slider-max="300" data-slider-step="1" data-slider-value="0"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    차량 속도
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                  <div class='slider' id="ac4">
+                    <input id="carspeedSlider" type="text" data-slider-min="0" data-slider-max="300" data-slider-step="1" data-slider-value="0"/>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          </div>
-          <p><button type="button" class="btn btn-primary btn-block" id="sensorSubmitButton">Submit</button></p>
+          <p><button type="button" class="btn btn-primary btn-block" id="sensorSubmitButton" onclick="sensorSubmit()">Submit</button></p>
         </div>
+      </article>
 
     </section>
-    <!-- 표 -->
-    <article>
 
-    </article>
-    <!-- 꼬리말 -->
     <footer>
 
     </footer>
 
   </body>
+
 </html>
