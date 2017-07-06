@@ -106,9 +106,9 @@ var passengerVal;
 var mapContainer;
 var map;
 var clusterer;
+var clusterer2;
 var markers = [];
-
-
+var markers2 = [];
   var busmarkers = [];
 
 function init() {
@@ -248,7 +248,7 @@ function sensorSubmit() {
 
     for (var i = 0; i < passenger_num.length; i++) {
         if (parseInt(passenger_num[i]) >= passengerSliderValue) {
-            clusterer.removeMarker(markers[i]);
+            clusterer.redraw();
         }
     }
 }
@@ -322,11 +322,7 @@ function callBusStop(){
   var maker;
   var infowindow;
   if(busStopClick == 0){
-    var imageSrc = './img/busStop.png', // 마커이미지의 주소입니다
-        imageSize = new daum.maps.Size(20, 20), // 마커이미지의 크기입니다
-        imageOprion = {offset: new daum.maps.Point(11, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOprion);
-    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+
     var positions = [
       <?php
       $count = 0;
@@ -344,6 +340,36 @@ function callBusStop(){
         ?>
 
     ];
+    var imageSrc = './img/busStop.png', // 마커이미지의 주소입니다
+        imageSize = new daum.maps.Size(20, 20), // 마커이미지의 크기입니다
+        imageOprion = {offset: new daum.maps.Point(11, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize, imageOprion);
+    // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+    clusterer2 = new daum.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+        minLevel: 3 // 클러스터 할 최소 지도 레벨
+    });
+    for (var i = 0, len = positions.length; i < len; i++) {
+        markers2.push(addMarker(positions[i]));
+    }
+    function addMarker(position) {
+        marker = new daum.maps.Marker({
+            position: positions[i].latlng,
+image: markerImage // 마커이미지 설정
+        });
+
+        infowindow = new daum.maps.InfoWindow({
+            content: position.content // 인포윈도우에 표시할 내용
+        });
+
+        daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+        daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
+        return marker;
+    };
+clusterer2.addMarkers(markers2);
+/*
     for (var i = 0; i < positions.length; i ++) {
         // 마커를 생성합니다
         marker = new daum.maps.Marker({
@@ -379,18 +405,36 @@ function callBusStop(){
     }
 
   setMarkers(map);
+  */
+
   busStopClick = 1;
   }
   else{
-    setMarkers(null);
+    //setMarkers(null);
+    clusterer2.clear();
     busStopClick = 0;
   }
+
+  // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+  function makeOverListener(map, marker, infowindow) {
+      return function() {
+          infowindow.open(map, marker);
+      };
+  }
+
+  // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+  function makeOutListener(infowindow) {
+      return function() {
+          infowindow.close();
+      };
+  }
 }
+/*
 function setMarkers(map) {
     for (var i = 0; i < busmarkers.length; i++) {
         busmarkers[i].setMap(map);
     }
-}
+}*/
 
 $(document).ready(function() {
     $("#passengerSlider").slider();
@@ -447,9 +491,9 @@ oci_execute($parse_b_bus);
        <a href="javascript:void(0);" onclick="callBus()" class="menu-item blue"> 버스 </a>
        <a href="javascript:void(0);" onclick="callSensor()" class="menu-item green"> 센서 </a>
        <a href="javascript:void(0);" onclick="callBusStop()" class="menu-item red"> 정류장 </a>
-       <a href="javascript:void(0);" class="menu-item purple"> <i class="fa fa-microphone"></i> </a>
-       <a href="javascript:void(0);" class="menu-item orange"> <i class="fa fa-star"></i> </a>
-       <a href="javascript:void(0);" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a>
+       <a href="javascript:void(0);" class="menu-item purple"> 장애인 </a>
+       <a href="javascript:void(0);" class="menu-item orange"> 패닉 </a>
+       <a href="javascript:void(0);" class="menu-item lightblue"> 통계 </a>
      </nav>
     </header>
 
