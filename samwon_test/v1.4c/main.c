@@ -156,13 +156,7 @@ int  main (int argc, char **argv) {
 																}
 								}
 
-
-
-
 								//init_keyboard();
-
-
-
 
 								memset((char*)&sin, '\0', sizeof(sin));
 								sin.sin_family = AF_INET;
