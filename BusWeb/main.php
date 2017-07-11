@@ -248,7 +248,7 @@ function sensorSubmit() {
 
     for (var i = 0; i < passenger_num.length; i++) {
         if (parseInt(passenger_num[i]) >= passengerSliderValue) {
-            clusterer.redraw();
+            clusterer.removeMarker(markers[i]);
         }
     }
 }
@@ -369,44 +369,6 @@ image: markerImage // 마커이미지 설정
         return marker;
     };
 clusterer2.addMarkers(markers2);
-/*
-    for (var i = 0; i < positions.length; i ++) {
-        // 마커를 생성합니다
-        marker = new daum.maps.Marker({
-            map: map, // 마커를 표시할 지도
-            position: positions[i].latlng, // 마커의 위치
-            image: markerImage
-        });
-        busmarkers.push(marker);
-        // 마커에 표시할 인포윈도우를 생성합니다
-        var infowindow = new daum.maps.InfoWindow({
-            content: positions[i].content // 인포윈도우에 표시할 내용
-        });
-
-        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-        // 이벤트 리스너로는 클로저를 만들어 등록합니다
-        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-        daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        daum.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-    }
-
-    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-    function makeOverListener(map, marker, infowindow) {
-        return function() {
-            infowindow.open(map, marker);
-        };
-    }
-
-    // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-    function makeOutListener(infowindow) {
-        return function() {
-            infowindow.close();
-        };
-    }
-
-  setMarkers(map);
-  */
-
   busStopClick = 1;
   }
   else{
@@ -501,7 +463,7 @@ oci_execute($parse_b_bus);
 
       <article>
         <div id="Bus" >
-          <form class="searchform form-group pull-right">
+          <form class="searchform form-group pull-right" onsubmit="return false;">
             <input class="searchfield search form-control" type="text" value="Search..." onfocus="if (this.value == 'Search...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search...';}" />
           </form>
               <table cellspacing='0' class="table table-hover table-bordered results">
