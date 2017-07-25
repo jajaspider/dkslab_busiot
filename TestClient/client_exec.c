@@ -22,7 +22,6 @@ void log_management(char *log_data){
         fprintf(f, "[%s]%s\n",log_time,log_data);
         fclose(f);
 }
-printasdadssasdadasdaaasashasdjjnzsiio0189284pads
 
 int main()
 {
