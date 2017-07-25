@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define MAX_CLIENT 50
+#define MAX_CLIENT 1000
 char current_day[20];
 char log_time[50];
 void log_management(char *log_data);
@@ -22,6 +22,7 @@ void log_management(char *log_data){
         fprintf(f, "[%s]%s\n",log_time,log_data);
         fclose(f);
 }
+printasdadssasdadasdaaasashasdjjnzsiio0189284pads
 
 int main()
 {
