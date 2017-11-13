@@ -75,8 +75,8 @@ int32_t dht11_data[5] = {0,};
 
 
 
-//¿©±â¼­ ºÎÅÍ mainÇÔ¼ö Àü ±îÁö´Â ¸®´ª½º È¯°æ¿¡¼­ ½Ç½Ã°£ Å° ÀÔ·ÂÀ» ¹Þ±âÀ§ÇÑ ÄÚµåÀÔ´Ï´Ù.
-//½ÇÁ¦·Î´Â »ç¿ëÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù. ¹«½ÃÇÏ¼Åµµ ÁÁ½À´Ï´Ù.
+//ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ï¿½ï¿½ mainï¿½Ô¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¯ï¿½æ¿¡ï¿½ï¿½ ï¿½Ç½Ã°ï¿½ Å° ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½Ô´Ï´ï¿½.
+//ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼Åµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 static struct termios initial_settings, new_settings;
 static int peek_character = -1;
 void init_keyboard () {
@@ -128,7 +128,7 @@ int _putch (int c) {
 int main (int argc, char **argv) {
 	int count = 0;
 	int i = 0;
-	
+
 	int fd;
 	acc_dat acc_xyz;
 
@@ -255,7 +255,7 @@ int main (int argc, char **argv) {
 
 
 
-	
+
 
 	if( -1 == fd)
 		perror("I2C device setup error");
@@ -282,9 +282,9 @@ int main (int argc, char **argv) {
 		current_CONNECTING_STATE = digitalRead(PIN_CONNECTING_STATE);
 		acc_xyz = adxl345_read_xyz(fd);
 		Read_dht11_data (dht11_data);
-		
+
 		if(previous_CONNECTING_STATE == HIGH) {
-			
+
 			//Sensors
 //=====================================================================
 			if(digitalRead(PIN_CAMERA) == LOW)
@@ -293,7 +293,7 @@ int main (int argc, char **argv) {
 			printf("\n\n\n\n\n\n\n");
 
 			printf("now wating...\n");
-			
+
 			printf("					I");
 			if (count < 6) {
 				for(i=0; i<count; i++)
@@ -307,49 +307,49 @@ int main (int argc, char **argv) {
 					printf("O");
 			}
 			printf("I");
-			
-			
-			
+
+
+
 			printf("\n\n\n\n\n\n\n\n");
-			
+
 			delay(200);
 			count++;
-			
+
 			if(count >= 10)
 				count = 0;
 		} else {
-			
+
 			//Ethernet
-			
+
 			currentTime = clock();
-			
+
 			if(recvCount == 0) isAwake = 1;
-			
-		
+
+
 			if(digitalRead(PIN_PANIC_BUTTON))
 				isPanicButtonPushed_isChecked = 0;
 
 			isPanicButtonPushed = !digitalRead(PIN_PANIC_BUTTON) && !isPanicButtonPushed_isChecked;
-	
-	
-	
+
+
+
 			if(currentTime <=  sendTime && !isPanicButtonPushed)
 				continue;
-	
-	
+
+
 			//connect
 			sock = socket(AF_INET, SOCK_STREAM, 0);
 			memset((char*)&sin, '\0', sizeof(sin));
 			sin.sin_family = AF_INET;
-			sin.sin_port = htons(4200);
+			sin.sin_port = htons(30000);
 			if(addressInput == NULL)
-				sin.sin_addr.s_addr = inet_addr("169.254.227.239");
+				sin.sin_addr.s_addr = inet_addr("113.198.235.247");
 			else
 				sin.sin_addr.s_addr = inet_addr(addressInput);
 			memset(&(sin.sin_zero), 0, 8);
 			connect(sock, (struct sockaddr*)&sin, sizeof(struct sockaddr));
 			printf("Connected\n");
-	
+
 			MoveData_sensor2value (&g_sendValue, g_serialId, g_terminalId);
 			if (isPanicButtonPushed) {
 				g_sendValue.panicButtonIsPushed = 1;
@@ -367,26 +367,26 @@ int main (int argc, char **argv) {
 			if(current_CONNECTING_STATE == HIGH) {
 				g_sendValue.commandCode = COMMAND_CODE_STOP_DRIVING;
 			}
-	
-	
+
+
 			MoveData_value2packet (&g_sendValue, &g_sendPacket);
 			buffLength = MoveData_packet2buff (&g_sendPacket, g_sendBuff);
 			PrintSensorDataValue (&g_sendValue);
 			buffLength = BakeBuffToSend(g_sendBuff, buffLength, g_sendBuff);
-			
+
 			//send
 			percentageOfPacket = send(sock, g_sendBuff, SEND_BUFF_MAX_LENGTH, 0);
 			printf("PercentageOf(Send)Packet:: %d (%3.2f%%)\n", percentageOfPacket, (float)percentageOfPacket/SEND_BUFF_MAX_LENGTH*100);
-	
-	
-	
+
+
+
 			//recv
 			buffLength = recv(sock, (char*)g_recvBuff, SEND_BUFF_MAX_LENGTH, 0);
-			
-			
-			
+
+
+
 			BakeBuffToRecv(g_recvBuff, buffLength, g_recvBuff);
-			
+
 			MoveData_buff2value (g_recvBuff, &g_recvValue);
 			if(g_recvValue.commandCode == COMMAND_CODE_DISABLED_PERSON_RESV_SEND) {
 				SensorDataValueCpoy (&g_sendValue, &g_recvValue);
@@ -394,23 +394,23 @@ int main (int argc, char **argv) {
 				g_sendValue.isResvSuccess = 1;
 				PrintSensorDataValue(&g_sendValue);
 				printf("COMMAND_CODE:: DISABLED_PERSON_RESV_PUSH\n");
-				
+
 				MoveData_value2packet (&g_sendValue, &g_sendPacket);
 				buffLength = MoveData_packet2buff (&g_sendPacket, g_sendBuff);
 				buffLength = BakeBuffToSend(g_sendBuff, buffLength, g_sendBuff);
-				
+
 				//send
 				send(sock, (char*)g_sendBuff, SEND_BUFF_MAX_LENGTH, 0);
 				printf("Closed\n");
 			}
-			
+
 			if (g_sendValue.commandCode == COMMAND_CODE_STOP_DRIVING){
 				printf("COMMAND_CODE:: STOP_DRIVING\n");
 			}
-			
+
 			if (isPanicButtonPushed)
 				printf(">>>>Panic Button Pushed!\n");
-			
+
 			printf("::recvComplete\n");
 			printf("----------------------recvCount::%d----------------------\n\n\n", recvCount);
 
@@ -418,15 +418,15 @@ int main (int argc, char **argv) {
 
 			isPanicButtonPushed_isChecked = 1;
 			sendTime = clock() + g_delay;
-			
+
 			//close
 			close(sock);
-		
-		
+
+
 			if (g_sendValue.commandCode == COMMAND_CODE_STOP_DRIVING)
 				recvCount = 0;
 		}
-		
+
 		previous_CONNECTING_STATE = current_CONNECTING_STATE;
 	}
 
